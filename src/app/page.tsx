@@ -1,95 +1,108 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React from 'react';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
+import { verUsuarios } from './services/Login';
 
 export default function Home() {
+  
+  const [value, setValue] = React.useState<number | null>(5);
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+
+
+  const Axios = async () => {
+    const rtaUsuarios = await verUsuarios();
+    return console.log(rtaUsuarios);
+  }
+
+
+  const validationSchema = Yup.object().shape({
+    fullname: Yup.string()
+      .required('El nombre completo es requerido')
+      .min(4, 'El nombre debe contener al menos 4 letras'),
+    email: Yup.string()
+      .required('El email es requerido')
+      .matches(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/ , 'Email invalido'),
+    password: Yup.string()
+      .required('La contraseña es requerida')
+      .min(6, 'La contraseña debe contener al menos 6 caracteres'),
+  });
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    
+    <>
+      <h1 className="titulo">Bienvenidos a Play-Tech</h1>
+
+      <Formik
+        initialValues={{
+          fullname: '',
+          email: '',
+          password: ''
+        }}
+      validationSchema={validationSchema}
+      onSubmit={(values, actions) => {
+          console.log(values);
+          actions.resetForm();
+          actions.setSubmitting(false);
+          alert(JSON.stringify(values, null, 2));
+        }}
+  >
+      {({ isSubmitting}) => (
+          <Form className='form'>
+            <Field className="field"
+              type="text"
+              name="fullname"
+              placeholder="Nombre completo"
             />
-          </a>
-        </div>
-      </div>
+            <ErrorMessage name="fullname" component="div" className='color' />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+            <Field className="field"
+              type="text"
+              name="email"
+              placeholder="Correo electronico"
+            />
+            <ErrorMessage name="email" component="div" className='color' />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+            <Field className="field"
+              type="password"
+              name="password"
+              placeholder="Contraseña"
+            />
+            <ErrorMessage name="password" component="div" className='color' />
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+            <button className="boton" type="submit" disabled={isSubmitting}>Enviar</button>
+            </Form>
+      )}
+      </Formik>
+      <Box
+      className='rating'
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">¡Deja tu opinión!</Typography>
+<Rating
+  name="simple-controlled"
+  value={value}
+  onChange={(event, newValue) => {
+    setValue(newValue);
+  }}
+/>
+</Box> 
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+<div className='switch'>Dark mode</div>
+<Switch {...label} className='switch2' />
+
+
+<br></br>
+<button onClick={Axios}>Axios test</button>
+
+    </>
   );
 }
