@@ -1,4 +1,5 @@
 import clienteAxios from "./Axios";
+import Usuario from "../partials/model/usuario.model";
 
 export const verUsuarios = async () => {
     try {
@@ -10,3 +11,11 @@ export const verUsuarios = async () => {
     }
 }
 
+export const crearUsuarios = async (Usuario: Usuario) => {
+    try{
+        const response = await clienteAxios.post('/usuarios', Usuario);
+        console.log(response)
+    } catch (error) {
+        console.log (error)
+    }
+}
