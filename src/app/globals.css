@@ -1,13 +1,16 @@
-body{
-  background-color: white;
-  color: black;
+body {
+  background-color: #ff0000;
 }
 
+.darkMode {
+  background-color: rgb(31, 31, 31);
+  color: white;
+}
 
 .titulo{
   position: relative;
-  left: 830px;
-  width: 200px;
+  left: 560px;
+  width: 900px;
   height: 100px;
 }
 
@@ -48,7 +51,7 @@ body{
 .switch{
   background-color: white;
   color: black;
-  width: 90px;
+  width: 58px;
 }
 
 .switch2{

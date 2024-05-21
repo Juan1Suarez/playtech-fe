@@ -18,12 +18,13 @@ export default function Register() {
         router.push("login")
     }
 
+    function darkMode() {
+        var element = document.body;
+        element.classList.toggle("darkMode");
+     }
+
     const [value, setValue] = React.useState<number | null>(5);
-    const label = { inputProps: { 'aria-label': 'Switch demo' } };
-    const Axios = async () => {
-        const rtaUsuarios = await verUsuarios();
-        return console.log(rtaUsuarios);
-    }
+
 
     const validationSchema = Yup.object().shape({
         nombre: Yup.string()
@@ -40,7 +41,8 @@ export default function Register() {
     return (
 
         <>
-            <h1 className="titulo">Bienvenidos a Play-Tech</h1>
+            <h1 className="titulo">Bienvenidos a Play-Tech! </h1>
+            <h2 className='titulo'>Registrate a nuestra pagina para poder ver nuestros productos</h2>
 
             <Formik
                 initialValues={{
@@ -116,11 +118,8 @@ export default function Register() {
                 />
             </Box>
 
-            <div className='switch'>Dark mode</div>
-            <Switch {...label} className='switch2' />
-
-            <br></br>
-            <button onClick={Axios}>Axios test</button>
+            <div className='switch'>Dark M</div>
+            <Switch  onChange={darkMode} className='switch2' />
 
 
         </>
