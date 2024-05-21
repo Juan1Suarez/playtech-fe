@@ -9,23 +9,15 @@ import Switch from '@mui/material/Switch';
 import { verUsuarios } from '../../services/Login';
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import darkMode from  "../../partials/register/Register"
 
 export default function Home() {
   const router = useRouter();
-  const navegarAHome = () => {
+  const navegarARegister = () => {
       router.push("register")
   }
   
-  
   const [value, setValue] = React.useState<number | null>(5);
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-
-
-  const Axios = async () => {
-    const rtaUsuarios = await verUsuarios();
-    return console.log(rtaUsuarios);
-  }
 
 
   const validationSchema = Yup.object().shape({
@@ -43,7 +35,8 @@ export default function Home() {
   return (
     
     <>
-      <h1 className="titulo">Bahia</h1>
+      <h1 className="titulo">Bienvenidos a Play-Tech!</h1>
+      <h2 className='titulo'>Inicia sesion a nuestra pagina para poder ver nuestros productos</h2>
 
       <Formik
         initialValues={{
@@ -85,7 +78,7 @@ export default function Home() {
             <button className="boton" type="submit" disabled={isSubmitting}>Enviar</button>
             
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button onClick={() => navegarAHome()} type="button" className="btn">Register</button>
+                            <button onClick={() => navegarARegister()} type="button" className="btn">Register</button>
                         </div>
             
             </Form>
@@ -109,11 +102,7 @@ export default function Home() {
 
 
 <div className='switch'>Dark mode</div>
-<Switch {...label} className='switch2' />
-
-
-<br></br>
-<button onClick={Axios}>Axios test</button>
+<Switch  onChange={darkMode} className='switch2' />
 
     </>
   );
