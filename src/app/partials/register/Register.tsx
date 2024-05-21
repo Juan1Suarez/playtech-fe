@@ -40,8 +40,10 @@ export default function Register() {
     return (
 
         <>
-            <h1 className="titulo">Bienvenidos a Play-Tech</h1>
 
+            <img className="play" src='./img/playtech.png' />
+            <img className="triangulossuben" src='./img/flechasube.png'></img>
+      <img className="triangulosbajan" src='./img/flechabaja.png'></img>
             <Formik
                 initialValues={{
                     nombre: '',
@@ -66,63 +68,50 @@ export default function Register() {
             >
                 {({ isSubmitting }) => (
                     <Form className='form'>
+                        <h1 className="register">Register</h1>
+                        <h1 className='titulofield'>NOMBRE</h1>
                         <Field className="field"
                             type="text"
                             name="nombre"
-                            placeholder="Nombre completo"
+                            placeholder="Escriba su nombre completo"
                         />
                         <ErrorMessage name="nombre" component="div" className='color' />
-
+                        <h1 className='titulofield'>GMAIL</h1>
                         <Field className="field"
                             type="text"
                             name="email"
-                            placeholder="Correo electronico"
+                            placeholder="Introduzca su correo electronico"
                         />
                         <ErrorMessage name="email" component="div" className='color' />
-
+                        <h1 className='titulofield'>CONTRASEÑA</h1>
                         <Field className="field"
                             type="password"
                             name="password"
-                            placeholder="Contraseña"
+                            placeholder="Cree su contraseña"
                         />
                         <ErrorMessage name="password" component="div" className='color' />
 
-                        <button className="boton" type="submit" disabled={isSubmitting}>Enviar</button>
+                        <div className="form-check form-switch">
+                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los T͟e͟r͟m͟i͟n͟o͟s͟ y͟ c͟o͟n͟d͟i͟c͟i͟o͟n͟e͟s͟</label>
+                        </div>
+                        <div className="form-check form-switch">
+                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">¡Quiero enterarme de las novedades!</label>
+                        </div>
+
+                        <button className="boton" type="submit" disabled={isSubmitting}>Crear cuenta</button>
 
 
-                        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button onClick={() => navegarALogin()} type="button" className="btn">Log-In</button>
+                        <div className="boton2">
+                            <a onClick={() => navegarALogin()} type='button' className="link">Log-In</a>
                         </div>
                     </Form>
 
                 )}
 
             </Formik>
-            <Box
-                className='rating'
-                sx={{
-                    '& > legend': { mt: 2 },
-                }}
-            >
-                <Typography component="legend">¡Deja tu opinión!</Typography>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-
-
-                />
-            </Box>
-
-            <div className='switch'>Dark mode</div>
-            <Switch {...label} className='switch2' />
-
-            <br></br>
-            <button onClick={Axios}>Axios test</button>
-
-
+          
         </>
     );
 }
