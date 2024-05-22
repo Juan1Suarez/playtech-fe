@@ -41,11 +41,7 @@ export default function Register() {
     return (
 
         <>
-<<<<<<< HEAD
-=======
-            <h1 className="titulo">Bienvenidos a Play-Tech! </h1>
-            <h2 className='titulo'>Registrate a nuestra pagina para poder ver nuestros productos</h2>
->>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
+
 
             <img className="play" src='./img/playtech.png' />
             <img className="triangulossuben" src='./img/flechasube.png'></img>
@@ -117,9 +113,7 @@ export default function Register() {
                 )}
 
             </Formik>
-<<<<<<< HEAD
-          
-=======
+
             <Box
                 className='rating'
                 sx={{
@@ -142,7 +136,7 @@ export default function Register() {
             <Switch  onChange={darkMode} className='switch2' />
 
 
->>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
+
         </>
     );
 }
