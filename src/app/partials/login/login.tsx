@@ -9,24 +9,23 @@ import Switch from '@mui/material/Switch';
 import { verUsuarios } from '../../services/Login';
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import darkMode from  "../../partials/register/Register"
 
 
 export default function Home() {
   const router = useRouter();
   const navegarARegister = () => {
+<<<<<<< HEAD
     router.push("register")
   }
 
 
-  const [value, setValue] = React.useState<number | null>(5);
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-
-
-  const Axios = async () => {
-    const rtaUsuarios = await verUsuarios();
-    return console.log(rtaUsuarios);
+=======
+      router.push("register")
   }
+  
+>>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
+  const [value, setValue] = React.useState<number | null>(5);
 
 
   const validationSchema = Yup.object().shape({
@@ -42,6 +41,13 @@ export default function Home() {
   });
 
   return (
+<<<<<<< HEAD
+=======
+    
+    <>
+      <h1 className="titulo">Bienvenidos a Play-Tech!</h1>
+      <h2 className='titulo'>Inicia sesion a nuestra pagina para poder ver nuestros productos</h2>
+>>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
 
     <>
 
@@ -81,6 +87,7 @@ export default function Home() {
             />
             <ErrorMessage name="password" component="div" className='color' />
 
+<<<<<<< HEAD
           
 
             <button className="boton" type="submit" disabled={isSubmitting}>Iniciar sesion</button>
@@ -93,6 +100,37 @@ export default function Home() {
         )}
       </Formik>
     
+=======
+            <button className="boton" type="submit" disabled={isSubmitting}>Enviar</button>
+            
+            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button onClick={() => navegarARegister()} type="button" className="btn">Register</button>
+                        </div>
+            
+            </Form>
+      )}
+      </Formik>
+      <Box
+      className='rating'
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">¡Deja tu opinión!</Typography>
+<Rating
+  name="simple-controlled"
+  value={value}
+  onChange={(event, newValue) => {
+    setValue(newValue);
+  }}
+/>
+</Box> 
+
+
+<div className='switch'>Dark mode</div>
+<Switch  onChange={darkMode} className='switch2' />
+
+>>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
     </>
 
   );

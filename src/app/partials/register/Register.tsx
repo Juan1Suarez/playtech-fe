@@ -18,12 +18,13 @@ export default function Register() {
         router.push("login")
     }
 
+    function darkMode() {
+        var element = document.body;
+        element.classList.toggle("darkMode");
+     }
+
     const [value, setValue] = React.useState<number | null>(5);
-    const label = { inputProps: { 'aria-label': 'Switch demo' } };
-    const Axios = async () => {
-        const rtaUsuarios = await verUsuarios();
-        return console.log(rtaUsuarios);
-    }
+
 
     const validationSchema = Yup.object().shape({
         nombre: Yup.string()
@@ -40,6 +41,11 @@ export default function Register() {
     return (
 
         <>
+<<<<<<< HEAD
+=======
+            <h1 className="titulo">Bienvenidos a Play-Tech! </h1>
+            <h2 className='titulo'>Registrate a nuestra pagina para poder ver nuestros productos</h2>
+>>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
 
             <img className="play" src='./img/playtech.png' />
             <img className="triangulossuben" src='./img/flechasube.png'></img>
@@ -111,7 +117,32 @@ export default function Register() {
                 )}
 
             </Formik>
+<<<<<<< HEAD
           
+=======
+            <Box
+                className='rating'
+                sx={{
+                    '& > legend': { mt: 2 },
+                }}
+            >
+                <Typography component="legend">¡Deja tu opinión!</Typography>
+                <Rating
+                    name="simple-controlled"
+                    value={value}
+                    onChange={(event, newValue) => {
+                        setValue(newValue);
+                    }}
+
+
+                />
+            </Box>
+
+            <div className='switch'>Dark M</div>
+            <Switch  onChange={darkMode} className='switch2' />
+
+
+>>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
         </>
     );
 }

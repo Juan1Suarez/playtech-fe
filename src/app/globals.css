@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 body{
@@ -9,6 +10,22 @@ body{
   position: relative;
   top:-250px;
   left: 700px;
+=======
+body {
+  background-color: #ff0000;
+}
+
+.darkMode {
+  background-color: rgb(31, 31, 31);
+  color: white;
+}
+
+.titulo{
+  position: relative;
+  left: 560px;
+  width: 900px;
+  height: 100px;
+>>>>>>> c844ef7dd80796e72ff8a3cc018603696f2b89e1
 }
 
 
@@ -87,7 +104,7 @@ font-weight: 700;
   
   background-color:#FFFFEA!important;
   color: black;
-  width: 90px;
+  width: 58px;
 }
 
 .switch2{
