@@ -43,9 +43,9 @@ export default function Register() {
         <>
 
 
-            <img className="play" src='./img/playtech.png' />
-            <img className="triangulossuben" src='./img/flechasube.png'></img>
-      <img className="triangulosbajan" src='./img/flechabaja.png'></img>
+
+<img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+           
             <Formik
                 initialValues={{
                     nombre: '',
@@ -94,7 +94,7 @@ export default function Register() {
                         <ErrorMessage name="password" component="div" className='color' />
 
                         <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1" />
                             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los T͟e͟r͟m͟i͟n͟o͟s͟ y͟ c͟o͟n͟d͟i͟c͟i͟o͟n͟e͟s͟</label>
                         </div>
                         <div className="form-check form-switch">

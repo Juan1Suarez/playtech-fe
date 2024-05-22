@@ -2,18 +2,20 @@
 
 .darkMode {
   background-color: rgb(31, 31, 31) !important;
-  color: white;
+
 }
 
 body{
-  background-color: #D8D7FF!important;
+  background-color: #bab7ff!important;
   color: black;
 }
 
 .play{
   position: relative;
-  top:-250px;
-  left: 700px;
+height: 90px;
+  top: 30px;
+  left: 668px;
+  
 }
 
 
@@ -60,7 +62,7 @@ left: 0px
 
 .form {
  position: relative;
-  top: -500px;
+ top: 60px;
   max-width: 400px;
   margin: 0 auto;
   padding: 26px;

@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Home() {
   const router = useRouter();
   const navegarARegister = () => {
-    router.push("register")
+    router.push("/")
   }
 
 
@@ -33,9 +33,7 @@ export default function Home() {
 
 
   const validationSchema = Yup.object().shape({
-    fullname: Yup.string()
-      .required('El nombre completo es requerido')
-      .min(4, 'El nombre debe contener al menos 4 letras'),
+   
     email: Yup.string()
       .required('El email es requerido')
       .matches(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/, 'Email invalido'),
@@ -48,12 +46,11 @@ export default function Home() {
 
     <>
 
-      <img className="play" src='./img/playtech.png'></img>
-      <img className="triangulossuben" src='./img/flechasube.png'></img>
-      <img className="triangulosbajan" src='./img/flechabaja.png'></img>
+      <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+    
       <Formik
         initialValues={{
-          fullname: '',
+          
           email: '',
           password: ''
         }}
