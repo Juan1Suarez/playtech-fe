@@ -45,6 +45,12 @@ font-family: "Montserrat";
   text-decoration: underline;
 }
 
+.colorcheck{
+  color: red;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
 .boton {
   top: 500px;
   background-color:#FFFFEA;
@@ -91,14 +97,12 @@ font-weight: 700;
 }
 
 .switch{
-  
   background-color:#FFFFEA!important;
   color: black;
   width: 90px;
 }
 
 .switch2{
- 
   background-color:#FFFFEA!important;
   color: black;
   
@@ -118,21 +122,4 @@ top: -20px;
 .box{
   position: relative;
   top: 10000px !important;;
-}
-
-
-.rating{
- 
-}
-
-.triangulossuben{
-  position: relative;
-left: -300px;
-top: 100px;
-}
-
-.triangulosbajan{
-  position: relative;
-  left: 720px;
-  top: 100px;
 }

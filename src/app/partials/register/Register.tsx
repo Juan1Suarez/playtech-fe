@@ -21,7 +21,7 @@ export default function Register() {
     function darkMode() {
         var element = document.body;
         element.classList.toggle("darkMode");
-     }
+    }
 
     const [value, setValue] = React.useState<number | null>(5);
 
@@ -36,6 +36,9 @@ export default function Register() {
         password: Yup.string()
             .required('La contraseña es requerida')
             .min(6, 'La contraseña debe contener al menos 6 caracteres'),
+        terminos: Yup
+            .bool()
+            .oneOf([true], 'Debes aceptar los terminos y condiciones'),
     });
 
     return (
@@ -44,15 +47,16 @@ export default function Register() {
 
 
 
-<img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-           
+            <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+
             <Formik
                 initialValues={{
                     nombre: '',
                     email: '',
                     password: '',
                     activo: 1,
-                    rolId: 2
+                    rolId: 2,
+                    terminos: false,
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values: Usuario, actions) => {
@@ -94,8 +98,9 @@ export default function Register() {
                         <ErrorMessage name="password" component="div" className='color' />
 
                         <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1" />
+                            <Field className="form-check-input" type="checkbox" role="switch" name="terminos" />
                             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los T͟e͟r͟m͟i͟n͟o͟s͟ y͟ c͟o͟n͟d͟i͟c͟i͟o͟n͟e͟s͟</label>
+                            <ErrorMessage name="terminos" component="div" className='colorcheck' />
                         </div>
                         <div className="form-check form-switch">
                             <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
@@ -133,7 +138,7 @@ export default function Register() {
             </Box>
 
             <div className='switch'>Dark M</div>
-            <Switch  onChange={darkMode} className='switch2' />
+            <Switch onChange={darkMode} className='switch2' />
 
 
 
