@@ -16,8 +16,11 @@ export default function Register() {
     const router = useRouter();
     const navegarALogin = () => {
         router.push("login")
+        
+        }
+        const navegarAMain = () => {
+            router.push("main")
     }
-
     function darkMode() {
         var element = document.body;
         element.classList.toggle("darkMode");
@@ -63,12 +66,11 @@ export default function Register() {
                     try {
                         await crearUsuarios(values);
                         actions.resetForm();
-                        alert('Usuario creado exitosamente');
                     } catch (error) {
                         console.error(error);
-                        alert('Error al crear el usuario');
                     } finally {
                         actions.setSubmitting(false);
+                   navegarAMain()
                     }
                 }}
             >
