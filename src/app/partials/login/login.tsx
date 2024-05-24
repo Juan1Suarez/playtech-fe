@@ -88,7 +88,7 @@ export default function Home() {
 
             <button className="boton" type="submit" disabled={isSubmitting}>Iniciar sesion</button>
 
-            <div className="boton2">
+            <div className="botonregylog">
               <a onClick={() => navegarARegister()} type='button' className="link">Register</a>
             </div>
 
