@@ -112,7 +112,7 @@ export default function Register() {
                         <button className="boton" type="submit" disabled={isSubmitting}>Crear cuenta</button>
 
 
-                        <div className="boton2">
+                        <div className="botonregylog">
                             <a onClick={() => navegarALogin()} type='button' className="link">Log-In</a>
                         </div>
                     </Form>
