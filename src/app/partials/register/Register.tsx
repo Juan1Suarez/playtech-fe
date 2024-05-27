@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from "next/navigation"
-import { crearUsuarios, verUsuarios } from '../../services/Login';
+import { crearUsuarios, verUsuarios } from '../../services/Register';
 import Usuario from '../model/usuario.model';
 
 
@@ -38,7 +38,7 @@ export default function Register() {
             .matches(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/, 'Email invalido'),
         password: Yup.string()
             .required('La contraseña es requerida')
-            .min(6, 'La contraseña debe contener al menos 6 caracteres'),
+            .min(4, 'La contraseña debe contener al menos 4 caracteres'),
         terminos: Yup
             .bool()
             .oneOf([true], 'Debes aceptar los terminos y condiciones'),
@@ -58,21 +58,16 @@ export default function Register() {
                     email: '',
                     password: '',
                     activo: 1,
-                    rolId: 2,
-                    terminos: false,
+                    terminos: false,                 
+                    codigo: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values: Usuario, actions) => {
-                    try {
                         await crearUsuarios(values);
                         actions.resetForm();
-                    } catch (error) {
-                        console.error(error);
-                    } finally {
-                        actions.setSubmitting(false);
-                   navegarAMain()
+                        navegarAMain()
                     }
-                }}
+                }
             >
                 {({ isSubmitting }) => (
                     <Form className='form'>

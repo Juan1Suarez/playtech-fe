@@ -6,9 +6,11 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
-import { verUsuarios } from '../../services/Login';
+import { verUsuarios } from '../../services/Register';
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { login } from '@/app/services/Login';
+import Login from '../model/login.model';
 
 
 export default function Home() {
@@ -39,7 +41,7 @@ export default function Home() {
       .matches(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/, 'Email invalido'),
     password: Yup.string()
       .required('La contraseña es requerida')
-      .min(6, 'La contraseña debe contener al menos 6 caracteres'),
+      .min(4, 'La contraseña debe contener al menos 4 caracteres'),
   });
 
   return (
@@ -50,23 +52,16 @@ export default function Home() {
     
       <Formik
         initialValues={{
-          
           email: '',
           password: ''
         }}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          console.log(values);
-          actions.resetForm();
-          actions.setSubmitting(false);
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values: Login, actions: any) => {
+         await login(values, router)
         }}
       >
 
-        {({ isSubmitting }) => (
-          
-          
-          
+        {({ isSubmitting }) => (  
           <Form className='form'>
             <h1 className="login">Log-In</h1>
             <h1 className='titulofield'>GMAIL</h1>
