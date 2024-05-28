@@ -1,18 +1,21 @@
 "use client";
 import React from 'react';
 import Switch from '@mui/material/Switch';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 export default function Home() {
     function darkMode() {
         var element = document.body;
         element.classList.toggle("darkMode");
     }
+    const [value, setValue] = React.useState<number | null>(5);
     return (
 <>
 <div className='fondodark'>
 <div className='switch'>Dark mode</div>
 <Switch  onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />
-       
    </div>
     <br></br>
       <div className='fondoimg'>
@@ -28,6 +31,22 @@ export default function Home() {
    
    
   </div>
+  <Box
+      className='rating'
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">¡Deja tu opinión!</Typography>
+<Rating
+  name="simple-controlled"
+  value={value}
+  onChange={(event, newValue) => {
+    setValue(newValue);
+  }}
+/>
+</Box> 
+
 
 
 

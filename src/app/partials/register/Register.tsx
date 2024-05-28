@@ -16,10 +16,10 @@ export default function Register() {
     const router = useRouter();
     const navegarALogin = () => {
         router.push("login")
-        
-        }
-        const navegarAMain = () => {
-            router.push("main")
+
+    }
+    const navegarAMain = () => {
+        router.push("main")
     }
     function darkMode() {
         var element = document.body;
@@ -47,10 +47,12 @@ export default function Register() {
     return (
 
         <>
-
-
-
             <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+
+            <div className='fondodark'>
+                <div className='switch'>Dark mode</div>
+                <Switch onChange={darkMode} className='switch' form="flexSwitchCheckChecked" />
+            </div>
 
             <Formik
                 initialValues={{
@@ -58,15 +60,15 @@ export default function Register() {
                     email: '',
                     password: '',
                     activo: 1,
-                    terminos: false,                 
+                    terminos: false,
                     codigo: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={async (values: Usuario, actions) => {
-                        await crearUsuarios(values);
-                        actions.resetForm();
-                        navegarAMain()
-                    }
+                    await crearUsuarios(values);
+                    actions.resetForm();
+                    navegarAMain()
+                }
                 }
             >
                 {({ isSubmitting }) => (
@@ -115,30 +117,6 @@ export default function Register() {
                 )}
 
             </Formik>
-
-            <Box
-                className='rating'
-                sx={{
-                    '& > legend': { mt: 2 },
-                }}
-            >
-                <Typography component="legend">¡Deja tu opinión!</Typography>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-
-
-                />
-            </Box>
-
-            <div className='switch'>Dark M</div>
-            <Switch onChange={darkMode} className='switch2' />
-
-
-
         </>
     );
 }

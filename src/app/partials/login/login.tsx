@@ -2,11 +2,7 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Switch from '@mui/material/Switch';
-import { verUsuarios } from '../../services/Register';
+import Switch from '@mui/material/Switch';;
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { login } from '@/app/services/Login';
@@ -19,20 +15,12 @@ export default function Home() {
     router.push("/")
   }
 
-
-  const [value, setValue] = React.useState<number | null>(5);
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   function darkMode() {
     var element = document.body;
     element.classList.toggle("darkMode");
  }
-
-  const Axios = async () => {
-    const rtaUsuarios = await verUsuarios();
-    return console.log(rtaUsuarios);
-  }
-
 
   const validationSchema = Yup.object().shape({
    
@@ -49,7 +37,10 @@ export default function Home() {
     <>
 
       <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-    
+      <div className='fondodark'>
+        <div className='switch'>Dark mode</div>
+        <Switch  onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />    
+   </div>
       <Formik
         initialValues={{
           email: '',
@@ -90,28 +81,6 @@ export default function Home() {
           </Form>
         )}
       </Formik>
-    
-      <Box
-      className='rating'
-      sx={{
-        '& > legend': { mt: 2 },
-      }}
-    >
-      <Typography component="legend">¡Deja tu opinión!</Typography>
-<Rating
-  name="simple-controlled"
-  value={value}
-  onChange={(event, newValue) => {
-    setValue(newValue);
-  }}
-/>
-</Box> 
-
-
-<div className='switch'>Dark mode</div>
-<Switch  onChange={darkMode} className='switch2' />
-
-
     </>
 
   );
