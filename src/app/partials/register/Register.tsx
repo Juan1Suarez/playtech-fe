@@ -2,9 +2,6 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from "next/navigation"
@@ -19,7 +16,7 @@ export default function Register() {
 
     }
     const navegarAMain = () => {
-        router.push("main")
+        router.push("mainUser")
     }
     function darkMode() {
         var element = document.body;

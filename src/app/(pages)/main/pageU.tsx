@@ -1,12 +1,11 @@
 "use client"
-import Main from '../../partials/main/main'
+import MainUser from "@/app/partials/main/mainUser"
 
 export default function Home() {
   return (<>
 
-    
-  <Main/>
-  
+  <MainUser/>
+
   </>
   )
 }
