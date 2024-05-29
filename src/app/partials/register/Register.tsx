@@ -21,7 +21,7 @@ export default function Register() {
         element.classList.toggle("darkMode");
     }
 
-    const [value, setValue] = React.useState<number | null>(5);
+    const [valuea, setValue] = React.useState<number | null>(5);
 
 
     const validationSchema = Yup.object().shape({
