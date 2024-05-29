@@ -11,10 +11,11 @@ export const verUsuarios = async () => {
     }
 }
 
-export const crearUsuarios = async (Usuario: Usuario) => {
+export const crearUsuarios = async (Usuario: Usuario, router: any) => {
     try{
         const response = await clienteAxios.post('/usuarios', Usuario);
-        console.log(response)
+        console.log(response);
+        router.push("mainUser")
     } catch (error) {
         console.log (error)
     }

@@ -1,11 +1,13 @@
 "use client"
-import MainAdmin from '../../partials/main/MainAdmin'
+
+import MainUser from "@/app/partials/main/MainUser"
+
 
 export default function Home() {
   return (<>
 
     
-  <MainAdmin/>
+<MainUser/>
   
   </>
   )

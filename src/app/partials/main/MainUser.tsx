@@ -15,7 +15,7 @@ export default function MainUser() {
 <>
 <div className='fondodark'>
 <div className='switch'>Dark mode</div>
-<Switch  onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />
+<Switch onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />
    </div>
     <br></br>
       <div className='fondoimg'>

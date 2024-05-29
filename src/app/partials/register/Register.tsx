@@ -15,9 +15,7 @@ export default function Register() {
         router.push("login")
 
     }
-    const navegarAMain = () => {
-        router.push("mainUser")
-    }
+    
     function darkMode() {
         var element = document.body;
         element.classList.toggle("darkMode");
@@ -58,13 +56,11 @@ export default function Register() {
                     password: '',
                     activo: 1,
                     terminos: false,
-                    codigo: '',
+                    rolId: 2,
                 }}
                 validationSchema={validationSchema}
-                onSubmit={async (values: Usuario, actions) => {
-                    await crearUsuarios(values);
-                    actions.resetForm();
-                    navegarAMain()
+                onSubmit={async (values: Usuario, actions: any) => {
+                    await crearUsuarios(values, router);
                 }
                 }
             >

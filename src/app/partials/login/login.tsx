@@ -44,11 +44,12 @@ export default function Home() {
       <Formik
         initialValues={{
           email: '',
-          password: ''
+          password: '',
         }}
         validationSchema={validationSchema}
         onSubmit={async (values: Login, actions: any) => {
          await login(values, router)
+        
         }}
       >
 
