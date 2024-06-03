@@ -3,6 +3,6 @@ interface Usuario {
     email: string;
     password: string;
     activo?:number;
-    rolId?:number;
+    codigo?:string;
 }
 export default Usuario;

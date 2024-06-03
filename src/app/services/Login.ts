@@ -1,21 +1,24 @@
 import clienteAxios from "./Axios";
-import Usuario from "../partials/model/usuario.model";
+import Login from "../partials/model/login.model";
 
-export const verUsuarios = async () => {
-    try {
-        const response = await Promise.resolve(clienteAxios.get('/usuarios'));
-        console.log(response);
-        return response;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export const crearUsuarios = async (Usuario: Usuario) => {
+export const login = async (login: Login, router: any) => {
     try{
-        const response = await clienteAxios.post('/usuarios', Usuario);
-        console.log(response)
+        const response = await clienteAxios.post('/login', login);
+        console.log(response);
+        if (response.status === 200) {
+        const {rolId, accessToken} = response.data;
+        localStorage.setItem('accessToken', accessToken);
+
+        if (rolId === 2){
+            router.push("mainUser");
+        } else if (rolId === 1) {
+        router.push("mainAdmin");
+     }
+        }
     } catch (error) {
         console.log (error)
     }
 }
+
+
+
