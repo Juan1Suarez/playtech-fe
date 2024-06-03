@@ -7,7 +7,7 @@ export const login = async (login: Login, router: any) => {
         console.log(response);
         if (response.status === 200) {
         const {rolId, accessToken} = response.data;
-        sessionStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('accessToken', accessToken);
 
         if (rolId === 2){
             router.push("mainUser");

@@ -16,7 +16,7 @@ export const crearUsuarios = async (Usuario: Usuario, router: any) => {
         const response = await clienteAxios.post('/usuarios', Usuario);
         console.log(response);
         const {accessToken} = response.data
-        sessionStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('accessToken', accessToken)
         router.push("mainUser")
     } catch (error) {
         console.log (error)

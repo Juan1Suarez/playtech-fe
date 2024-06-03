@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "formik": "^2.4.6",
+    "jwt-decode": "^4.0.0",
     "localStorage": "^1.0.4",
     "next": "14.2.3",
     "node": "^20.13.1",
