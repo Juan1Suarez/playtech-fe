@@ -6,7 +6,8 @@ export const login = async (login: Login, router: any) => {
         const response = await clienteAxios.post('/login', login);
         console.log(response);
         if (response.status === 200) {
-        const {rolId} = response.data;
+        const {rolId, accessToken} = response.data;
+        sessionStorage.setItem('accessToken', accessToken);
 
         if (rolId === 2){
             router.push("mainUser");
