@@ -8,7 +8,7 @@
 .fondodark {
   position: relative;
   left: 1760px;
-  bottom: 130px;
+  bottom: 75px;
   padding: 5px;
   background-color: #404040;
   width: 90px;
@@ -210,4 +210,12 @@ body {
 .adminletra{
   text-align: center;
   top: 50%;
+}
+
+.subtitulo{ 
+ background-color: grey;
+ border-radius: 6px;
+ width: 200px;
+ color: white;
+ text-align: center;
 }

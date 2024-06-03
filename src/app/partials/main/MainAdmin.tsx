@@ -22,7 +22,7 @@ export default function MainAdmin() {
         <Switch onChange={darkMode} className='switch' form="flexSwitchCheckChecked" />
       </div>
       <br></br>
-      <h1>Auriculares</h1>
+      <h1 className='subtitulo'>Auriculares</h1>
       <div className='Auriculares'>
         <a href="https://www.mercadolibre.com.ar/auriculares-gamer-nisuta-nsaug300-negro-y-azul/p/MLA15317091#searchVariation=MLA15317091&position=17&search_layout=stack&type=product&tracking_id=5939455b-3284-499b-9db3-18a0989a6883"  > <img className='img' src="./img/nisuta.webp" />
           Auriculares gamer Nisuta NSAUG300
@@ -36,7 +36,7 @@ export default function MainAdmin() {
 
       <br />
 
-      <h1>Teclados</h1>
+      <h1 className='subtitulo'>Teclados</h1>
       <div className='Teclados'>
         <a href="https://www.mercadolibre.com.ar/teclado-gamer-redragon-kumara-k552-qwerty-espanol-latinoamerica-color-negro-con-luz-rgb/p/MLA19472215?pdp_filters=category:MLA418448#searchVariation=MLA19472215&position=7&search_layout=stack&type=product&tracking_id=853d3b61-16f4-4ad5-a355-e0a089be478a"  > <img className='imgred' src="./img/reddragon.jpg" />
           Teclado gamer Redragon Kumara K552 QWERTY
@@ -50,7 +50,7 @@ export default function MainAdmin() {
 
       <br />
 
-      <h1>Sillas</h1>
+      <h1 className='subtitulo'>Sillas</h1>
       <div className='Sillas'>
         <a href="https://www.mercadolibre.com.ar/auriculares-gamer-nisuta-nsaug300-negro-y-azul/p/MLA15317091#searchVariation=MLA15317091&position=17&search_layout=stack&type=product&tracking_id=5939455b-3284-499b-9db3-18a0989a6883"  > <img className='img' src="./img/nisuta.webp" />
           Auriculares gamer Nisuta NSAUG300
