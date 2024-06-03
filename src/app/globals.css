@@ -120,7 +120,7 @@ body {
 
 /*MAIN*/
 
-.fondoimg {
+.Auriculares {
   background-color: #ffffff !important;
   color: rgb(0, 0, 0);
   position: relative;
@@ -129,7 +129,33 @@ body {
   place-items: left;
   padding: 1%;
   height: 350px;
-  width: 430px;
+  width: 470px;
+  border-radius: 20px;
+}
+
+.Teclados{
+  background-color: #ffffff !important;
+  color: rgb(0, 0, 0);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  place-items: left;
+  padding: 1%;
+  height: 300px;
+  width: 600px;
+  border-radius: 20px;
+}
+
+.Sillas{
+  background-color: #ffffff !important;
+  color: rgb(0, 0, 0);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  place-items: left;
+  padding: 1%;
+  height: 350px;
+  width: 600px;
   border-radius: 20px;
 }
 
@@ -137,6 +163,16 @@ body {
   height: 220px;
   width: 200px;
   border-radius: 15px;
+}
+
+.imgred{
+  height: 140px ;
+  width: 300px; 
+}
+
+.imglol{
+  height: 140px ;
+  width: 270px; 
 }
 
 .navigation {
@@ -169,4 +205,9 @@ body {
   border-radius: 10px;
   border-style: solid;
   border-color: #5a5a5a;
+}
+
+.adminletra{
+  text-align: center;
+  top: 50%;
 }
