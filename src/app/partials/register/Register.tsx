@@ -44,7 +44,7 @@ export default function Register() {
         <>
             <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
 
-            <div className='fondodark'>
+            <div className='fondodark1'>
                 <div className='switch'>Dark mode</div>
                 <Switch onChange={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>

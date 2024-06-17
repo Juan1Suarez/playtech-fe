@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
 /*MODO OSCURO*/
 .darkMode {
@@ -7,8 +8,8 @@
 
 .fondodark {
   position: relative;
-  left: 1760px;
-  bottom: 130px;
+  left: 1750px;
+  bottom: 100px;
   padding: 5px;
   background-color: #404040;
   width: 90px;
@@ -17,6 +18,21 @@
   display: grid;
   place-items: center;
 }
+
+.fondodark1 {
+  position: relative;
+  left: 1750px;
+  bottom: 80px;
+  padding: 5px;
+  background-color: #404040;
+  width: 100px;
+  border-radius: 10px;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+
 body {
   background-color: #dbc5ff !important;
   color: black;
@@ -129,7 +145,7 @@ body {
   place-items: left;
   padding: 1%;
   height: 350px;
-  width: 430px;
+  width: 1760px;
   border-radius: 20px;
 }
 
@@ -140,33 +156,54 @@ body {
 }
 
 .navigation {
-  width: 700px;
+  width: 600px; 
+  position: relative;
   font-size: 25px;
-  height: 60px;
+  height: 50px;
   background-color: rgb(255, 255, 255);
   color: black;
   text-align: center;
   border-radius: 10px;
+  left: 345px;
+  font-family: "Roboto Slab";
+
 }
 
 .buscar {
   position: relative;
-  bottom: 5px;
-  right: 70px;
-  height: 50px;
+top: -3px;
+  left: 350px;
+  height: 55px;
   width: 60px;
-  border-radius: 15PX;
+  border-radius: 15px;
 }
 
-.admin {
+.adminuser {
   position: relative;
   text-align: center;
-  left: 750px;
-  bottom: 65px;
+  left: 1650px;
+  bottom: 73px;
   background-color: orange;
   width: 80px;
-  height: 58px;
+  height: 21px;
   border-radius: 10px;
   border-style: solid;
   border-color: #5a5a5a;
+}
+
+.subs{
+  background-color: white;
+border-radius: 5px;
+width: 220px;
+height: 40px;
+text-align: center;
+font-family: "Roboto Slab";
+}
+
+.playmain{
+  position: relative;
+  width: 400px;
+  height: 70px;
+  top: 20px;
+  left: 20px;
 }

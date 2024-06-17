@@ -1,56 +1,122 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { verProductos } from '@/app/services/Producto';
+import Producto from '../model/producto.model';
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 
 export default function MainUser() {
-    function darkMode() {
-        var element = document.body;
-        element.classList.toggle("darkMode");
-    }
-    const [value, setValue] = React.useState<number | null>(5);
+    const [darkMode, setDarkMode] = useState(false);
+    const [productos, setProductos] = useState<Producto[]>([]);
+    const [value, setValue] = useState<number | null>(5);
+
+    useEffect(() => {
+        verProductos().then((data: Producto[]) => {
+            setProductos(data);
+        }).catch(error => {
+            console.error("Error fetching products:", error);
+        });
+    }, []);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+        document.body.classList.toggle("darkMode", !darkMode);
+    };
+
     return (
-<>
-<div className='fondodark'>
-<div className='switch'>Dark mode</div>
-<Switch onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />
-   </div>
-    <br></br>
-      <div className='fondoimg'>
-   <a href="https://www.mercadolibre.com.ar/auriculares-gamer-nisuta-nsaug300-negro-y-azul/p/MLA15317091#searchVariation=MLA15317091&position=17&search_layout=stack&type=product&tracking_id=5939455b-3284-499b-9db3-18a0989a6883"  > <img className='img' src="./img/nisuta.webp"  /> 
-    Auriculares gamer Nisuta NSAUG300   
-    <h1>$120.000UUUUUUUUUUUUUUUUUUUUUUU</h1>
-    </a>
-   
-  <a href="https://www.mercadolibre.com.ar/auriculares-gamer-nisuta-nsaug300-negro-y-azul/p/MLA15317091#searchVariation=MLA15317091&position=17&search_layout=stack&type=product&tracking_id=5939455b-3284-499b-9db3-18a0989a6883"  > <img className='img' src="./img/nisuta.webp"  /> 
-    Auriculares gamer Nisuta NSAUG300  
-     <h1>$120.000</h1>
-     </a>
-   
-   
-  </div>
-  <Box
-      className='rating'
-      sx={{
-        '& > legend': { mt: 2 },
-      }}
-    >
-      <Typography component="legend">¡Deja tu opinión!</Typography>
-<Rating
-  name="simple-controlled"
-  value={value}
-  onChange={(event, newValue) => {
-    setValue(newValue);
-  }}
-/>
-</Box> 
-
-
-
-
+        <>
+            <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+            
+            <input className='navigation' placeholder='Buscar Producto'></input>
+            <button className='buscar'><FaMagnifyingGlass /></button>
+            <div className='adminuser'>User</div>
+            <div className='fondodark'>
+                <div>Dark mode</div>
+                <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
+            </div>
+            <br></br>
+            <h1 className='subs'>Auriculares</h1>
+            <div className='fondoimg'>
+                {productos.map(producto => (
+                    <a key={producto.tipoDeProducto}>
+                <img src='./img/logitech.webp' width={200} height={200}></img>
+                      <p>{producto.modelo}</p>
+                        <h1>{producto.precio}</h1>
+                    </a>
+                ))}
+            </div>
+            <br></br>
+            <h1 className='subs'>Teclados</h1>
+            <div className='fondoimg'>
+                {productos.map(producto => (
+                    <a key={producto.productoId}>
+                <img src='./img/logitech.webp' width={200} height={200}></img>
+                      <p>{producto.modelo}</p>
+                        <h1>{producto.precio}</h1>
+                    </a>
+                ))}
+            </div>
+           <br></br>
+            <h1 className='subs'>Mouses</h1>
+            <div className='fondoimg'>
+                {productos.map(producto => (
+                    <a key={producto.productoId}>
+                <img src='./img/logitech.webp' width={200} height={200}></img>
+                      <p>{producto.modelo}</p>
+                        <h1>{producto.precio}</h1>
+                    </a>
+                ))}
+            </div>
+            <br></br>
+            <h1 className='subs'>Mousepads</h1>
+            <div className='fondoimg'>
+                {productos.map(producto => (
+                    <a key={producto.productoId}>
+                <img src='./img/logitech.webp' width={200} height={200}></img>
+                      <p>{producto.modelo}</p>
+                        <h1>{producto.precio}</h1>
+                    </a>
+                ))}
+            </div>
+            <br></br>
+            <h1 className='subs'>Sillas Gamers</h1>
+            <div className='fondoimg'>
+                {productos.map(producto => (
+                    <a key={producto.productoId}>
+                <img src='./img/logitech.webp' width={200} height={200}></img>
+                      <p>{producto.modelo}</p>
+                        <h1>{producto.precio}</h1>
+                    </a>
+                ))}
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <Box
+                className='rating'
+                sx={{
+                    '& > legend': { mt: 2 },
+                }}
+            >
+                <Typography component="legend">¡Deja tu opinión!</Typography>
+                <Rating
+                    name="simple-controlled"
+                    value={value}
+                    onChange={(event, newValue) => {
+                        setValue(newValue);
+                    }}
+                />
+            </Box>
         </>
-        
-    )
+    );
 }
