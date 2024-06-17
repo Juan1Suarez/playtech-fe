@@ -6,7 +6,7 @@ export const verProductos = async (): Promise<Producto[]> => {
         const response = await clienteAxios.get('/producto');
         return response.data;
     } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("ERROR", error);
         return [];
     }
 };

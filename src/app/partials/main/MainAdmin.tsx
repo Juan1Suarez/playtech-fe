@@ -38,11 +38,9 @@ export default function MainAdmin() {
             <div className='fondoimg'>
                 {productos.map(producto => (
                     <a key={producto.productoId}>
+                <img src='./img/logitech.webp' width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
-                        <p>{producto.descripcion}</p>
-                        <p>Color: {producto.color}</p>
-                        <p>Stock: {producto.stock}</p>
                     </a>
                 ))}
             </div>
