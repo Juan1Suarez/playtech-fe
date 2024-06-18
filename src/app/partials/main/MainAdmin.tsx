@@ -39,11 +39,11 @@ export default function MainAdmin() {
             </div>
             <br></br>
             <h1 className='subs'>Auriculares</h1>
-            <div className='fondoimg'>
+            <div className='fondoimg'> 
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Auriculares")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                         <a key={producto.productoId} href='producto'>
                       <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                       <h1>{producto.precio}</h1>
@@ -56,7 +56,7 @@ export default function MainAdmin() {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Teclado")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                           <a key={producto.productoId} href='producto'>
                          <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
@@ -67,9 +67,9 @@ export default function MainAdmin() {
             <h1 className='subs'>Mouses</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Mouses")
+                .filter(producto => producto.tipoDeProducto === "Mouse")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                   <a key={producto.productoId} href='producto'>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
@@ -80,9 +80,9 @@ export default function MainAdmin() {
             <h1 className='subs'>Mousepads</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Mousepads")
+                .filter(producto => producto.tipoDeProducto === "Mousepad")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                      <a key={producto.productoId} href='producto'>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
@@ -93,9 +93,9 @@ export default function MainAdmin() {
             <h1 className='subs'>Sillas Gamers</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "SillasGamers")
+                .filter(producto => producto.tipoDeProducto === "Silla Gamer")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                    <a key={producto.productoId} href='producto'>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
