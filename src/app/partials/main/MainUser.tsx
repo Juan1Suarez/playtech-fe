@@ -8,8 +8,7 @@ import { verProductos } from '@/app/services/Producto';
 import Producto from '../model/producto.model';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-
-export default function MainUser() {
+export default function MainAdmin() {
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
     const [value, setValue] = useState<number | null>(5);
@@ -20,7 +19,7 @@ export default function MainUser() {
         }).catch(error => {
             console.error("Error fetching products:", error);
         });
-    }, []);
+    })
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -41,20 +40,24 @@ export default function MainUser() {
             <br></br>
             <h1 className='subs'>Auriculares</h1>
             <div className='fondoimg'>
-                {productos.map(producto => (
-                    <a key={producto.tipoDeProducto}>
-                <img src='./img/logitech.webp' width={200} height={200}></img>
+                {productos
+                .filter(producto => producto.tipoDeProducto === "Auriculares")
+                .map(producto => (
+                    <a key={producto.productoId}>
+                      <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
-                        <h1>{producto.precio}</h1>
+                      <h1>{producto.precio}</h1>
                     </a>
                 ))}
             </div>
             <br></br>
             <h1 className='subs'>Teclados</h1>
             <div className='fondoimg'>
-                {productos.map(producto => (
+                {productos
+                .filter(producto => producto.tipoDeProducto === "Teclado")
+                .map(producto => (
                     <a key={producto.productoId}>
-                <img src='./img/logitech.webp' width={200} height={200}></img>
+                         <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
                     </a>
@@ -63,9 +66,11 @@ export default function MainUser() {
            <br></br>
             <h1 className='subs'>Mouses</h1>
             <div className='fondoimg'>
-                {productos.map(producto => (
+                {productos
+                .filter(producto => producto.tipoDeProducto === "Mouses")
+                .map(producto => (
                     <a key={producto.productoId}>
-                <img src='./img/logitech.webp' width={200} height={200}></img>
+                 <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
                     </a>
@@ -74,9 +79,11 @@ export default function MainUser() {
             <br></br>
             <h1 className='subs'>Mousepads</h1>
             <div className='fondoimg'>
-                {productos.map(producto => (
+                {productos
+                .filter(producto => producto.tipoDeProducto === "Mousepads")
+                .map(producto => (
                     <a key={producto.productoId}>
-                <img src='./img/logitech.webp' width={200} height={200}></img>
+                 <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
                     </a>
@@ -85,21 +92,16 @@ export default function MainUser() {
             <br></br>
             <h1 className='subs'>Sillas Gamers</h1>
             <div className='fondoimg'>
-                {productos.map(producto => (
+                {productos
+                .filter(producto => producto.tipoDeProducto === "SillasGamers")
+                .map(producto => (
                     <a key={producto.productoId}>
-                <img src='./img/logitech.webp' width={200} height={200}></img>
+                 <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
                     </a>
                 ))}
             </div>
-            
-            
-            
-            
-            
-            
-            
             
             
             <Box
