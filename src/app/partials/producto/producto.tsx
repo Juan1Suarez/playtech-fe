@@ -15,17 +15,17 @@ const ProductoPage = () => {
 
   const [producto, setProducto] = useState<Producto | null>(null);
 
-    useEffect(() => {
-        const storedProducto = sessionStorage.getItem('productoSeleccionado');
-        if (storedProducto) {
-            const productoRecuperado: Producto = JSON.parse(storedProducto);
-            setProducto(productoRecuperado);
-        }
-    }, []);
-
-    if (!producto) {
-        return <div>ERROR PAGINA NO ENCONTRADA</div>;
+  useEffect(() => {
+    const storedProducto = sessionStorage.getItem('productoSeleccionado');
+    if (storedProducto) {
+      const productoRecuperado: Producto = JSON.parse(storedProducto);
+      setProducto(productoRecuperado);
     }
+  }, []);
+
+  if (!producto) {
+    return <div>ERROR PAGINA NO ENCONTRADA</div>;
+  }
 
 
   return (
@@ -39,20 +39,29 @@ const ProductoPage = () => {
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
       </div>
-   <div className='nombreproducto'>{producto.modelo}</div>
-   <div className='precioproducto'>Precio: {producto.precio}</div>
-   <div className="dropdown">
-  <button className="dropbtn">Color:</button>
-  <div className="dropdown-content">
-    <a href="#">{producto.color}</a>
-  </div>
-</div>
-     
+      <div className='nombreproducto'>{producto.modelo}</div>
+      <div className='precioproducto'>Precio: {producto.precio}</div>
+      <div className="dropdown">
+        <button className="dropbtn">Color:</button>
+        <div className="dropdown-content">
+          <a href="#">{producto.color}</a>
+        </div>
+      </div>
+
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
-        <div className='productosComprar'>COMPRA</div>
+        <div className='productosComprar'>
+          <button className='botonahora'>
+            Comprar ahora
+          </button>
+          <button className='botonagregar'>
+            Agregar al carrito
+          </button>
+        <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
+        
+        </div>
       </div>
-   
+
       <div className='productosDesc'>
         <h1 className='desc'>Descripción del producto</h1>
         <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
@@ -65,4 +74,4 @@ const ProductoPage = () => {
   );
 }
 
-export default withRoles(ProductoPage, [1,2], '/');
+export default withRoles(ProductoPage, [1, 2], '/');

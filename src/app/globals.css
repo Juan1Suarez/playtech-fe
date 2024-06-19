@@ -394,3 +394,37 @@ body {
   border-color: white;
   border-width: 1px;
 }
+
+.botonahora{
+  position: relative;
+left: 90px;
+top: 70px;
+width: 220px;
+height: 60px;
+font-family: 'Roboto Slab';
+font-size: 20px;
+border-color: black;
+background-color: rgb(32, 255, 32);
+border-radius: 10px;
+}
+
+.botonagregar{
+  position: relative;
+left: 90px;
+top: 80px;
+width: 220px;
+height: 60px;
+font-family: 'Roboto Slab';
+font-size: 20px;
+border-color: black;
+background-color: rgb(58, 219, 255);
+border-radius: 10px;
+}
+
+.envio{
+  position: relative;
+  top: 150px;
+  left: 20px;
+  font-size: 30px;
+  font-family: 'Roboto Slab';
+}
