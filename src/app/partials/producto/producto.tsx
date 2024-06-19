@@ -15,7 +15,7 @@ export default function Home() {
   const [producto, setProducto] = useState<Producto | null>(null);
 
     useEffect(() => {
-        const storedProducto = localStorage.getItem('productoSeleccionado');
+        const storedProducto = sessionStorage.getItem('productoSeleccionado');
         if (storedProducto) {
             const productoRecuperado: Producto = JSON.parse(storedProducto);
             setProducto(productoRecuperado);

@@ -16,7 +16,7 @@ export default function MainAdmin() {
 
     const router = useRouter();
     const navegarAProducto = (producto: Producto) => {
-        localStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+        sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
         router.push("/producto");
     }
     
@@ -42,7 +42,6 @@ export default function MainAdmin() {
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>
-            <br></br>
             <h1 className='subs'>Auriculares</h1>
             <div className='fondoimg'> 
                 {productos

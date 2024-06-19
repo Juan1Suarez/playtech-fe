@@ -148,6 +148,11 @@ body {
   height: 320px;
   width: 1800px;
   border-radius: 20px;
+  border-style:solid ;
+  border-color: rgb(12, 12, 12);
+  border-bottom-right-radius: 90px;
+  border-right-width: 10px;
+  border-bottom-width: 10px;
 }
 
 .img {
@@ -199,6 +204,10 @@ body {
   height: 40px;
   text-align: center;
   font-family: "Roboto Slab";
+  text-decoration: underline;
+  position: relative;
+  top: 10px;
+  border-style:inset;
 }
 
 .playmain {

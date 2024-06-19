@@ -7,18 +7,23 @@ import Box from '@mui/material/Box';
 import { verProductos } from '@/app/services/Producto';
 import Producto from '../model/producto.model';
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useRouter } from 'next/navigation';
 
 export default function MainAdmin() {
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
     const [value, setValue] = useState<number | null>(5);
 
+    const router = useRouter();
+    const navegarAProducto = (producto: Producto) => {
+        sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
+        router.push("/producto");
+    }
+    
     useEffect(() => {
         verProductos().then((data: Producto[]) => {
             setProductos(data);
-        }).catch(error => {
-            console.error("Error fetching products:", error);
-        });
+        })
     })
 
     const toggleDarkMode = () => {
@@ -37,13 +42,12 @@ export default function MainAdmin() {
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>
-            <br></br>
             <h1 className='subs'>Auriculares</h1>
-            <div className='fondoimg'>
+            <div className='fondoimg'> 
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Auriculares")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                       <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                       <h1>{producto.precio}</h1>
@@ -56,7 +60,7 @@ export default function MainAdmin() {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Teclado")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                           <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                          <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
@@ -69,7 +73,7 @@ export default function MainAdmin() {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Mouse")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                   <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
@@ -82,7 +86,7 @@ export default function MainAdmin() {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Mousepad")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                      <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
@@ -95,7 +99,7 @@ export default function MainAdmin() {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Silla Gamer")
                 .map(producto => (
-                    <a key={producto.productoId}>
+                    <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>{producto.precio}</h1>
