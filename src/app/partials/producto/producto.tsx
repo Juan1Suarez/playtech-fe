@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Producto from '../model/producto.model';
+import { withRoles } from '@/app/services/HOC/withRoles';
 
 
-export default function Home() {
+const ProductoPage = () => {
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -63,3 +64,5 @@ export default function Home() {
     </>
   );
 }
+
+export default withRoles(ProductoPage, [1,2], '/');

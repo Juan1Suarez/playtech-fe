@@ -8,8 +8,9 @@ import { verProductos } from '@/app/services/Producto';
 import Producto from '../model/producto.model';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
+import {withRoles} from '@/app/services/HOC/withRoles';
 
-export default function MainAdmin() {
+const MainUser = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
     const [value, setValue] = useState<number | null>(5);
@@ -50,7 +51,7 @@ export default function MainAdmin() {
                          <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                       <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
-                      <h1>{producto.precio}</h1>
+                      <h1>${producto.precio}</h1>
                     </a>
                 ))}
             </div>
@@ -63,7 +64,7 @@ export default function MainAdmin() {
                            <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                          <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
-                        <h1>{producto.precio}</h1>
+                        <h1>${producto.precio}$</h1>
                     </a>
                 ))}
             </div>
@@ -76,7 +77,7 @@ export default function MainAdmin() {
                    <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
-                        <h1>{producto.precio}</h1>
+                        <h1>${producto.precio}$</h1>
                     </a>
                 ))}
             </div>
@@ -89,7 +90,7 @@ export default function MainAdmin() {
                       <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
-                        <h1>{producto.precio}</h1>
+                        <h1>${producto.precio}$</h1>
                     </a>
                 ))}
             </div>
@@ -102,7 +103,7 @@ export default function MainAdmin() {
                     <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
-                        <h1>{producto.precio}</h1>
+                        <h1>${producto.precio}</h1>
                     </a>
                 ))}
             </div>
@@ -126,3 +127,5 @@ export default function MainAdmin() {
         </>
     );
 }
+
+export default withRoles(MainUser, [2], '/');
