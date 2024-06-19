@@ -128,4 +128,4 @@ const MainUser = () => {
     );
 }
 
-export default withRoles(MainUser, [2], '/');
+export default withRoles(MainUser, [2], '/register');

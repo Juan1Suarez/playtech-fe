@@ -10,15 +10,14 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
 import { withRoles } from '@/app/services/HOC/withRoles';
 
-const MainAdmin = () => {
+export default function Home() {
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
     const [value, setValue] = useState<number | null>(5);
 
     const router = useRouter();
-    const navegarAProducto = (producto: Producto) => {
-        sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
-        router.push("/producto");
+    const navegarALogin = () => {
+        router.push("/login");
     }
     
     useEffect(() => {
@@ -38,8 +37,8 @@ const MainAdmin = () => {
             
             <input className='navigation' placeholder='Buscar Producto'></input>
             <button className='buscar'><FaMagnifyingGlass /></button>
-            <div className='adminuser'>Admin</div>
-            <div className='fondodark'>
+            <button onClick={() => navegarALogin()} className='ini'>Iniciar sesión</button>
+            <div className='fondodark2'>
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>
@@ -48,7 +47,7 @@ const MainAdmin = () => {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Auriculares")
                 .map(producto => (
-                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                         <a key={producto.productoId}  onClick={() => navegarALogin()}>
                       <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                       <h1>${producto.precio}</h1>
@@ -61,7 +60,7 @@ const MainAdmin = () => {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Teclado")
                 .map(producto => (
-                           <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                           <a key={producto.productoId}  onClick={() => navegarALogin()}>
                          <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>${producto.precio}</h1>
@@ -74,7 +73,7 @@ const MainAdmin = () => {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Mouse")
                 .map(producto => (
-                   <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                   <a key={producto.productoId}  onClick={() => navegarALogin()}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>${producto.precio}</h1>
@@ -87,7 +86,7 @@ const MainAdmin = () => {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Mousepad")
                 .map(producto => (
-                      <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                      <a key={producto.productoId}  onClick={() => navegarALogin()}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>${producto.precio}</h1>
@@ -100,7 +99,7 @@ const MainAdmin = () => {
                 {productos
                 .filter(producto => producto.tipoDeProducto === "Silla Gamer")
                 .map(producto => (
-                    <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                    <a key={producto.productoId}  onClick={() => navegarALogin()}>
                  <img src={producto.foto} width={200} height={200}></img>
                       <p>{producto.modelo}</p>
                         <h1>${producto.precio}</h1>
@@ -127,5 +126,3 @@ const MainAdmin = () => {
         </>
     );
 }
-
-export default withRoles(MainAdmin, [1], "/register");

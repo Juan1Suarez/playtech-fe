@@ -12,7 +12,7 @@ import Login from '../model/login.model';
 export default function Home() {
   const router = useRouter();
   const navegarARegister = () => {
-    router.push("/")
+    router.push("/register")
   }
 
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
