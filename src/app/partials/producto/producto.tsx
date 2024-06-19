@@ -1,18 +1,31 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
-import { useRouter } from "next/navigation"
 import { FaMagnifyingGlass } from 'react-icons/fa6';
-
+import Producto from '../model/producto.model';
 
 
 export default function Home() {
-
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("darkMode", !darkMode);
   };
+
+  const [producto, setProducto] = useState<Producto | null>(null);
+
+    useEffect(() => {
+        const storedProducto = localStorage.getItem('productoSeleccionado');
+        if (storedProducto) {
+            const productoRecuperado: Producto = JSON.parse(storedProducto);
+            setProducto(productoRecuperado);
+        }
+    }, []);
+
+    if (!producto) {
+        return <div>ERROR PAGINA NO ENCONTRADA</div>;
+    }
+
 
   return (
     <>
@@ -25,29 +38,27 @@ export default function Home() {
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
       </div>
-   <div className='nombreproducto'>Logitech G-series G435 inalambrico</div>
-   <div className='precioproducto'>Precio: $250000</div>
+   <div className='nombreproducto'>{producto.modelo}</div>
+   <div className='precioproducto'>Precio: {producto.precio}</div>
    <div className="dropdown">
   <button className="dropbtn">Color:</button>
   <div className="dropdown-content">
-    <a href="#">Negro</a>
-    <a href="#">Blanco</a>
-    <a href="#">Rojo</a>
+    <a href="#">{producto.color}</a>
   </div>
 </div>
      
       <div className='productos'>
-        <img src='./img/logitech.webp' className='fotoP'></img>
-        <div className='productosComprar'></div>
+        <img src={producto.foto} className='fotoP'></img>
+        <div className='productosComprar'>COMPRA</div>
       </div>
    
       <div className='productosDesc'>
         <h1 className='desc'>Descripción del producto</h1>
-        <h2 className='productoNombre'>Auriculares Gamer HyperX Cloud Alpha :</h2>
-        <p className='productoTexto'>Los HyperX Cloud Alpha son auriculares diseñados para gamers, ofreciendo una excelente calidad de sonido gracias a sus controladores duales que separan los graves de los agudos y medios. La estructura de aluminio duradera y las almohadillas de espuma con memoria aseguran comodidad durante largas sesiones de juego. El micrófono desmontable con cancelación de ruido permite una comunicación clara, y el cable trenzado extraíble incluye controles de audio en línea. Son compatibles con múltiples plataformas como PC, PS4 y Xbox One. Con su diseño elegante y funcionalidad avanzada, los HyperX Cloud Alpha son una opción ideal para jugadores serios.</p>
-        <p className='productoTexto'>STOCK:</p>
-        <p className='productoTexto'>PRECIO:</p>
-        <p className='productoTexto'>MODELO:</p>
+        <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
+        <p className='productoTexto'>{producto.descripcion}</p>
+        <p className='productoTexto'>STOCK: {producto.stock}</p>
+        <p className='productoTexto'>PRECIO: {producto.precio}</p>
+        <p className='productoTexto'>ID: {producto.productoId}</p>
       </div>
     </>
   );

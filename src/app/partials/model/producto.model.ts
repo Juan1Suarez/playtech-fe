@@ -7,7 +7,7 @@ interface Producto {
     descripcion: string;
     foto: string;
     stock: string;
-    fotoDelete: string;
-    fotoDisplay: string;
+    fotoDelete?: string;
+    fotoDisplay?: string;
 }
 export default Producto;

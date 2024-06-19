@@ -74,7 +74,7 @@ export default function Register() {
                             placeholder="Escriba su nombre completo"
                         />
                         <ErrorMessage name="nombre" component="div" className='color' />
-                        <h1 className='titulofield'>GMAIL</h1>
+                        <h1 className='titulofield'>EMAIL</h1>
                         <Field className="field"
                             type="text"
                             name="email"

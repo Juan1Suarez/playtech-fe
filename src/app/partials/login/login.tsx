@@ -56,7 +56,7 @@ export default function Home() {
         {({ isSubmitting }) => (  
           <Form className='form'>
             <h1 className="login">Log-In</h1>
-            <h1 className='titulofield'>GMAIL</h1>
+            <h1 className='titulofield'>EMAIL</h1>
             <Field className="field"
               type="string"
               name="email"
