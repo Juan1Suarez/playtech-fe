@@ -34,7 +34,7 @@ const ProductoAdminPage = () => {
 
       <input className='navigation' placeholder='Buscar Producto'></input>
       <button className='buscar'><FaMagnifyingGlass /></button>
-      <div className='adminuser'></div>
+      <div className='adminuser'>Admin</div>
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
