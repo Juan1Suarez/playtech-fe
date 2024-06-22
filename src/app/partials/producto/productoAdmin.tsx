@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Producto from '../model/producto.model';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { withRoles } from '@/app/services/HOC/withRoles';
 
 
-const ProductoPage = () => {
+const ProductoAdminPage = () => {
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -17,7 +14,6 @@ const ProductoPage = () => {
   };
 
   const [producto, setProducto] = useState<Producto | null>(null);
-  const [value, setValue] = useState<number | null>(5);
 
   useEffect(() => {
     const storedProducto = sessionStorage.getItem('productoSeleccionado');
@@ -38,7 +34,7 @@ const ProductoPage = () => {
 
       <input className='navigation' placeholder='Buscar Producto'></input>
       <button className='buscar'><FaMagnifyingGlass /></button>
-      <div className='adminuser'>User</div>
+      <div className='adminuser'></div>
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
@@ -55,11 +51,11 @@ const ProductoPage = () => {
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
         <div className='productosComprar'>
-          <button className='botonahora'>
-            Comprar ahora
+          <button className='botoneliminar'>
+            Eliminar producto
           </button>
           <button className='botonagregar'>
-            Agregar al carrito
+            Editar producto
           </button>
         <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
         
@@ -74,28 +70,8 @@ const ProductoPage = () => {
         <p className='productoTexto'>PRECIO: {producto.precio}</p>
         <p className='productoTexto'>ID: {producto.productoId}</p>
       </div>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-      <Box
-                className='rating'
-                sx={{
-                    '& > legend': { mt: 2 },
-                }}
-            >
-                <Typography component="legend">¡Deja tu opinión!</Typography>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                />
-            </Box>
     </>
   );
 }
 
-export default withRoles(ProductoPage, [2], '/');
+export default withRoles(ProductoAdminPage, [1], '/');

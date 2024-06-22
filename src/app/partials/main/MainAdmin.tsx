@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { verProductos } from '@/app/services/Producto';
 import Producto from '../model/producto.model';
 import { FaMagnifyingGlass } from "react-icons/fa6";
@@ -18,7 +15,7 @@ const MainAdmin = () => {
     const router = useRouter();
     const navegarAProducto = (producto: Producto) => {
         sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
-        router.push("/producto");
+        router.push("/productoAdmin");
     }
     
     useEffect(() => {
@@ -107,23 +104,7 @@ const MainAdmin = () => {
                     </a>
                 ))}
             </div>
-            
-            
-            <Box
-                className='rating'
-                sx={{
-                    '& > legend': { mt: 2 },
-                }}
-            >
-                <Typography component="legend">¡Deja tu opinión!</Typography>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                />
-            </Box>
+            <button className='nuevoProducto'>Añadir producto</button>
         </>
     );
 }

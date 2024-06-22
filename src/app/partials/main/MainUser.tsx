@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { verProductos } from '@/app/services/Producto';
 import Producto from '../model/producto.model';
 import { FaMagnifyingGlass } from "react-icons/fa6";
@@ -13,7 +10,6 @@ import {withRoles} from '@/app/services/HOC/withRoles';
 const MainUser = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
-    const [value, setValue] = useState<number | null>(5);
 
     const router = useRouter();
     const navegarAProducto = (producto: Producto) => {
@@ -107,23 +103,6 @@ const MainUser = () => {
                     </a>
                 ))}
             </div>
-            
-            
-            <Box
-                className='rating'
-                sx={{
-                    '& > legend': { mt: 2 },
-                }}
-            >
-                <Typography component="legend">¡Deja tu opinión!</Typography>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                />
-            </Box>
         </>
     );
 }
