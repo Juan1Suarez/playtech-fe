@@ -10,3 +10,17 @@ export const verProductos = async (): Promise<Producto[]> => {
         return [];
     }
 };
+
+export const eliminarProducto = async (productoId: any, router: any) => {
+    try {
+        const response = await clienteAxios.delete('/producto/'+productoId);
+          if (response.status === 200) {
+            router.push("mainAdmin");
+         }      
+         return response.data; 
+
+    } catch (error) {
+        console.error("ERROR", error);
+        return [];
+    }
+};

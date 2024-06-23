@@ -4,9 +4,12 @@ import Switch from '@mui/material/Switch';;
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Producto from '../model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
+import { eliminarProducto } from '@/app/services/Producto';
+import { useRouter } from 'next/navigation';
 
 
 const ProductoAdminPage = () => {
+  const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -26,7 +29,6 @@ const ProductoAdminPage = () => {
   if (!producto) {
     return <div>ERROR PAGINA NO ENCONTRADA</div>;
   }
-
 
   return (
     <>
@@ -51,7 +53,7 @@ const ProductoAdminPage = () => {
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
         <div className='productosComprar'>
-          <button className='botoneliminar'>
+          <button className='botoneliminar' onClick={() => eliminarProducto(producto.productoId, router)}>
             Eliminar producto
           </button>
           <button className='botonagregar'>
