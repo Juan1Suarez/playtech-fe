@@ -255,6 +255,7 @@ body {
   left: 20px;
 }
 
+
 /*productos*/
 
 .productos {
@@ -452,4 +453,44 @@ font-size: 20px;
 border-color: black;
 background-color: rgb(245, 58, 58);
 border-radius: 10px;
+}
+
+/* LISTAPRODUCTOS */
+
+.containerProductos{
+  border: solid;
+  border-radius: 7px;
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  position: relative;
+  left: 150px;
+}
+
+.productosListado{
+  position: relative;
+  left: 20px;
+}
+
+.buscadorProductos{
+  border: solid;
+  border-radius: 7px;
+  width: 1000px;
+  height: 1900px;
+  bottom: 405px;
+  background-color: white;
+  position: relative;
+  left: 550px;
+}
+
+.cardProducto{
+  border: solid;
+  border-radius: 7px;
+  width: 950px;
+  height: 300px;
+  background-color: rgb(255, 203, 248);
+  position: relative;
+  left: 20px;
+  top: 30px;
+  margin-bottom: 30px;
 }

@@ -31,8 +31,16 @@ const MainUser = () => {
     return (
         <>
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-            
-            <input className='navigation' placeholder='Buscar Producto'></input>
+            <div className="dropdown">
+                <button className="navigation">¿Que tipo de producto esta buscando?</button>
+                <div className="dropdown-content">
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                </div>
+            </div>
             <button className='buscar'><FaMagnifyingGlass /></button>
             <div className='adminuser'>User</div>
             <div className='fondodark'>

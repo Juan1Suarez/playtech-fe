@@ -17,7 +17,7 @@ const MainAdmin = () => {
         sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
         router.push("/productoAdmin");
     }
-    
+
     useEffect(() => {
         verProductos().then((data: Producto[]) => {
             setProductos(data);
@@ -32,8 +32,17 @@ const MainAdmin = () => {
     return (
         <>
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-            
-            <input className='navigation' placeholder='Buscar Producto'></input>
+
+            <div className="dropdown">
+                <button className="navigation">¿Que tipo de producto esta buscando?</button>
+                <div className="dropdown-content">
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                    <a href="listaProducto">Auriculares</a>
+                </div>
+            </div>
             <button className='buscar'><FaMagnifyingGlass /></button>
             <div className='adminuser'>Admin</div>
             <div className='fondodark'>
@@ -41,68 +50,68 @@ const MainAdmin = () => {
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>
             <h1 className='subs'>Auriculares</h1>
-            <div className='fondoimg'> 
+            <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Auriculares")
-                .map(producto => (
-                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
-                      <img src={producto.foto} width={200} height={200}></img>
-                      <p>{producto.modelo}</p>
-                      <h1>${producto.precio}</h1>
-                    </a>
-                ))}
+                    .filter(producto => producto.tipoDeProducto === "Auriculares")
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                            <img src={producto.foto} width={200} height={200}></img>
+                            <p>{producto.modelo}</p>
+                            <h1>${producto.precio}</h1>
+                        </a>
+                    ))}
             </div>
             <br></br>
             <h1 className='subs'>Teclados</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Teclado")
-                .map(producto => (
-                           <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
-                         <img src={producto.foto} width={200} height={200}></img>
-                      <p>{producto.modelo}</p>
-                        <h1>${producto.precio}</h1>
-                    </a>
-                ))}
+                    .filter(producto => producto.tipoDeProducto === "Teclado")
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                            <img src={producto.foto} width={200} height={200}></img>
+                            <p>{producto.modelo}</p>
+                            <h1>${producto.precio}</h1>
+                        </a>
+                    ))}
             </div>
-           <br></br>
+            <br></br>
             <h1 className='subs'>Mouses</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Mouse")
-                .map(producto => (
-                   <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
-                 <img src={producto.foto} width={200} height={200}></img>
-                      <p>{producto.modelo}</p>
-                        <h1>${producto.precio}</h1>
-                    </a>
-                ))}
+                    .filter(producto => producto.tipoDeProducto === "Mouse")
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                            <img src={producto.foto} width={200} height={200}></img>
+                            <p>{producto.modelo}</p>
+                            <h1>${producto.precio}</h1>
+                        </a>
+                    ))}
             </div>
             <br></br>
             <h1 className='subs'>Mousepads</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Mousepad")
-                .map(producto => (
-                      <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
-                 <img src={producto.foto} width={200} height={200}></img>
-                      <p>{producto.modelo}</p>
-                        <h1>${producto.precio}</h1>
-                    </a>
-                ))}
+                    .filter(producto => producto.tipoDeProducto === "Mousepad")
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                            <img src={producto.foto} width={200} height={200}></img>
+                            <p>{producto.modelo}</p>
+                            <h1>${producto.precio}</h1>
+                        </a>
+                    ))}
             </div>
             <br></br>
             <h1 className='subs'>Sillas Gamers</h1>
             <div className='fondoimg'>
                 {productos
-                .filter(producto => producto.tipoDeProducto === "Silla Gamer")
-                .map(producto => (
-                    <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
-                 <img src={producto.foto} width={200} height={200}></img>
-                      <p>{producto.modelo}</p>
-                        <h1>${producto.precio}</h1>
-                    </a>
-                ))}
+                    .filter(producto => producto.tipoDeProducto === "Silla Gamer")
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                            <img src={producto.foto} width={200} height={200}></img>
+                            <p>{producto.modelo}</p>
+                            <h1>${producto.precio}</h1>
+                        </a>
+                    ))}
             </div>
             <button className='nuevoProducto'>Añadir producto</button>
         </>
