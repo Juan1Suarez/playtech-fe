@@ -10,7 +10,6 @@ import { withRoles } from '@/app/services/HOC/withRoles';
 const MainAdmin = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
-    const [value, setValue] = useState<number | null>(5);
 
     const router = useRouter();
     const navegarAProducto = (producto: Producto) => {

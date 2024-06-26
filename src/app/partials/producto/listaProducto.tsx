@@ -15,7 +15,7 @@ const ListaProducto = () => {
 
   return (
     <>
-                <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
             <div className="dropdown">
                 <button className="navigation">¿Que tipo de producto esta buscando?</button>
                 <div className="dropdown-content">

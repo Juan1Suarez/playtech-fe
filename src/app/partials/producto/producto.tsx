@@ -34,7 +34,7 @@ const ProductoPage = () => {
 
   return (
     <>
-      <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <input className='navigation' placeholder='Buscar Producto'></input>
       <button className='buscar'><FaMagnifyingGlass /></button>

@@ -32,7 +32,7 @@ const ProductoAdminPage = () => {
 
   return (
     <>
-      <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <input className='navigation' placeholder='Buscar Producto'></input>
       <button className='buscar'><FaMagnifyingGlass /></button>
@@ -53,14 +53,20 @@ const ProductoAdminPage = () => {
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
         <div className='productosComprar'>
-          <button className='botoneliminar' onClick={() => eliminarProducto(producto.productoId, router)}>
-            Eliminar producto
+          <button
+            className='botoneliminar'
+            onClick={() => {
+              if (window.confirm('¿Está seguro de que quiere eliminar este producto?')) {
+                eliminarProducto(producto.productoId, router);
+              }
+            }}
+          > Eliminar producto
           </button>
           <button className='botonagregar'>
             Editar producto
           </button>
-        <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
-        
+          <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
+
         </div>
       </div>
 
