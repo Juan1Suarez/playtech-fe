@@ -6,6 +6,8 @@ import Producto from '../model/producto.model';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
 import {withRoles} from '@/app/services/HOC/withRoles';
+import { Container, Dropdown } from 'rsuite';
+import 'rsuite/Dropdown/styles/index.css';
 
 const MainUser = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -31,17 +33,17 @@ const MainUser = () => {
     return (
         <>
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-            <div className="dropdown">
-                <button className="navigation">¿Que tipo de producto esta buscando?</button>
-                <div className="dropdown-content">
-                    <a href="listaProducto">Auriculares</a>
-                    <a href="listaProducto">Auriculares</a>
-                    <a href="listaProducto">Auriculares</a>
-                    <a href="listaProducto">Auriculares</a>
-                    <a href="listaProducto">Auriculares</a>
-                </div>
-            </div>
-            <button className='buscar'><FaMagnifyingGlass /></button>
+            <Container className='caidaproductos'>
+            <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
+          
+    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+  </Dropdown>  
+</Container>
+          
             <div className='adminuser'>User</div>
             <div className='fondodark'>
                 <div>Dark mode</div>

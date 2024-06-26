@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Producto from '../model/producto.model';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { withRoles } from '@/app/services/HOC/withRoles';
+import { Container, Dropdown } from 'rsuite';
+import 'rsuite/Dropdown/styles/index.css';
 
 
 const ProductoPage = () => {
@@ -17,7 +16,7 @@ const ProductoPage = () => {
   };
 
   const [producto, setProducto] = useState<Producto | null>(null);
-  const [value, setValue] = useState<number | null>(5);
+  
 
   useEffect(() => {
     const storedProducto = sessionStorage.getItem('productoSeleccionado');
@@ -36,8 +35,15 @@ const ProductoPage = () => {
     <>
 <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
-      <input className='navigation' placeholder='Buscar Producto'></input>
-      <button className='buscar'><FaMagnifyingGlass /></button>
+<Container className='caidaproductos'>
+<Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
+    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
+    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+  </Dropdown>
+</Container>
       <div className='adminuser'>User</div>
       <div className='fondodark'>
         <div>Dark mode</div>
@@ -79,21 +85,7 @@ const ProductoPage = () => {
 <br></br>
 <br></br>
 <br></br>
-      <Box
-                className='rating'
-                sx={{
-                    '& > legend': { mt: 2 },
-                }}
-            >
-                <Typography component="legend">¡Deja tu opinión!</Typography>
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                />
-            </Box>
+      
     </>
   );
 }
