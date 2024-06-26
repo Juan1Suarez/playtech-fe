@@ -1,4 +1,5 @@
 "use client"
+import Footer from '@/app/partials/footer/footer'
 import CarritoDeCompras from '../../partials/carritoDeCompras/carritoDeCompras'
 
 export default function Home() {
@@ -6,7 +7,7 @@ export default function Home() {
 
     
   <CarritoDeCompras/>
-  
+  <Footer/>
   </>
   )
 }
