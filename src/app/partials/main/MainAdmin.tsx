@@ -9,7 +9,7 @@ import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 const MainAdmin = () => {
 
-   
+
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
 
@@ -30,22 +30,22 @@ const MainAdmin = () => {
         document.body.classList.toggle("darkMode", !darkMode);
     };
 
-    
-    
-    
+
+
+
     return (
         <>
-            <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-   
+  <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+
             <Container className='caidaproductos'>
-            <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
-  </Dropdown>
-</Container>
+                <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
+                    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+                </Dropdown>
+            </Container>
             <div className='adminuser'>Admin</div>
             <div className='fondodark'>
                 <div>Dark mode</div>

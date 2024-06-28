@@ -6,9 +6,16 @@ import Producto from '../model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
+import { useRouter } from 'next/navigation';
 
 
 const ProductoPage = () => {
+
+  const router = useRouter();
+  const navegarACarrito = () => {
+    router.push("/carritoDeCompras")
+  }
+  
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -61,7 +68,7 @@ const ProductoPage = () => {
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
         <div className='productosComprar'>
-          <button className='botonahora'>
+          <button className='botonahora' onClick={() => navegarACarrito()}>
             Comprar ahora
           </button>
           <button className='botonagregar'>

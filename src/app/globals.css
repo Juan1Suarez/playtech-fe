@@ -165,10 +165,10 @@ body {
   }
 
 .ini{
-    position: relative;
+    position: absolute;
     text-align: center;
-    left: 550px;
-    bottom: 5px;
+    left: 1600px;
+    top: 50px;
     background-color: rgb(255, 255, 255);
     width: 105px;
     height: 25px;
