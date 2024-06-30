@@ -35,11 +35,25 @@ const CarritoDeCompras = () => {
 
       <div className='carritoProducto'>
 
+        <div className='productoElegido'>
+          <img className='fotonisuta' src='./img/nisuta.webp' />
+          <h1 className='textoProducto'>Turtle Beach Stealth 600 Gen 2</h1>
+        </div>
+       <h1 className='valorproducto'>$78654.99</h1> 
+       <div className='divisor'/>
         <div className='comprarProducto'>
-          <div className='productoElegido'>
-          </div>
+          <div className='nombreEnLista'>Turtle Beach Stealth 600 Gen 2</div>
+        <div className='divisor1'/>  
+        <h1 className='precioTotal'>Precio total = $78654.99</h1>
+
+
+
+
           <div className='fin'>Finalizar transacción</div>
         </div>
+      
+      
+      
       </div>
 
 
