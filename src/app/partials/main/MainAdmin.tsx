@@ -1,17 +1,28 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
-import { verProductos } from '@/app/services/Producto';
+import { crearProducto, verProductos } from '@/app/services/Producto';
 import Producto from '../model/producto.model';
 import { useRouter } from 'next/navigation';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
+
 const MainAdmin = () => {
 
 
     const [darkMode, setDarkMode] = useState(false);
     const [productos, setProductos] = useState<Producto[]>([]);
+    const [showPopup, setShowPopup] = useState(false);
+    const [nuevoProducto, setNuevoProducto] = useState<Producto>({
+        tipoDeProducto: '',
+        modelo: '',
+        precio: '',
+        color: '',
+        stock: '',
+        foto: '',
+        descripcion: ''
+    });
 
     const router = useRouter();
     const navegarAProducto = (producto: Producto) => {
@@ -30,8 +41,30 @@ const MainAdmin = () => {
         document.body.classList.toggle("darkMode", !darkMode);
     };
 
+    const handleEditClick = () => {
+        setShowPopup(true);
+      };
+    
+      const handleClosePopup = () => {
+        setShowPopup(false);
+      };
+    
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setNuevoProducto({ ...nuevoProducto, [name]: value });
+    };
 
-
+    const handleSubmit = async () => {
+        try {
+            // Aquí podrías agregar validaciones adicionales si es necesario
+            await crearProducto(nuevoProducto, router);
+            verProductos(); // Recargar la lista de productos después de crear uno nuevo
+            handleClosePopup();
+        } catch (error) {
+            console.error('Error al crear producto:', error);
+            // Manejar el error, por ejemplo mostrar un mensaje al usuario
+        }
+    };
 
     return (
         <>
@@ -115,7 +148,31 @@ const MainAdmin = () => {
                         </a>
                     ))}
             </div>
-            <button className='nuevoProducto'>Añadir producto</button>
+            <button className='nuevoProducto' onClick={handleEditClick}>Añadir producto</button>
+
+            {showPopup && (
+            <div className="popup">
+              <div className="popup-content">
+                <span className="close" onClick={handleClosePopup}>&times;</span>
+                <div> Tipo de producto</div>
+                <input type="text" name="tipoDeProducto" placeholder='Tipo de producto' onChange={handleChange} />
+                <div> Modelo</div>
+                <input type="text" name="modelo" placeholder='Model' onChange={handleChange} />
+                <div> Precio</div>
+                <input type="text" name="precio" placeholder='Precio' onChange={handleChange} />
+                <div> Color</div>
+                <input type="text" name="color" placeholder='Color' onChange={handleChange}/>
+                <div> Stock</div>
+                <input type="text" name="stock" placeholder='Stock' onChange={handleChange} />
+                <div> Foto</div>
+                <input type="text" name="foto" placeholder='Foto' onChange={handleChange}/>
+                <div> Descripción</div>
+                <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }}  onChange={handleChange} />
+                <button onClick={handleSubmit}> Realizar cambios</button>
+                <button onClick={handleClosePopup}>Cancelar</button>
+              </div>
+            </div>
+          )}
         </>
     );
 }

@@ -156,7 +156,7 @@ body {
     position: relative;
     text-align: center;
     left: 1450px;
-    bottom: 2610px;
+    bottom: 2550px;
     background-color: lightblue;
     width: 150px;
     height: 25px;
@@ -338,6 +338,7 @@ body {
   font-size: 30px;
   left: 650px;
   top: 80px;
+  height: 35px;
   font-family: "Roboto Slab";
   background-color: white;
   width: 600px;
@@ -351,11 +352,11 @@ body {
   position: relative;
   text-align: center;
   font-size: 30px;
-  left: 830px;
+  left: 800px;
   top: 90px;
   font-family: "Roboto Slab";
   background-color: white;
-  width: 230px;
+  width: 300px;
   border-radius: 5px;
   border: #000000;
   border: solid;
@@ -579,4 +580,39 @@ footer {
   margin-top: 20px;
   border-top: 1px solid #fff;
   padding-top: 10px;
+}
+
+
+
+
+
+.popup {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 300px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }

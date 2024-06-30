@@ -33,11 +33,11 @@ export default function Home() {
 
             <Container className='caidaproductos'>
                 <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-                    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+                    <Dropdown.Item><a href="register">Auriculares</a></Dropdown.Item>
+                    <Dropdown.Item><a href="register">Teclados</a></Dropdown.Item>
+                    <Dropdown.Item><a href="register">Mouses</a></Dropdown.Item>
+                    <Dropdown.Item><a href="register">Mousepads</a></Dropdown.Item>
+                    <Dropdown.Item><a href="register">Sillas</a></Dropdown.Item>
                 </Dropdown>
             </Container>
             <button onClick={() => navegarALogin()} className='ini'>Iniciar sesión</button>

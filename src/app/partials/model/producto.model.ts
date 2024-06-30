@@ -6,7 +6,7 @@ interface Producto {
     color:string;
     descripcion: string;
     foto: string;
-    stock: string;
+    stock: number;
     fotoDelete?: string;
     fotoDisplay?: string;
 }

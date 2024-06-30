@@ -1,16 +1,16 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
-import { FaMagnifyingGlass } from 'react-icons/fa6';
 import Producto from '../model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { eliminarProducto } from '@/app/services/Producto';
+import { eliminarProducto, modificarProducto } from '@/app/services/Producto';
 import { useRouter } from 'next/navigation';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 
 
 const ProductoAdminPage = () => {
+  const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
@@ -32,19 +32,68 @@ const ProductoAdminPage = () => {
     return <div>ERROR PAGINA NO ENCONTRADA</div>;
   }
 
+  const handleEditClick = () => {
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProducto({ ...producto, [name]: value });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      if (!producto.tipoDeProducto || !producto.modelo || !producto.precio || !producto.color || !producto.stock || !producto.descripcion) {
+        alert('Por favor, complete todos los campos.');
+        return;
+      }
+      if (producto.modelo.length > 34) {
+        alert('El modelo no puede exceder los 34 caracteres.');
+        return;
+      }
+      if (producto.precio > 99999999999) {
+        alert('El stock no puede exceder los 11 caracteres.');
+        return;
+      }
+      if (producto.color.length > 20) {
+        alert('El color no puede exceder los 20 caracteres.');
+        return;
+      }
+      if (producto.stock > 500) {
+        alert('El stock no puede exceder los 500 caracteres.');
+        return;
+      }
+      if (producto.descripcion.length > 255) {
+        alert('La descripción no puede exceder los 255 caracteres.');
+        return;
+      }
+
+      await modificarProducto(producto.productoId, producto, router);
+      handleClosePopup();
+    } catch (error) {
+      console.error('Error al modificar producto', error);
+
+    }
+  };
+
   return (
     <>
       <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <Container className='caidaproductos'>
-      <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
-  </Dropdown>
-</Container>
+        <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
+          <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
+          <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
+          <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
+          <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
+          <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+        </Dropdown>
+      </Container>
+      
       <div className='adminuser'>Admin</div>
       <div className='fondodark'>
         <div>Dark mode</div>
@@ -71,9 +120,35 @@ const ProductoAdminPage = () => {
             }}
           > Eliminar producto
           </button>
-          <button className='botonagregar'>
+          <button className='botonagregar'  onClick={handleEditClick}>
             Editar producto
           </button>
+
+          {showPopup && (
+            <div className="popup">
+              <div className="popup-content">
+                <span className="close" onClick={handleClosePopup}>&times;</span>
+                <div> Tipo de producto</div>
+                <input type="text" name="tipoDeProducto" value={producto.tipoDeProducto} onChange={handleChange} />
+                <div> Modelo</div>
+                <input type="text" name="modelo" value={producto.modelo} onChange={handleChange} />
+                <div> Precio</div>
+                <input type="text" name="precio" value={producto.precio} onChange={handleChange} />
+                <div> Color</div>
+                <input type="text" name="color" value={producto.color} onChange={handleChange} />
+                <div> Stock</div>
+                <input type="text" name="stock" value={producto.stock} onChange={handleChange} />
+                <div> Foto</div>
+                <input type="text" name="foto" value={producto.foto} onChange={handleChange} />
+                <div> Descripción</div>
+                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px' }}  />
+                <button onClick={handleSubmit}> Realizar cambios</button>
+                <button onClick={handleClosePopup}>Cancelar</button>
+              </div>
+            </div>
+          )}
+
+
           <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
 
         </div>
@@ -87,7 +162,10 @@ const ProductoAdminPage = () => {
         <p className='productoTexto'>PRECIO: {producto.precio}</p>
         <p className='productoTexto'>ID: {producto.productoId}</p>
       </div>
+
     </>
+
+
   );
 }
 
