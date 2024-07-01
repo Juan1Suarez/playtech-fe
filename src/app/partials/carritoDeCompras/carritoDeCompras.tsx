@@ -15,7 +15,7 @@ const CarritoDeCompras = () => {
 
   return (
     <>
-      <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <Container className='caidaproductos'>
         <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
@@ -38,24 +38,30 @@ const CarritoDeCompras = () => {
         <div className='productoElegido'>
           <img className='fotonisuta' src='./img/nisuta.webp' />
           <h1 className='textoProducto'>Turtle Beach Stealth 600 Gen 2</h1>
+          <h1 className='valorproducto'>$78654.99</h1>
         </div>
-       <h1 className='valorproducto'>$78654.99</h1> 
-       <div className='divisor'/>
-        <div className='comprarProducto'>
+
+        <div className='productoElegido'>
+          <img className='fotonisuta' src='./img/nisuta.webp' />
+          <h1 className='textoProducto'>Turtle Beach Stealth 600 Gen 2</h1>
+          <h1 className='valorproducto'>$78654.99</h1>
+        </div>
+
+        <div className='productoElegido'>
+          <img className='fotonisuta' src='./img/nisuta.webp' />
+          <h1 className='textoProducto'>Turtle Beach Stealth 600 Gen 2</h1>
+          <h1 className='valorproducto'>$78654.99</h1>
+        </div>
+        <div className='divisor'></div>
+      </div>
+      
+ <div className='comprarProducto'>
           <div className='nombreEnLista'>Turtle Beach Stealth 600 Gen 2</div>
-        <div className='divisor1'/>  
-        <h1 className='precioTotal'>Precio total = $78654.99</h1>
-
-
-
-
+          <div className='nombreEnLista'>Turtle Beach Stealth 600 Gen 2</div>
+          <div className='divisor1' />
+          <h1 className='precioTotal'>Precio total = $78654.99</h1>
           <div className='fin'>Finalizar transacción</div>
         </div>
-      
-      
-      
-      </div>
-
 
     </>
   );

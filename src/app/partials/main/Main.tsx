@@ -45,6 +45,7 @@ export default function Home() {
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>
+            
             <h1 className='subs'>Auriculares</h1>
             <div className='fondoimg'>
                 {productos
