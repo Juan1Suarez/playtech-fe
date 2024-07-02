@@ -36,11 +36,11 @@ const MainUser = () => {
             <Container className='caidaproductos'>
                 <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
 
-                    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto?tipo=Auriculares">Auriculares</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto?tipo=Teclado">Teclados</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto?tipo=Mouse">Mouses</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto?tipo=Mousepad">Mousepads</a></Dropdown.Item>
+                    <Dropdown.Item><a href="listaProducto?tipo=Silla%20Gamer">Sillas</a></Dropdown.Item>
                 </Dropdown>
             </Container>
 

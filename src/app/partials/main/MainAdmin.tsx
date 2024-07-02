@@ -55,15 +55,9 @@ const MainAdmin = () => {
     };
 
     const handleSubmit = async () => {
-        try {
-            // Aquí podrías agregar validaciones adicionales si es necesario
             await crearProducto(nuevoProducto, router);
-            verProductos(); // Recargar la lista de productos después de crear uno nuevo
+            verProductos();
             handleClosePopup();
-        } catch (error) {
-            console.error('Error al crear producto:', error);
-            // Manejar el error, por ejemplo mostrar un mensaje al usuario
-        }
     };
 
     return (
