@@ -182,12 +182,13 @@ body {
   background-color: #ffffff !important;
   color: rgb(0, 0, 0);
   position: relative;
+  left: 19px;
   display: flex;
   justify-content: space-between;
   place-items: left;
   padding: 1%;
-  height: 320px;
-  width: 1800px;
+  height: 290px;
+  width: 1750px;
   border-radius: 20px;
   border-style: solid;
   border-color: rgb(12, 12, 12);
@@ -247,6 +248,7 @@ body {
   font-family: "Roboto Slab";
   text-decoration: underline;
   position: relative;
+  left: 5px;
   top: 10px;
   border-style: inset;
 }
@@ -472,25 +474,36 @@ body {
 /* LISTAPRODUCTOS */
 
 .containerProductos {
-  border: solid;
-  border-radius: 7px;
+  border: 2px solid #012430;
+  border-radius: 15px;
   width: 300px;
-  height: 400px;
-  background-color: white;
+  padding: 12px;
+  background-color: #f3f0f0;
   position: relative;
-  left: 150px;
+  left: 100px;
 }
 
 .productosListado {
-  position: relative;
-  left: 20px;
+  width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #012430;
+  border-radius: 9px;
+  background-color: #ADD8E6;
+  color: rgb(3, 0, 0);
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.productosListado:hover {
+  background-color: #82c4e3;
 }
 
 .buscadorProductos {
-  border: solid;
+  border: 1px solid;
   border-radius: 7px;
   width: 1000px;
-  bottom: 405px;
+  bottom: 355px;
   background-color: rgb(241, 241, 241);
   padding:  15px ;
   position: relative;
@@ -500,7 +513,7 @@ body {
 }
 
 .cardProducto {
-  border: solid;
+  border: 2px solid;
   border-radius: 7px;
   width: 980px;
   height: 270px;
@@ -508,7 +521,7 @@ body {
   position: relative;
   left: 10px;
   top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .imgListado{
@@ -547,6 +560,11 @@ font-size:larger;
 background-color: #ffffff;
 color: rgb(32, 199, 255);
 border-color: #000000;
+cursor: pointer;
+}
+
+.verP:hover {
+  background-color: #def2fc;
 }
 
 /* CARRITO */
@@ -558,8 +576,7 @@ border-color: #000000;
   position: relative;
   bottom: 20px;
   left: 20px;
-  border-color: #000000;
-  border-style: solid;
+  border: 2px solid #000000;
   border-radius: 10px;
 }
 
@@ -569,7 +586,7 @@ border-color: #000000;
   width: 950px;
   height: 200px;
   margin-bottom: 12px;
-  top: 30px;
+  top: 25px;
   left: 30px;
   border-radius: 10px;
   border-style: solid;
@@ -584,8 +601,6 @@ border-color: #000000;
   top: 10px;
   left: 45px;
 }
-
-
 
 .divisor {
   position: absolute;
@@ -630,12 +645,12 @@ border-color: #000000;
   display: flex;
   justify-content: center;  
   left: 999px;
-  bottom: 270px;
+  bottom: 272px;
 }
 
 .comprarProducto {
   background-color: rgb(224, 224, 224);
-  width: 440px;
+  width: 453px;
   height: 600px;
   position: absolute;
   top: 200px;
@@ -682,7 +697,7 @@ border-color: #000000;
 footer {
   background-color: #1d1a1a;
   color: #fff;
-  padding: 20px 0;
+  padding: 10px;
 }
 
 .footerContainer {
@@ -699,6 +714,8 @@ footer {
   margin: 10px;
 }
 
+
+
 .footer h3 {
   border-bottom: 2px solid #fff;
   padding-bottom: 10px;
@@ -712,6 +729,7 @@ footer {
   color: #fff;
   text-decoration: none;
 }
+
 
 .footerCopy {
   text-align: center;

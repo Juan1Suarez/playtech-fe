@@ -30,6 +30,10 @@ const MainAdmin = () => {
         router.push("/productoAdmin");
     }
 
+    const navegarARegistroVentas = () => {
+        router.push("/registroVentas")
+      }
+
     useEffect(() => {
         verProductos().then((data: Producto[]) => {
             setProductos(data);
@@ -65,14 +69,10 @@ const MainAdmin = () => {
   <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
 
             <Container className='caidaproductos'>
-                <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-                    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-                    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
+                <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
                 </Dropdown>
             </Container>
+            
             <div className='adminuser'>Admin</div>
             <div className='fondodark'>
                 <div>Dark mode</div>
@@ -171,4 +171,4 @@ const MainAdmin = () => {
     );
 }
 
-export default withRoles(MainAdmin, [1], "/register");
+export default withRoles(MainAdmin, [1], "/login");

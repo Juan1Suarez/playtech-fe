@@ -8,7 +8,6 @@ export default function Footer() {
     <>   
     <br></br>
     <br></br>
-    <br></br>
      <footer>
     <div className="footerContainer">
         <div className="footer">

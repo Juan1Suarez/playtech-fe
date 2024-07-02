@@ -13,6 +13,11 @@ const ProductoAdminPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
+
+  const navegarARegistroVentas = () => {
+    router.push("/registroVentas")
+  }
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("darkMode", !darkMode);
@@ -85,14 +90,9 @@ const ProductoAdminPage = () => {
       <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <Container className='caidaproductos'>
-        <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-          <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-          <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-          <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-          <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-          <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
-        </Dropdown>
-      </Container>
+                <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
+                </Dropdown>
+            </Container>
       
       <div className='adminuser'>Admin</div>
       <div className='fondodark'>
@@ -169,4 +169,4 @@ const ProductoAdminPage = () => {
   );
 }
 
-export default withRoles(ProductoAdminPage, [1], '/');
+export default withRoles(ProductoAdminPage, [1], '/login');

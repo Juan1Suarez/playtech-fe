@@ -47,14 +47,14 @@ const ListaProducto = () => {
       <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"></img></a>
 
       <Container className='caidaproductos'>
-        <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-          <Dropdown.Item><a href="/listaProducto?tipo=Auriculares">Auriculares</a></Dropdown.Item>
-          <Dropdown.Item><a href="/listaProducto?tipo=Teclados">Teclados</a></Dropdown.Item>
-          <Dropdown.Item><a href="/listaProducto?tipo=Mouses">Mouses</a></Dropdown.Item>
-          <Dropdown.Item><a href="/listaProducto?tipo=Mousepads">Mousepads</a></Dropdown.Item>
-          <Dropdown.Item><a href="/listaProducto?tipo=Sillas">Sillas</a></Dropdown.Item>
-        </Dropdown>
-      </Container>
+      <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+        <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
+      </Dropdown>
+    </Container>
       <div className='adminuser'>User</div>
       <div className='fondodark'>
         <div>Dark mode</div>
@@ -66,7 +66,6 @@ const ListaProducto = () => {
         <button className='productosListado' onClick={() => botonProducto('Teclado')}>Teclado</button>
         <button className='productosListado' onClick={() => botonProducto('Mousepad')}>Mousepad</button>
         <button className='productosListado' onClick={() => botonProducto('Silla Gamer')}>Silla gamer</button>
-        <button className='productosListado' onClick={() => botonProducto('Gabinetes')}>Gabinete</button>
       </div>
 
       <div className='buscadorProductos'>
@@ -89,4 +88,4 @@ const ListaProducto = () => {
   );
 }
 
-export default withRoles(ListaProducto, [2], '/');
+export default withRoles(ListaProducto, [2], '/login');

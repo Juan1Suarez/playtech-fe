@@ -37,20 +37,25 @@ const ProductoPage = () => {
     return <div>ERROR PAGINA NO ENCONTRADA</div>;
   }
 
+  const agregarCarrito = () => {
+    localStorage.setItem('carrodecompras', JSON.stringify(producto));
+}
+
+
 
   return (
     <>
 <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
 <Container className='caidaproductos'>
-<Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-    <Dropdown.Item><a href="listaProducto">Auriculares</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Teclados</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Mouses</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Mousepads</a></Dropdown.Item>
-    <Dropdown.Item><a href="listaProducto">Sillas</a></Dropdown.Item>
-  </Dropdown>
-</Container>
+      <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+        <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
+        <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
+      </Dropdown>
+    </Container>
       <div className='adminuser'>User</div>
       <div className='fondodark'>
         <div>Dark mode</div>
@@ -68,10 +73,10 @@ const ProductoPage = () => {
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
         <div className='productosComprar'>
-          <button className='botonahora' onClick={() => navegarACarrito()}>
+          <button className='botonahora' onClick={() =>{ navegarACarrito(); agregarCarrito(); }}>
             Comprar ahora
           </button>
-          <button className='botonagregar'>
+          <button className='botonagregar' onClick={agregarCarrito}>
             Agregar al carrito
           </button>
         <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
@@ -97,4 +102,4 @@ const ProductoPage = () => {
   );
 }
 
-export default withRoles(ProductoPage, [2], '/');
+export default withRoles(ProductoPage, [2], '/login');

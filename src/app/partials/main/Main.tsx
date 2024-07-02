@@ -32,14 +32,14 @@ export default function Home() {
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
 
             <Container className='caidaproductos'>
-                <Dropdown title="¿Que tipo de producto estas buscando?" size="lg" >
-                    <Dropdown.Item><a href="register">Auriculares</a></Dropdown.Item>
-                    <Dropdown.Item><a href="register">Teclados</a></Dropdown.Item>
-                    <Dropdown.Item><a href="register">Mouses</a></Dropdown.Item>
-                    <Dropdown.Item><a href="register">Mousepads</a></Dropdown.Item>
-                    <Dropdown.Item><a href="register">Sillas</a></Dropdown.Item>
-                </Dropdown>
-            </Container>
+      <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+        <Dropdown.Item as="a" href="login">Auriculares</Dropdown.Item>
+        <Dropdown.Item as="a" href="login">Teclados</Dropdown.Item>
+        <Dropdown.Item as="a" href="login">Mouses</Dropdown.Item>
+        <Dropdown.Item as="a" href="login">Mousepads</Dropdown.Item>
+        <Dropdown.Item as="a" href="login">Sillas</Dropdown.Item>
+      </Dropdown>
+    </Container>
             <button onClick={() => navegarALogin()} className='ini'>Iniciar sesión</button>
             <div className='fondodark2'>
                 <div>Dark mode</div>
