@@ -72,8 +72,8 @@ const ProductoAdminPage = () => {
         alert('El stock no puede exceder los 500 caracteres.');
         return;
       }
-      if (producto.descripcion.length > 255) {
-        alert('La descripción no puede exceder los 255 caracteres.');
+      if (producto.descripcion.length > 500) {
+        alert('La descripción no puede exceder los 500 caracteres.');
         return;
       }
 
