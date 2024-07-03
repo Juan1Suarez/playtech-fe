@@ -1,5 +1,5 @@
 import clienteAxios from "./Axios";
-import Login from "../partials/model/login.model";
+import Login from "./model/login.model";
 
 export const login = async (login: Login, router: any) => {
     try{

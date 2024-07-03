@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 import { verProductos } from '@/app/services/Producto';
-import Producto from '../model/producto.model';
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import {withRoles} from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
@@ -30,6 +29,11 @@ const MainUser = () => {
         document.body.classList.toggle("darkMode", !darkMode);
     };
 
+    const LogOut = () => {
+        localStorage.clear();
+        window.location.reload();
+      }
+
     return (
         <>
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
@@ -44,6 +48,7 @@ const MainUser = () => {
     </Container>
 
             <div className='adminuser'>User</div>
+            <button onClick={LogOut} className='adminuser'>Log out</button>
             <div className='fondodark'>
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
@@ -116,4 +121,4 @@ const MainUser = () => {
     );
 }
 
-export default withRoles(MainUser, [2], '/register');
+export default withRoles(MainUser, [2], '/login');

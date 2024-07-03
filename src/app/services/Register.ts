@@ -1,5 +1,5 @@
 import clienteAxios from "./Axios";
-import Usuario from "../partials/model/usuario.model";
+import Usuario from "./model/usuario.model";
 
 export const verUsuarios = async () => {
     try {

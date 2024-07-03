@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 import { crearProducto, verProductos } from '@/app/services/Producto';
-import Producto from '../model/producto.model';
+import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
@@ -17,9 +17,9 @@ const MainAdmin = () => {
     const [nuevoProducto, setNuevoProducto] = useState<Producto>({
         tipoDeProducto: '',
         modelo: '',
-        precio: '',
+        precio: 0,
         color: '',
-        stock: '',
+        stock: 0,
         foto: '',
         descripcion: ''
     });
@@ -53,7 +53,7 @@ const MainAdmin = () => {
         setShowPopup(false);
       };
     
-      const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNuevoProducto({ ...nuevoProducto, [name]: value });
     };
@@ -63,6 +63,11 @@ const MainAdmin = () => {
             verProductos();
             handleClosePopup();
     };
+
+    const LogOut = () => {
+        localStorage.clear();
+        window.location.reload();
+      }
 
     return (
         <>
@@ -74,6 +79,7 @@ const MainAdmin = () => {
             </Container>
             
             <div className='adminuser'>Admin</div>
+            <button className='adminuser' onClick={LogOut}>Log out</button>
             <div className='fondodark'>
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
@@ -145,28 +151,35 @@ const MainAdmin = () => {
             <button className='nuevoProducto' onClick={handleEditClick}>Añadir producto</button>
 
             {showPopup && (
-            <div className="popup">
-              <div className="popup-content">
-                <span className="close" onClick={handleClosePopup}>&times;</span>
-                <div> Tipo de producto</div>
-                <input type="text" name="tipoDeProducto" placeholder='Tipo de producto' onChange={handleChange} />
-                <div> Modelo</div>
-                <input type="text" name="modelo" placeholder='Model' onChange={handleChange} />
-                <div> Precio</div>
-                <input type="text" name="precio" placeholder='Precio' onChange={handleChange} />
-                <div> Color</div>
-                <input type="text" name="color" placeholder='Color' onChange={handleChange}/>
-                <div> Stock</div>
-                <input type="text" name="stock" placeholder='Stock' onChange={handleChange} />
-                <div> Foto</div>
-                <input type="text" name="foto" placeholder='Foto' onChange={handleChange}/>
-                <div> Descripción</div>
-                <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }}  onChange={handleChange} />
-                <button onClick={handleSubmit}> Realizar cambios</button>
-                <button onClick={handleClosePopup}>Cancelar</button>
-              </div>
-            </div>
-          )}
+  <div className="popup">
+    <div className="popup-content">
+      <span className="close" onClick={handleClosePopup}>&times;</span>
+      <div> Tipo de producto</div>
+      <select name="tipoDeProducto" onChange={handleChange} defaultValue="">
+        <option value="" disabled>Seleccionar tipo de producto</option>
+        <option value="Auriculares">Auriculares</option>
+        <option value="Teclado">Teclado</option>
+        <option value="Mouse">Mouse</option>
+        <option value="Mousepad">Mousepad</option>
+        <option value="Silla Gamer">Silla Gamer</option>
+      </select>
+      <div> Modelo</div>
+      <input type="text" name="modelo" placeholder='Modelo' onChange={handleChange} />
+      <div> Precio</div>
+      <input type="number" name="precio" placeholder='Precio' onChange={handleChange} />
+      <div> Color</div>
+      <input type="text" name="color" placeholder='Color' onChange={handleChange} />
+      <div> Stock</div>
+      <input type="number" name="stock" placeholder='Stock' onChange={handleChange} />
+      <div> Foto</div>
+      <input type="text" name="foto" placeholder='Foto' onChange={handleChange} />
+      <div> Descripción</div>
+      <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
+      <button onClick={handleSubmit}> Realizar cambios</button>
+      <button onClick={handleClosePopup}>Cancelar</button>
+    </div>
+  </div>
+)}
         </>
     );
 }

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
-import Producto from '../model/producto.model';
+import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { eliminarProducto, modificarProducto } from '@/app/services/Producto';
 import { useRouter } from 'next/navigation';
@@ -45,7 +45,7 @@ const ProductoAdminPage = () => {
     setShowPopup(false);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setProducto({ ...producto, [name]: value });
   };
@@ -85,16 +85,22 @@ const ProductoAdminPage = () => {
     }
   };
 
+  const LogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return (
     <>
       <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <Container className='caidaproductos'>
-                <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
-                </Dropdown>
-            </Container>
-      
+        <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
+        </Dropdown>
+      </Container>
+
       <div className='adminuser'>Admin</div>
+      <button className='adminuser' onClick={LogOut}>Log out</button>
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
@@ -120,7 +126,7 @@ const ProductoAdminPage = () => {
             }}
           > Eliminar producto
           </button>
-          <button className='botonagregar'  onClick={handleEditClick}>
+          <button className='botonagregar' onClick={handleEditClick}>
             Editar producto
           </button>
 
@@ -129,7 +135,14 @@ const ProductoAdminPage = () => {
               <div className="popup-content">
                 <span className="close" onClick={handleClosePopup}>&times;</span>
                 <div> Tipo de producto</div>
-                <input type="text" name="tipoDeProducto" value={producto.tipoDeProducto} onChange={handleChange} />
+                <select name="tipoDeProducto" onChange={handleChange} defaultValue="">
+                  <option value="" disabled>Seleccionar tipo de producto</option>
+                  <option value="Auriculares">Auriculares</option>
+                  <option value="Teclado">Teclado</option>
+                  <option value="Mouse">Mouse</option>
+                  <option value="Mousepad">Mousepad</option>
+                  <option value="Silla Gamer">Silla Gamer</option>
+                </select>
                 <div> Modelo</div>
                 <input type="text" name="modelo" value={producto.modelo} onChange={handleChange} />
                 <div> Precio</div>
@@ -141,7 +154,7 @@ const ProductoAdminPage = () => {
                 <div> Foto</div>
                 <input type="text" name="foto" value={producto.foto} onChange={handleChange} />
                 <div> Descripción</div>
-                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px' }}  />
+                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} />
                 <button onClick={handleSubmit}> Realizar cambios</button>
                 <button onClick={handleClosePopup}>Cancelar</button>
               </div>

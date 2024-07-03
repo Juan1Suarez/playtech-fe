@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 import { verProductos } from '@/app/services/Producto';
-import Producto from '../model/producto.model';
+import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';

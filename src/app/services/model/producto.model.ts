@@ -1,5 +1,5 @@
 interface Producto {
-    productoId: number;
+    productoId?: number;
     tipoDeProducto: string;
     modelo: string;
     precio:number;

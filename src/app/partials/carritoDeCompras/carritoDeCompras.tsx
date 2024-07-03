@@ -4,7 +4,7 @@ import Switch from '@mui/material/Switch';
 import React, { useEffect, useState } from 'react';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
-import Producto from '../model/producto.model';
+import Producto from '../../services/model/producto.model';
 
 const CarritoDeCompras = () => {
   const [producto, setProducto] = useState<Producto | null>(null);
@@ -22,6 +22,11 @@ const CarritoDeCompras = () => {
     }
   }, []);
 
+  const LogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return (
     <>
       <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
@@ -37,6 +42,7 @@ const CarritoDeCompras = () => {
     </Container>
     
       <div className='adminuser'>User</div>
+      <button className='adminuser' onClick={LogOut}> logout </button>
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
@@ -64,4 +70,4 @@ const CarritoDeCompras = () => {
   );
 }
 
-export default withRoles(CarritoDeCompras, [2], '/');
+export default withRoles(CarritoDeCompras, [2], '/login');

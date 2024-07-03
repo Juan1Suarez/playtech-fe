@@ -156,7 +156,7 @@ body {
   position: relative;
   text-align: center;
   left: 1450px;
-  bottom: 2550px;
+  bottom: 2390px;
   background-color: lightblue;
   width: 150px;
   height: 25px;
@@ -195,6 +195,7 @@ body {
   border-bottom-right-radius: 90px;
   border-right-width: 10px;
   border-bottom-width: 10px;
+  cursor: pointer;
 }
 
 .img {

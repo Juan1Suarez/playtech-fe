@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
-import { FaMagnifyingGlass } from 'react-icons/fa6';
-import Producto from '../model/producto.model';
+import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
@@ -41,7 +40,10 @@ const ProductoPage = () => {
     localStorage.setItem('carrodecompras', JSON.stringify(producto));
 }
 
-
+const LogOut = () => {
+  localStorage.clear();
+  window.location.reload();
+}
 
   return (
     <>
@@ -57,6 +59,7 @@ const ProductoPage = () => {
       </Dropdown>
     </Container>
       <div className='adminuser'>User</div>
+      <button className='adminuser' onClick={LogOut}> Log out</button>
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />

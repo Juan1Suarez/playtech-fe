@@ -5,7 +5,7 @@ import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import { verProductos } from '@/app/services/Producto';
-import Producto from '../model/producto.model';
+import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 
@@ -42,6 +42,11 @@ const ListaProducto = () => {
     router.push(`/listaProducto?tipo=${tipo.replace(/ /g, '%20')}`);
   };
 
+  const LogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return (
     <>
       <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"></img></a>
@@ -56,6 +61,7 @@ const ListaProducto = () => {
       </Dropdown>
     </Container>
       <div className='adminuser'>User</div>
+      <button className='adminuser' onClick={LogOut}>Log out</button>
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />

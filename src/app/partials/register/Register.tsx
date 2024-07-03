@@ -6,7 +6,7 @@ import Switch from '@mui/material/Switch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from "next/navigation"
 import { crearUsuarios, verUsuarios } from '../../services/Register';
-import Usuario from '../model/usuario.model';
+import Usuario from '../../services/model/usuario.model';
 
 
 export default function Register() {

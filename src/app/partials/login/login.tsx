@@ -6,7 +6,7 @@ import Switch from '@mui/material/Switch';;
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { login } from '@/app/services/Login';
-import Login from '../model/login.model';
+import Login from '../../services/model/login.model';
 
 
 export default function Home() {

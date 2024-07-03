@@ -1,5 +1,5 @@
 import clienteAxios from "./Axios";
-import Producto from "../partials/model/producto.model";
+import Producto from "./model/producto.model";
 
 export const verProductos = async (): Promise<Producto[]> => {
     try {
