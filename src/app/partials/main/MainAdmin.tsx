@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const MainAdmin = () => {
 
@@ -69,6 +72,16 @@ const MainAdmin = () => {
         window.location.reload();
       }
 
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+    };
+
     return (
         <>
   <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
@@ -84,6 +97,19 @@ const MainAdmin = () => {
                 <div>Dark mode</div>
                 <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
             </div>
+
+            <Slider {...settings}>
+                <div>
+                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%'}} />
+                </div>
+                <div>
+                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%' }} />
+                </div>
+                <div>
+                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%' }} />
+                </div>
+            </Slider>
+
             <h1 className='subs'>Auriculares</h1>
             <div className='fondoimg'>
                 {productos
