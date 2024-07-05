@@ -63,13 +63,13 @@ export default function Home() {
 
             <Slider {...settings}>
                 <div>
-                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%'}} />
+                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%'}} />
                 </div>
                 <div>
-                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%' }} />
+                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
                 </div>
                 <div>
-                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%' }} />
+                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
                 </div>
             </Slider>
 
