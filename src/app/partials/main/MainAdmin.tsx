@@ -35,7 +35,7 @@ const MainAdmin = () => {
 
     const navegarARegistroVentas = () => {
         router.push("/registroVentas")
-      }
+    }
 
     useEffect(() => {
         verProductos().then((data: Producto[]) => {
@@ -50,29 +50,29 @@ const MainAdmin = () => {
 
     const handleEditClick = () => {
         setShowPopup(true);
-      };
-    
-      const handleClosePopup = () => {
+    };
+
+    const handleClosePopup = () => {
         setShowPopup(false);
-      };
-    
-      const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNuevoProducto({ ...nuevoProducto, [name]: value });
     };
 
     const handleSubmit = async () => {
-            await crearProducto(nuevoProducto, router);
-            verProductos();
-            handleClosePopup();
+        await crearProducto(nuevoProducto, router);
+        verProductos();
+        handleClosePopup();
     };
 
     const LogOut = () => {
         localStorage.clear();
         window.location.reload();
-      }
+    }
 
-      const settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -84,13 +84,13 @@ const MainAdmin = () => {
 
     return (
         <>
-  <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+            <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
 
             <Container className='caidaproductos'>
                 <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
                 </Dropdown>
             </Container>
-            
+
             <div className='adminuser'>Admin</div>
             <button className='adminuser' onClick={LogOut}>Log out</button>
             <div className='fondodark'>
@@ -100,13 +100,13 @@ const MainAdmin = () => {
 
             <Slider {...settings}>
                 <div>
-                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%'}} />
+                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
                 </div>
                 <div>
-                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%' }} />
+                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
                 </div>
                 <div>
-                    <img src=".\img\imagen_2024-05-22_195807468-removebg-preview.png" style={{ width: '100%' }} />
+                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
                 </div>
             </Slider>
 
@@ -177,35 +177,35 @@ const MainAdmin = () => {
             <button className='nuevoProducto' onClick={handleEditClick}>Añadir producto</button>
 
             {showPopup && (
-  <div className="popup">
-    <div className="popup-content">
-      <span className="close" onClick={handleClosePopup}>&times;</span>
-      <div> Tipo de producto</div>
-      <select name="tipoDeProducto" onChange={handleChange} defaultValue="">
-        <option value="" disabled>Seleccionar tipo de producto</option>
-        <option value="Auriculares">Auriculares</option>
-        <option value="Teclado">Teclado</option>
-        <option value="Mouse">Mouse</option>
-        <option value="Mousepad">Mousepad</option>
-        <option value="Silla Gamer">Silla Gamer</option>
-      </select>
-      <div> Modelo</div>
-      <input type="text" name="modelo" placeholder='Modelo' onChange={handleChange} />
-      <div> Precio</div>
-      <input type="number" name="precio" placeholder='Precio' onChange={handleChange} />
-      <div> Color</div>
-      <input type="text" name="color" placeholder='Color' onChange={handleChange} />
-      <div> Stock</div>
-      <input type="number" name="stock" placeholder='Stock' onChange={handleChange} />
-      <div> Foto</div>
-      <input type="text" name="foto" placeholder='Foto' onChange={handleChange} />
-      <div> Descripción</div>
-      <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
-      <button onClick={handleSubmit}> Realizar cambios</button>
-      <button onClick={handleClosePopup}>Cancelar</button>
-    </div>
-  </div>
-)}
+                <div className="popup">
+                    <div className="popup-content">
+                        <span className="close" onClick={handleClosePopup}>&times;</span>
+                        <div> Tipo de producto</div>
+                        <select name="tipoDeProducto" onChange={handleChange} defaultValue="">
+                            <option value="" disabled>Seleccionar tipo de producto</option>
+                            <option value="Auriculares">Auriculares</option>
+                            <option value="Teclado">Teclado</option>
+                            <option value="Mouse">Mouse</option>
+                            <option value="Mousepad">Mousepad</option>
+                            <option value="Silla Gamer">Silla Gamer</option>
+                        </select>
+                        <div> Modelo</div>
+                        <input type="text" name="modelo" placeholder='Modelo' onChange={handleChange} />
+                        <div> Precio</div>
+                        <input type="number" name="precio" placeholder='Precio' onChange={handleChange} />
+                        <div> Color</div>
+                        <input type="text" name="color" placeholder='Color' onChange={handleChange} />
+                        <div> Stock</div>
+                        <input type="number" name="stock" placeholder='Stock' onChange={handleChange} />
+                        <div> Foto</div>
+                        <input type="text" name="foto" placeholder='Foto' onChange={handleChange} />
+                        <div> Descripción</div>
+                        <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
+                        <button onClick={handleSubmit}> Realizar cambios</button>
+                        <button onClick={handleClosePopup}>Cancelar</button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

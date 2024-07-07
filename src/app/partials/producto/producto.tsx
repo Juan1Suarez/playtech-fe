@@ -26,11 +26,12 @@ const ProductoPage = () => {
   };
 
   const agregarCarrito = () => {
+    let carritoActual = JSON.parse(localStorage.getItem('carrodecompras') || '[]');
     if (producto) {
-      localStorage.setItem('carrodecompras', JSON.stringify(producto));
+      carritoActual.push(producto);
     }
+    localStorage.setItem('carrodecompras', JSON.stringify(carritoActual));
   };
-
   const LogOut = () => {
     localStorage.clear();
     window.location.reload();

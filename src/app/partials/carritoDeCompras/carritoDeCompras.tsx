@@ -7,20 +7,21 @@ import 'rsuite/Dropdown/styles/index.css';
 import Producto from '../../services/model/producto.model';
 
 const CarritoDeCompras = () => {
-  const [producto, setProducto] = useState<Producto | null>(null);
+  const [productos, setProductos] = useState<Producto[]>([]);
   const [darkMode, setDarkMode] = useState(false);
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("darkMode", !darkMode);
   };
 
-  useEffect(() => {
-    const storedProducto = localStorage.getItem('carrodecompras');
-    if (storedProducto) {
-      const productoRecuperado: Producto = JSON.parse(storedProducto);
-      setProducto(productoRecuperado);
+useEffect(() => {
+    const storedProductos = localStorage.getItem('carrodecompras');
+    if (storedProductos) {
+      const productosRecuperados: Producto[] = JSON.parse(storedProductos);
+      setProductos(productosRecuperados);
     }
-  }, []);
+  }, []); 
 
   const LogOut = () => {
     localStorage.clear();
@@ -50,22 +51,30 @@ const CarritoDeCompras = () => {
 
 
       <div className='carritoProducto'>
-
-        <div className='productoElegido'>
-          <img className='fotonisuta' src={producto?.foto} />
-          <h1 className='textoProducto'>{producto?.modelo}</h1>
-          <h1 className='valorproducto'>$ {producto?.precio}</h1>
-        </div>
+        {productos.map((producto, index) => (
+          <div key={index} className='productoElegido'>
+            <img className='fotonisuta' src={producto.foto}/>
+            <h1 className='textoProducto'>{producto.modelo}</h1>
+            <h1 className='valorproducto'>$ {producto.precio}</h1>
+          </div>
+        ))}
         <div className='divisor'></div>
       </div>
       
- <div className='comprarProducto'>
-          <div className='nombreEnLista'>{producto?.modelo}</div>
-          <div className='divisor1' />
-          <h1 className='precioTotal'>Precio total = ${producto?.precio}</h1>
-          <div className='fin'>Finalizar transacción</div>
-        </div>
-
+      <div className='comprarProducto'>
+        {productos.length > 0 && (
+          <div className='contenidoCompra'>
+            <div className='nombreEnLista'>
+              {productos.map((producto, index) => (
+                <div className='nombreProducto' key={index}>{producto.modelo}</div>
+              ))}
+            </div>
+            <div className='divisor1' />
+            <h1 className='precioTotal'>Precio total = ${productos.reduce((total, producto) => total + producto.precio, 0)}</h1>
+            <div className='fin'>Finalizar transacción</div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

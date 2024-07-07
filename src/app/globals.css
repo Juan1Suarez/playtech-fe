@@ -574,13 +574,14 @@ cursor: pointer;
 
 .carritoProducto {
   background-color: rgb(197, 197, 197);
-  width: 1300px;
-  height: 700px;
+  width: 1332px;
+  min-height: 700px; 
   position: relative;
   bottom: 20px;
   left: 20px;
   border: 2px solid #000000;
   border-radius: 10px;
+  overflow: auto;
 }
 
 .productoElegido {
@@ -609,7 +610,7 @@ cursor: pointer;
   position: absolute;
   background-color: #000000;
   width: 2px;
-  height: 650px;
+  height: 100%;
   left: 1009px;
   bottom: 30px;
   border-radius: 10px;
@@ -622,10 +623,9 @@ cursor: pointer;
   width: 400px;
   height: 2px;
   top: 520px;
+  left: 25px;
   border-radius: 10px;
 }
-
-
 
 .textoProducto {
   font-family: 'Roboto Slab';
@@ -656,7 +656,7 @@ cursor: pointer;
   width: 453px;
   height: 600px;
   position: absolute;
-  top: 200px;
+  top: 223px;
   left: 1390px;
   border-radius: 10px;
   border-color: #000000;
