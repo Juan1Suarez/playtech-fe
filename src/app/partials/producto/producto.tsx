@@ -1,69 +1,80 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Switch from '@mui/material/Switch';;
+import Switch from '@mui/material/Switch';
 import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
-import { useRouter } from 'next/navigation';
-
+import { useRouter, useSearchParams } from 'next/navigation';
+import { verProductos } from '@/app/services/Producto';
 
 const ProductoPage = () => {
-
   const router = useRouter();
-  const navegarACarrito = () => {
-    router.push("/carritoDeCompras")
-  }
-  
+  const searchParams = useSearchParams();
+  const modeloParam = searchParams.get('modelo');
+
   const [darkMode, setDarkMode] = useState(false);
+  const [producto, setProducto] = useState<Producto | null>(null);
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("darkMode", !darkMode);
   };
 
-  const [producto, setProducto] = useState<Producto | null>(null);
-  
-
-  useEffect(() => {
-    const storedProducto = sessionStorage.getItem('productoSeleccionado');
-    if (storedProducto) {
-      const productoRecuperado: Producto = JSON.parse(storedProducto);
-      setProducto(productoRecuperado);
-    }
-  }, []);
-
-  if (!producto) {
-    return <div>ERROR PAGINA NO ENCONTRADA</div>;
-  }
+  const navegarACarrito = () => {
+    router.push("/carritoDeCompras");
+  };
 
   const agregarCarrito = () => {
-    localStorage.setItem('carrodecompras', JSON.stringify(producto));
-}
+    if (producto) {
+      localStorage.setItem('carrodecompras', JSON.stringify(producto));
+    }
+  };
 
-const LogOut = () => {
-  localStorage.clear();
-  window.location.reload();
-}
+  const LogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    if (modeloParam) {
+      verProductos().then((data: Producto[]) => {
+        const productoEncontrado = data.find(prod => prod.modelo === modeloParam);
+        setProducto(productoEncontrado || null);
+      }).catch(error => {
+        console.error('Error fetching products:', error);
+      });
+    }
+  }, [modeloParam]);
+
+  if (!producto) {
+    return <p>ERROR PRODUCTO NO ENCONTRADO</p>;
+  }
 
   return (
     <>
-<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
+      <a href='mainUser'>
+        <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      </a>
 
-<Container className='caidaproductos'>
-      <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-        <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-        <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-        <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-        <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-        <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
-      </Dropdown>
-    </Container>
+      <Container className='caidaproductos'>
+        <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+          <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
+        </Dropdown>
+      </Container>
+
       <div className='adminuser'>User</div>
       <button className='adminuser' onClick={LogOut}> Log out</button>
+
       <div className='fondodark'>
         <div>Dark mode</div>
         <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
       </div>
+
       <div className='nombreproducto'>{producto.modelo}</div>
       <div className='precioproducto'>Precio: {producto.precio}</div>
       <div className="dropdown">
@@ -76,14 +87,13 @@ const LogOut = () => {
       <div className='productos'>
         <img src={producto.foto} className='fotoP'></img>
         <div className='productosComprar'>
-          <button className='botonahora' onClick={() =>{ navegarACarrito(); agregarCarrito(); }}>
+          <button className='botonahora' onClick={() => { navegarACarrito(); agregarCarrito(); }}>
             Comprar ahora
           </button>
           <button className='botonagregar' onClick={agregarCarrito}>
             Agregar al carrito
           </button>
-        <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
-        
+          <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
         </div>
       </div>
 
@@ -95,14 +105,13 @@ const LogOut = () => {
         <p className='productoTexto'>PRECIO: {producto.precio}</p>
         <p className='productoTexto'>ID: {producto.productoId}</p>
       </div>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-      
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
     </>
   );
-}
+};
 
 export default withRoles(ProductoPage, [2], '/login');

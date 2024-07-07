@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';;
 import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { eliminarProducto, modificarProducto } from '@/app/services/Producto';
-import { useRouter } from 'next/navigation';
+import { eliminarProducto, modificarProducto, verProductos } from '@/app/services/Producto';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 
@@ -13,6 +13,8 @@ const ProductoAdminPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
+  const searchParams = useSearchParams();
+  const modeloParam = searchParams.get('modelo');
 
   const navegarARegistroVentas = () => {
     router.push("/registroVentas")
@@ -26,15 +28,18 @@ const ProductoAdminPage = () => {
   const [producto, setProducto] = useState<Producto | null>(null);
 
   useEffect(() => {
-    const storedProducto = sessionStorage.getItem('productoSeleccionado');
-    if (storedProducto) {
-      const productoRecuperado: Producto = JSON.parse(storedProducto);
-      setProducto(productoRecuperado);
+    if (modeloParam) {
+      verProductos().then((data: Producto[]) => {
+        const productoEncontrado = data.find(prod => prod.modelo === modeloParam);
+        setProducto(productoEncontrado || null);
+      }).catch(error => {
+        console.error('Error fetching products:', error);
+      });
     }
-  }, []);
+  }, [modeloParam]);
 
   if (!producto) {
-    return <div>ERROR PAGINA NO ENCONTRADA</div>;
+    return <p>ERROR PRODUCTO NO ENCONTRADO</p>;
   }
 
   const handleEditClick = () => {

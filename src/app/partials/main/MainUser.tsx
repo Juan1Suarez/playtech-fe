@@ -16,9 +16,8 @@ const MainUser = () => {
     const [productos, setProductos] = useState<Producto[]>([]);
 
     const router = useRouter();
-    const navegarAProducto = (producto: Producto) => {
-        sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
-        router.push("/producto");
+    const navegarAProducto = (modelo: string) => {
+        router.push("/producto?modelo="+ modelo);
     }
 
     useEffect(() => {
@@ -85,7 +84,7 @@ const MainUser = () => {
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Auriculares")
                     .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
@@ -98,7 +97,7 @@ const MainUser = () => {
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Teclado")
                     .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}$</h1>
@@ -111,7 +110,7 @@ const MainUser = () => {
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mouse")
                     .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}$</h1>
@@ -124,7 +123,7 @@ const MainUser = () => {
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mousepad")
                     .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}$</h1>
@@ -137,7 +136,7 @@ const MainUser = () => {
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Silla Gamer")
                     .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
