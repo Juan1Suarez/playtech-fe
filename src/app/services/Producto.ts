@@ -55,3 +55,14 @@ export const crearProducto = async (producto: Producto, router: any) => {
     throw error;
   }
 };
+
+
+export const upload = async( file: any, productoId: any) => {
+  try {
+  const response = await clienteAxios.post('imagen/upload', { file, productoId })
+  return response.data;
+} catch (error) {
+    console.error("ERROR", error);
+    return [];
+}
+};

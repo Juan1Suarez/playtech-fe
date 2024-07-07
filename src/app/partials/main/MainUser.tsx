@@ -83,6 +83,7 @@ const MainUser = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Auriculares")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
@@ -96,6 +97,7 @@ const MainUser = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Teclado")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
@@ -109,6 +111,7 @@ const MainUser = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mouse")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
@@ -122,6 +125,7 @@ const MainUser = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mousepad")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
@@ -135,6 +139,7 @@ const MainUser = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Silla Gamer")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>

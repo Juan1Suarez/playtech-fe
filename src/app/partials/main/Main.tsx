@@ -77,6 +77,7 @@ export default function Home() {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Auriculares")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId} onClick={() => navegarALogin()}>
                             <img src={producto.foto} width={200} height={200} alt={producto.modelo} />
@@ -90,6 +91,7 @@ export default function Home() {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Teclado")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId} onClick={() => navegarALogin()}>
                             <img src={producto.foto} width={200} height={200} alt={producto.modelo} />
@@ -103,6 +105,7 @@ export default function Home() {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mouse")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId} onClick={() => navegarALogin()}>
                             <img src={producto.foto} width={200} height={200} alt={producto.modelo} />
@@ -116,6 +119,7 @@ export default function Home() {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mousepad")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId} onClick={() => navegarALogin()}>
                             <img src={producto.foto} width={200} height={200} alt={producto.modelo} />
@@ -129,6 +133,7 @@ export default function Home() {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Silla Gamer")
+                    .slice(0, 7)
                     .map(producto => (
                         <a key={producto.productoId} onClick={() => navegarALogin()}>
                             <img src={producto.foto} width={200} height={200} alt={producto.modelo} />

@@ -28,9 +28,8 @@ const MainAdmin = () => {
     });
 
     const router = useRouter();
-    const navegarAProducto = (producto: Producto) => {
-        sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
-        router.push("/productoAdmin");
+    const navegarAProducto =  (modelo: string) => {
+        router.push("/productoAdmin?modelo="+ modelo);
     }
 
     const navegarARegistroVentas = () => {
@@ -114,8 +113,9 @@ const MainAdmin = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Auriculares")
+                    .slice(0, 7)
                     .map(producto => (
-                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
@@ -127,8 +127,9 @@ const MainAdmin = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Teclado")
+                    .slice(0, 7)
                     .map(producto => (
-                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
@@ -140,8 +141,9 @@ const MainAdmin = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mouse")
+                    .slice(0, 7)
                     .map(producto => (
-                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
@@ -153,8 +155,9 @@ const MainAdmin = () => {
             <div className='fondoimg'>
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Mousepad")
+                    .slice(0, 7)
                     .map(producto => (
-                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
@@ -167,7 +170,7 @@ const MainAdmin = () => {
                 {productos
                     .filter(producto => producto.tipoDeProducto === "Silla Gamer")
                     .map(producto => (
-                        <a key={producto.productoId} onClick={() => navegarAProducto(producto)}>
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
                             <img src={producto.foto} width={200} height={200}></img>
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>

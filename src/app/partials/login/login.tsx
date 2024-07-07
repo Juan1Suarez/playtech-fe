@@ -15,8 +15,6 @@ export default function Home() {
     router.push("/register")
   }
 
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
   function darkMode() {
     var element = document.body;
     element.classList.toggle("darkMode");

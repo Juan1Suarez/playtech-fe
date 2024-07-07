@@ -21,9 +21,6 @@ export default function Register() {
         element.classList.toggle("darkMode");
     }
 
-    const [value, setValue] = React.useState<number | null>(5);
-
-
     const validationSchema = Yup.object().shape({
         nombre: Yup.string()
             .required('El nombre completo es requerido')
