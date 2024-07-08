@@ -7,6 +7,8 @@ import { eliminarProducto, modificarProducto, verProductos } from '@/app/service
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
+import { FaUserGear } from "react-icons/fa6";
+
 
 
 const ProductoAdminPage = () => {
@@ -104,12 +106,16 @@ const ProductoAdminPage = () => {
         </Dropdown>
       </Container>
 
-      <div className='adminuser'>Admin</div>
-      <button className='adminuser' onClick={LogOut}>Log out</button>
-      <div className='fondodark'>
-        <div>Dark mode</div>
-        <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
-      </div>
+    
+      <div className='configUser'>
+  <Dropdown title= <FaUserGear size={42} /> >
+<Dropdown.Menu title="Admin">
+<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+</Dropdown.Menu>     
+      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
+  </Dropdown>
+</div>
       <div className='nombreproducto'>{producto.modelo}</div>
       <div className='precioproducto'>Precio: {producto.precio}</div>
       <div className="dropdown">

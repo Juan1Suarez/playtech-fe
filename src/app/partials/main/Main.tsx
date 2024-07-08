@@ -9,6 +9,8 @@ import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { FaUserGear } from "react-icons/fa6";
+import { TiShoppingCart } from "react-icons/ti";
 
 export default function Home() {
     const [darkMode, setDarkMode] = useState(false);
@@ -18,6 +20,7 @@ export default function Home() {
     const navegarALogin = () => {
         router.push("/login");
     }
+    
 
     useEffect(() => {
         verProductos().then((data: Producto[]) => {
@@ -25,10 +28,7 @@ export default function Home() {
         });
     }, []);
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle("darkMode", !darkMode);
-    };
+   
 
     const settings = {
         dots: true,
@@ -40,6 +40,7 @@ export default function Home() {
         autoplaySpeed: 3000,
     };
 
+    
     return (
         <>
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Main" />
@@ -54,12 +55,11 @@ export default function Home() {
                 </Dropdown>
             </Container>
 
+            <button className='logoCarrito' onClick={() => { navegarALogin() }}><TiShoppingCart size={42}/></button>
+
             <button onClick={() => navegarALogin()} className='ini'>Iniciar sesión</button>
             
-            <div className='fondodark2'>
-                <div>Dark mode</div>
-                <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
-            </div>
+            
 
             <Slider {...settings}>
                 <div>

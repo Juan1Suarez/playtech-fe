@@ -10,44 +10,7 @@
   background-color: rgb(12, 12, 12) !important;
 }
 
-.fondodark {
-  position: relative;
-  left: 1750px;
-  bottom: 100px;
-  padding: 5px;
-  background-color: #404040;
-  width: 90px;
-  border-radius: 10px;
-  color: white;
-  display: grid;
-  place-items: center;
-}
 
-.fondodark2 {
-  position: relative;
-  left: 1740px;
-  bottom: 65px;
-  padding: 5px;
-  background-color: #404040;
-  width: 90px;
-  border-radius: 10px;
-  color: white;
-  display: grid;
-  place-items: center;
-}
-
-.fondodark1 {
-  position: relative;
-  left: 1750px;
-  bottom: 80px;
-  padding: 5px;
-  background-color: #404040;
-  width: 100px;
-  border-radius: 10px;
-  color: white;
-  display: grid;
-  place-items: center;
-}
 
 
 body {
@@ -229,18 +192,7 @@ body {
   border-radius: 15px;
 }
 
-.adminuser {
-  position: relative;
-  text-align: center;
-  left: 1650px;
-  bottom: 73px;
-  background-color: orange;
-  width: 80px;
-  height: 21px;
-  border-radius: 10px;
-  border-style: solid;
-  border-color: #5a5a5a;
-}
+
 
 .subs {
   background-color: white;
@@ -506,7 +458,7 @@ body {
   border: 1px solid;
   border-radius: 7px;
   width: 1000px;
-  bottom: 355px;
+  bottom: 275px;
   background-color: rgb(241, 241, 241);
   padding:  15px ;
   position: relative;
@@ -695,6 +647,14 @@ cursor: pointer;
   font-family: 'Roboto Slab';
 }
 
+.logoCarrito{
+  position: absolute;
+  cursor: pointer;
+  border-radius:50%;
+  left: 1740px;
+  bottom: 855px;
+}
+
 /* FOOTER*/
 
 footer {
@@ -775,12 +735,25 @@ footer {
 /*REGISTRO VENTAS */
 
 .registroV{
+  position: relative;
 width: 1850px;
 height: 200%;
 background-color: rgb(231, 231, 231);
+top: 200px;
 }
 
 table, th, td {
   border: 1px solid;
   text-align: center;
 }
+
+/* User */
+
+.configUser{
+  position: absolute;
+  left: 1630px;
+ bottom:900px;
+  width: 10px;
+  height: 10px;
+}
+

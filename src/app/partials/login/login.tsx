@@ -15,10 +15,12 @@ export default function Home() {
     router.push("/register")
   }
 
-  function darkMode() {
-    var element = document.body;
-    element.classList.toggle("darkMode");
- }
+  const navegarAMain = () => {
+    router.push("/")
+  }
+  
+  
+
 
   const validationSchema = Yup.object().shape({
    
@@ -30,15 +32,14 @@ export default function Home() {
       .min(4, 'La contraseña debe contener al menos 4 caracteres'),
   });
 
+  
+  
   return (
 
     <>
 
-      <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-      <div className='fondodark1'>
-        <div className='switch'>Dark mode</div>
-        <Switch  onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />    
-   </div>
+      <img  onClick={() => navegarAMain()} className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      
       <Formik
         initialValues={{
           email: '',

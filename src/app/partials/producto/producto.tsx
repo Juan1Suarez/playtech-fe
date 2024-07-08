@@ -7,6 +7,8 @@ import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { verProductos } from '@/app/services/Producto';
+import { FaUserGear } from "react-icons/fa6";
+import { TiShoppingCart } from "react-icons/ti";
 
 const ProductoPage = () => {
   const router = useRouter();
@@ -68,13 +70,17 @@ const ProductoPage = () => {
         </Dropdown>
       </Container>
 
-      <div className='adminuser'>User</div>
-      <button className='adminuser' onClick={LogOut}> Log out</button>
+      <div className='configUser'>
+  <Dropdown title= <FaUserGear size={42} /> >
+<Dropdown.Menu title="User">
+<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+</Dropdown.Menu>     
+      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
+  </Dropdown>
+</div>
 
-      <div className='fondodark'>
-        <div>Dark mode</div>
-        <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
-      </div>
+    <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
 
       <div className='nombreproducto'>{producto.modelo}</div>
       <div className='precioproducto'>Precio: {producto.precio}</div>

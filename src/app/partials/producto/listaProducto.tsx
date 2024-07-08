@@ -8,6 +8,8 @@ import { verProductos } from '@/app/services/Producto';
 import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
+import { FaUserGear } from "react-icons/fa6";
+import { TiShoppingCart } from "react-icons/ti";
 
 const ListaProducto = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -47,6 +49,10 @@ const ListaProducto = () => {
     window.location.reload();
   }
 
+  const navegarACarrito = () => {
+    router.push("/carritoDeCompras");
+  };
+
   return (
     <>
       <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"></img></a>
@@ -60,12 +66,18 @@ const ListaProducto = () => {
         <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
       </Dropdown>
     </Container>
-      <div className='adminuser'>User</div>
-      <button className='adminuser' onClick={LogOut}>Log out</button>
-      <div className='fondodark'>
-        <div>Dark mode</div>
-        <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
-      </div>
+    <br></br>
+      <div className='configUser'>
+  <Dropdown title= <FaUserGear size={42} /> >
+    <Dropdown.Menu title="Juan" >
+        <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+      </Dropdown.Menu>
+      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
+  </Dropdown>
+</div>
+
+    <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
+      
 
       <div className='containerProductos'>
         <button className='productosListado' onClick={() => botonProducto('Auriculares')}>Auriculares</button>
