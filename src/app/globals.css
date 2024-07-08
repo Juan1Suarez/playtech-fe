@@ -771,3 +771,16 @@ footer {
   font-weight: bold;
   cursor: pointer;
 }
+
+/*REGISTRO VENTAS */
+
+.registroV{
+width: 1850px;
+height: 200%;
+background-color: rgb(231, 231, 231);
+}
+
+table, th, td {
+  border: 1px solid;
+  text-align: center;
+}
