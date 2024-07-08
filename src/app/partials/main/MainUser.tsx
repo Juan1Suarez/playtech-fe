@@ -60,6 +60,9 @@ const MainUser = () => {
       </Dropdown>
     </Container>
 
+            
+            
+            
             <div className='adminuser'>User</div>
             <button onClick={LogOut} className='adminuser'>Log out</button>
             <div className='fondodark'>
@@ -68,14 +71,14 @@ const MainUser = () => {
             </div>
 
             <Slider {...settings}>
-            <div>
-                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%'}} />
+                <div>
+                    <img src="./img/1.png" style={{ width: '100%'}} />
                 </div>
                 <div>
-                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
+                    <img src="./img/2.png" style={{ width: '100%' }} />
                 </div>
                 <div>
-                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
+                    <img src="./img/3.png" style={{ width: '100%' }} />
                 </div>
             </Slider>
 

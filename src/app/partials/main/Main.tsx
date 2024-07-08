@@ -63,13 +63,13 @@ export default function Home() {
 
             <Slider {...settings}>
                 <div>
-                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%'}} />
+                    <img src="./img/1.png" style={{ width: '100%'}} />
                 </div>
                 <div>
-                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
+                    <img src="./img/2.png" style={{ width: '100%' }} />
                 </div>
                 <div>
-                    <img src="./img/nuestrasmarcas.png" style={{ width: '100%' }} />
+                    <img src="./img/3.png" style={{ width: '100%' }} />
                 </div>
             </Slider>
 
