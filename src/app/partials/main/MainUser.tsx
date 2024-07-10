@@ -78,7 +78,7 @@ const MainUser = () => {
 
     <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
 
-            <Slider {...settings}>
+            <Slider {...settings} className='carousel'>
                 <div>
                     <img src="./img/1.png" style={{ width: '100%'}} />
                 </div>
@@ -157,9 +157,11 @@ const MainUser = () => {
                             <p>{producto.modelo}</p>
                             <h1>${producto.precio}</h1>
                         </a>
+                        
                     ))}
+    
             </div>
-        </>
+</>
     );
 }
 

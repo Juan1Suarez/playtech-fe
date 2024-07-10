@@ -147,6 +147,7 @@ body {
   background-color: #ffffff !important;
   color: rgb(0, 0, 0);
   position: relative;
+  top: 30px;
   left: 19px;
   display: flex;
   justify-content: space-between;
@@ -204,7 +205,7 @@ body {
   text-decoration: underline;
   position: relative;
   left: 5px;
-  top: 10px;
+  top: 40px;
   border-style: inset;
 }
 
@@ -225,6 +226,14 @@ body {
   width: 100px;
 }
 
+.carousel{
+  position: relative;
+  top: 30px;
+  width: 1700px;
+  display: grid;
+  place-items: center;
+  margin: auto;
+}
 
 /*productos*/
 
