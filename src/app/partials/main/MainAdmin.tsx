@@ -102,7 +102,7 @@ const MainAdmin = () => {
   </Dropdown>
 </div>
 
-            <Slider {...settings}>
+            <Slider {...settings} className='carousel'>
                 <div>
                     <img src="./img/1.png" style={{ width: '100%'}} />
                 </div>
