@@ -30,8 +30,8 @@ const MainAdmin = () => {
     });
 
     const router = useRouter();
-    const navegarAProducto =  (modelo: string) => {
-        router.push("/productoAdmin?modelo="+ modelo);
+    const navegarAProducto = (modelo: string) => {
+        router.push("/productoAdmin?modelo=" + modelo);
     }
 
     const navegarARegistroVentas = () => {
@@ -93,18 +93,19 @@ const MainAdmin = () => {
             </Container>
 
             <div className='configUser'>
-  <Dropdown title= <FaUserGear size={42} /> >
-<Dropdown.Menu title="Admin">
-<Dropdown.Item >Juan</Dropdown.Item>
-<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-</Dropdown.Menu>     
-      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
-  </Dropdown>
-</div>
+                <Dropdown title=<FaUserGear size={42} /> >
+                    <Dropdown.Menu title="Admin">
+                        <Dropdown.Item >Juan</Dropdown.Item>
+                        <Dropdown.Item onClick={handleEditClick}>Añadir producto</Dropdown.Item>
+                        <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+                    </Dropdown.Menu>
+                    <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+                </Dropdown>
+            </div>
 
             <Slider {...settings} className='carousel'>
                 <div>
-                    <img src="./img/1.png" style={{ width: '100%'}} />
+                    <img src="./img/1.png" style={{ width: '100%' }} />
                 </div>
                 <div>
                     <img src="./img/2.png" style={{ width: '100%' }} />
@@ -182,7 +183,6 @@ const MainAdmin = () => {
                         </a>
                     ))}
             </div>
-            <button className='nuevoProducto' onClick={handleEditClick}>Añadir producto</button>
 
             {showPopup && (
                 <div className="popup">

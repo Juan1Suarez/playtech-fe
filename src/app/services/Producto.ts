@@ -65,4 +65,4 @@ export const upload = async( file: any, productoId: any) => {
     console.error("ERROR", error);
     return [];
 }
-};
+};  

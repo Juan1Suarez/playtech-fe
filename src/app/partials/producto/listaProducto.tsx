@@ -35,9 +35,8 @@ const ListaProducto = () => {
   }, [tipoParam]);
 
   const router = useRouter();
-  const navegarAProducto = (producto: Producto) => {
-    sessionStorage.setItem('productoSeleccionado', JSON.stringify(producto));
-    router.push("/producto");
+  const navegarAProducto = (modelo: string) => {
+    router.push("/producto?modelo="+ modelo);
   };
 
   const botonProducto = (tipo: string) => {
@@ -97,7 +96,7 @@ const ListaProducto = () => {
                 <h1 className='preci'>{producto.precio} $</h1>
                 <h3 className='co'>Color: {producto.color}</h3>
                 <h3 className='sto'>STOCK: {producto.stock}</h3>
-                <button className='verP' onClick={() => navegarAProducto(producto)}>Ver Producto</button>
+                <button className='verP' onClick={() => navegarAProducto(producto.modelo)}>Ver Producto</button>
               </div>
             </div>
           ))}

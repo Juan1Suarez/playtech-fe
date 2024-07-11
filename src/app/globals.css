@@ -117,18 +117,6 @@ body {
 
 /*MAIN*/
 
-.nuevoProducto {
-  position: relative;
-  text-align: center;
-  left: 1450px;
-  bottom: 2720px;
-  background-color: lightblue;
-  width: 150px;
-  height: 25px;
-  border-style: solid;
-  border-color: #5a5a5a;
-}
-
 .ini {
   position: absolute;
   text-align: center;
@@ -144,7 +132,7 @@ body {
 }
 
 .fondoimg {
-  background-color: #ffffff !important;
+  background-color: #ffffff;
   color: rgb(0, 0, 0);
   position: relative;
   top: 30px;
