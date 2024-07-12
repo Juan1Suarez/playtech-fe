@@ -18,7 +18,6 @@ export function withRoles( Component: any, requiredPermissions: number[], goBack
         return;
       }
 
-      try {
         const decodedToken: { rolId: number } = jwtDecode(token);
 
         if (!decodedToken.rolId) {
@@ -32,10 +31,6 @@ export function withRoles( Component: any, requiredPermissions: number[], goBack
         if (!hasPermission) {
           router.push(goBackRoute);
         }
-      } catch (error) {
-
-        router.push(goBackRoute);
-      }
     }, []);
 
     if (Component) {

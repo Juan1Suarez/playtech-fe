@@ -38,10 +38,11 @@ const LogOut = () => {
 
 <table className='registroV'>
   <tr>
-    <th>ID</th>
+    <th>ID CL</th>
     <th>CLIENTE</th>
     <th>FECHA</th>
     <th>HORA</th>
+    <th>ID PRODUCTO</th>
     <th>MODELO</th>
     <th>PRECIO</th>
     <th>CANTIDAD</th>
@@ -52,13 +53,13 @@ const LogOut = () => {
     <td>EDWIN EUSTAQUIO</td>
     <td>2024/12/12</td>
     <td>12:34</td>
+    <td>27</td>
     <td>NISUTA NSAUG 305</td>
     <td>129.000</td>
     <td>1</td>
     <td>129.000</td>
   </tr>
 </table>
-/
     </>
   );
 }
