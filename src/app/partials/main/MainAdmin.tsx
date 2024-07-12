@@ -63,9 +63,37 @@ const MainAdmin = () => {
     };
 
     const handleSubmit = async () => {
+        try {
+            if (!nuevoProducto.tipoDeProducto || !nuevoProducto.modelo || !nuevoProducto.precio || !nuevoProducto.color || !nuevoProducto.stock || !nuevoProducto.descripcion) {
+              alert('Por favor, complete todos los campos.');
+              return;
+            }
+            if (nuevoProducto.modelo.length > 34) {
+              alert('El modelo no puede exceder los 34 caracteres.');
+              return;
+            }
+            if (nuevoProducto.precio > 99999999999) {
+              alert('El precio no puede exceder los 11 caracteres.');
+              return;
+            }
+            if (nuevoProducto.color.length > 20) {
+              alert('El color no puede exceder los 20 caracteres.');
+              return;
+            }
+            if (nuevoProducto.stock > 500) {
+              alert('El stock no puede ser más de 500.');
+              return;
+            }
+            if (nuevoProducto.descripcion.length > 500) {
+              alert('La descripción no puede exceder los 500 caracteres.');
+              return;
+            }
         await crearProducto(nuevoProducto, router);
         verProductos();
         handleClosePopup();
+    } catch (error) {
+        console.error('Error al modificar producto', error);
+      }
     };
 
     const LogOut = () => {

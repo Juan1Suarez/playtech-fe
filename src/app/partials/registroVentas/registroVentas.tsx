@@ -1,13 +1,9 @@
 "use client";
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { table } from 'console';
-import React, { useState } from 'react';
+import { verCompra } from '@/app/services/Registro';
+import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
 import {  Dropdown } from 'rsuite';
-
-
-
-
 
 const RegistroVentas = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,6 +16,13 @@ const LogOut = () => {
   localStorage.clear();
   window.location.reload();
 }
+
+const [registro, setRegistro] = useState<any[]>([]);
+useEffect(() => {
+  verCompra().then((data: any[]) => {
+      setRegistro(data);
+  })
+}, [])
   
   return (
     <>     
@@ -37,29 +40,38 @@ const LogOut = () => {
 
 
 <table className='registroV'>
+<thead>
   <tr>
+    <th>ID COMPRA</th>
     <th>ID CL</th>
     <th>CLIENTE</th>
+    <th>EMAIL</th>
     <th>FECHA</th>
-    <th>HORA</th>
     <th>ID PRODUCTO</th>
     <th>MODELO</th>
     <th>PRECIO</th>
     <th>CANTIDAD</th>
     <th>TOTAL</th>
   </tr>
-  <tr>
-    <td>12</td>
-    <td>EDWIN EUSTAQUIO</td>
-    <td>2024/12/12</td>
-    <td>12:34</td>
-    <td>27</td>
-    <td>NISUTA NSAUG 305</td>
-    <td>129.000</td>
-    <td>1</td>
-    <td>129.000</td>
-  </tr>
+</thead>
+<tbody>
+  {registro.map((compra, index) => (
+    <tr key={index}>
+      <td>{compra.compraId}</td>
+      <td>{compra.usuarioId}</td>
+      <td>{compra.nombre}</td>
+      <td>{compra.email}</td>
+      <td>{compra.fecha}</td>
+      <td>{compra.productoId}</td>
+      <td>{compra.modelo}</td>
+      <td>{compra.precio}</td>
+      <td>//////CANTIDAD</td>
+      <td>SUMA DE CANTIDAD X PRECIO</td>
+    </tr>
+  ))}
+</tbody>
 </table>
+
     </>
   );
 }

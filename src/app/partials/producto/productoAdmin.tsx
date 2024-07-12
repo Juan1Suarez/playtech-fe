@@ -68,7 +68,7 @@ const ProductoAdminPage = () => {
         return;
       }
       if (producto.precio > 99999999999) {
-        alert('El stock no puede exceder los 11 caracteres.');
+        alert('El precio no puede exceder los 11 caracteres.');
         return;
       }
       if (producto.color.length > 20) {
@@ -76,19 +76,17 @@ const ProductoAdminPage = () => {
         return;
       }
       if (producto.stock > 500) {
-        alert('El stock no puede exceder los 500 caracteres.');
+        alert('El stock no puede ser más 500.');
         return;
       }
       if (producto.descripcion.length > 500) {
         alert('La descripción no puede exceder los 500 caracteres.');
         return;
       }
-
       await modificarProducto(producto.productoId, producto, router);
       handleClosePopup();
     } catch (error) {
       console.error('Error al modificar producto', error);
-
     }
   };
 
@@ -106,16 +104,16 @@ const ProductoAdminPage = () => {
         </Dropdown>
       </Container>
 
-    
+
       <div className='configUser'>
-  <Dropdown title= <FaUserGear size={42} /> >
-<Dropdown.Menu title="Admin">
-<Dropdown.Item >Juan</Dropdown.Item>
-<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-</Dropdown.Menu>     
-      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
-  </Dropdown>
-</div>
+        <Dropdown title=<FaUserGear size={42} /> >
+          <Dropdown.Menu title="Admin">
+            <Dropdown.Item >Juan</Dropdown.Item>
+            <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+          </Dropdown.Menu>
+          <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+        </Dropdown>
+      </div>
       <div className='nombreproducto'>{producto.modelo}</div>
       <div className='precioproducto'>Precio: {producto.precio}</div>
       <div className="dropdown">
@@ -163,7 +161,11 @@ const ProductoAdminPage = () => {
                 <div> Stock</div>
                 <input type="text" name="stock" value={producto.stock} onChange={handleChange} />
                 <div> Foto</div>
-                <input type="text" name="foto" value={producto.foto} onChange={handleChange} />
+                <input
+                  type="text"
+                  name="foto"
+                  value={producto.foto}
+                  onChange={handleChange} />
                 <div> Descripción</div>
                 <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} />
                 <button onClick={handleSubmit}> Realizar cambios</button>
