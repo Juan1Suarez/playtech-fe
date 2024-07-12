@@ -82,35 +82,37 @@ const ProductoPage = () => {
 
     <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
 
-      <div className='nombreproducto'>{producto.modelo}</div>
-      <div className='precioproducto'>Precio: {producto.precio}</div>
-      <div className="dropdown">
-        <button className="dropbtn">Color:</button>
-        <div className="dropdown-content">
-          <a href="#">{producto.color}</a>
-        </div>
-      </div>
+<div className='productoCompleto'>
+  <img src={producto.foto} className='fotoP'></img>
+ <div className='containerDatos'>
+ <div className='nombreProducto'>{producto.modelo}</div>
+<h1 className='linea'></h1>
+ <div className='precioProducto'>Precio: {producto.precio}</div>
+ 
+ <h1 className='linea'></h1>
+ 
+ <div className="dropbtn">Color: {producto.color}</div>
 
-      <div className='productos'>
-        <img src={producto.foto} className='fotoP'></img>
-        <div className='productosComprar'>
-          <button className='botonahora' onClick={() => { navegarACarrito(); agregarCarrito(); }}>
+      <h1 className='linea'></h1>
+
+ <button className='botonAhora' onClick={() => { navegarACarrito(); agregarCarrito(); }}>
             Comprar ahora
           </button>
-          <button className='botonagregar' onClick={agregarCarrito}>
+          <button className='botonAgregar' onClick={agregarCarrito}>
             Agregar al carrito
           </button>
-          <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
-        </div>
-      </div>
+ 
+ </div>
 
+
+</div>
+     
       <div className='productosDesc'>
         <h1 className='desc'>Descripción del producto</h1>
         <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
         <p className='productoTexto'>{producto.descripcion}</p>
         <p className='productoTexto'>STOCK: {producto.stock}</p>
         <p className='productoTexto'>PRECIO: {producto.precio}</p>
-        <p className='productoTexto'>ID: {producto.productoId}</p>
       </div>
       <br></br>
       <br></br>
