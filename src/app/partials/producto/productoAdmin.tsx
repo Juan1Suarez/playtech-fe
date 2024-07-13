@@ -7,15 +7,16 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import { FaUserGear } from "react-icons/fa6";
+import { jwtDecode } from 'jwt-decode';
 
 
 
 const ProductoAdminPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
-  const [darkMode, setDarkMode] = useState(false);
   const searchParams = useSearchParams();
   const modeloParam = searchParams.get('modelo');
+
 
   const navegarARegistroVentas = () => {
     router.push("/registroVentas")
@@ -26,10 +27,36 @@ const ProductoAdminPage = () => {
     window.location.reload();
   }
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("darkMode", !darkMode);
-  };
+  const [nombre, setNombre] = useState('');
+  useEffect(() => {
+      const token = localStorage.getItem('accessToken');
+      
+      if (token) {
+        try {
+          const decodedToken: { nombre: string } = jwtDecode(token);
+          setNombre(decodedToken.nombre);
+        } catch (error) {
+          console.log("No hay un usuario")
+        }
+      }
+    }, []);
+
+    const [darkMode, setDarkMode] = useState(false);
+    
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+        setDarkMode(storedDarkMode);
+        document.body.classList.toggle("darkMode", storedDarkMode);
+    }, []);
+
+    const toggleDarkMode = () => {
+        setDarkMode(prev => {
+            const newDarkMode = !prev;
+            document.body.classList.toggle("darkMode", newDarkMode);
+            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+            return newDarkMode;
+        });
+    }; 
 
   const [producto, setProducto] = useState<Producto | null>(null);
 
@@ -47,20 +74,20 @@ const ProductoAdminPage = () => {
   if (!producto) {
     return (
       <>
-      <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a><Container className='caidaproductos'>
-        <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg">
-        </Dropdown>
-      </Container><div className='configUser'>
+        <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a><Container className='caidaproductos'>
+          <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg">
+          </Dropdown>
+        </Container><div className='configUser'>
           <Dropdown title={<FaUserGear size={42} />}>
             <Dropdown.Menu title="Admin">
-              <Dropdown.Item>Juan</Dropdown.Item>
+              <Dropdown.Item>{nombre}</Dropdown.Item>
               <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
             </Dropdown.Menu>
             <Dropdown.Item onClick={toggleDarkMode} className='switch'>Dark mode</Dropdown.Item>
           </Dropdown>
         </div>
         <p className='error'>Producto no encontrado</p>
-        </>
+      </>
     )
   }
 
@@ -120,27 +147,27 @@ const ProductoAdminPage = () => {
 
 
       <div className='configUser'>
-      <Dropdown title={<FaUserGear size={42} />}>
+        <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="Admin">
-            <Dropdown.Item >Juan</Dropdown.Item>
+            <Dropdown.Item >{nombre}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
           </Dropdown.Menu>
           <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
         </Dropdown>
       </div>
 
-     <div className='productoCompleto'>
-  <img src={producto.foto} className='fotoP'></img>
- <div className='containerDatos'>
- <div className='nombreProducto'>{producto.modelo}</div>
-<h1 className='linea'></h1>
- <div className='precioProducto'>Precio: {producto.precio}</div>
- 
- <h1 className='linea'></h1>
- 
- <div className="dropbtn">Color: {producto.color}</div>
+      <div className='productoCompleto'>
+        <img src={producto.foto} className='fotoP'></img>
+        <div className='containerDatos'>
+          <div className='nombreProducto'>{producto.modelo}</div>
+          <h1 className='linea'></h1>
+          <div className='precioProducto'>Precio: {producto.precio}</div>
 
-      <h1 className='linea'></h1>
+          <h1 className='linea'></h1>
+
+          <div className="dropbtn">Color: {producto.color}</div>
+
+          <h1 className='linea'></h1>
 
           <button
             className='botonEliminar'
@@ -192,15 +219,15 @@ const ProductoAdminPage = () => {
         </div>
       </div>
 
-<div className='productosDesc'>
-<h1 className='desc'>Descripción del producto</h1>
-<h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
-<p className='productoTexto'>{producto.descripcion}</p>
-<p className='productoTexto'>STOCK: {producto.stock}</p>
-<p className='productoTexto'>PRECIO: {producto.precio}</p>
-</div>
+      <div className='productosDesc'>
+        <h1 className='desc'>Descripción del producto</h1>
+        <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
+        <p className='productoTexto'>{producto.descripcion}</p>
+        <p className='productoTexto'>STOCK: {producto.stock}</p>
+        <p className='productoTexto'>PRECIO: {producto.precio}</p>
+      </div>
     </>
-    
+
 
 
   );

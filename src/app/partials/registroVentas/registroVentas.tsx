@@ -7,17 +7,29 @@ import { FaUserGear } from "react-icons/fa6";
 import {  Dropdown } from 'rsuite';
 
 const RegistroVentas = () => {
-  const [darkMode, setDarkMode] = useState(false);
 
   const router = useRouter();
     const navegarAMain = () => {
         router.push("/mainAdmin");
     }
-const toggleDarkMode = () => {
-  setDarkMode(!darkMode);
-  document.body.classList.toggle("darkMode", !darkMode);
-};
-  
+    
+    const [darkMode, setDarkMode] = useState(false);
+    
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+        setDarkMode(storedDarkMode);
+        document.body.classList.toggle("darkMode", storedDarkMode);
+    }, []);
+
+    const toggleDarkMode = () => {
+        setDarkMode(prev => {
+            const newDarkMode = !prev;
+            document.body.classList.toggle("darkMode", newDarkMode);
+            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+            return newDarkMode;
+        });
+    }; 
+
 const LogOut = () => {
   localStorage.clear();
   window.location.reload();
@@ -36,7 +48,7 @@ useEffect(() => {
 <img className="playmain" onClick={navegarAMain} src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
 
 <div className='configUser'>
-  <Dropdown title= <FaUserGear size={42} /> >
+<Dropdown title={<FaUserGear size={42} />}>
 <Dropdown.Menu title="Admin">
 <Dropdown.Item >Juan</Dropdown.Item>
 <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>

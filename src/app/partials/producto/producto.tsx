@@ -9,19 +9,44 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { verProductos } from '@/app/services/Producto';
 import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
+import { jwtDecode } from 'jwt-decode';
 
 const ProductoPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const modeloParam = searchParams.get('modelo');
 
-  const [darkMode, setDarkMode] = useState(false);
   const [producto, setProducto] = useState<Producto | null>(null);
+  const [nombre, setNombre] = useState('');
+  useEffect(() => {
+      const token = localStorage.getItem('accessToken');
+      
+      if (token) {
+        try {
+          const decodedToken: { nombre: string } = jwtDecode(token);
+          setNombre(decodedToken.nombre);
+        } catch (error) {
+          console.log("No hay un usuario")
+        }
+      }
+    }, []);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("darkMode", !darkMode);
-  };
+    const [darkMode, setDarkMode] = useState(false);
+    
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+        setDarkMode(storedDarkMode);
+        document.body.classList.toggle("darkMode", storedDarkMode);
+    }, []);
+
+    const toggleDarkMode = () => {
+        setDarkMode(prev => {
+            const newDarkMode = !prev;
+            document.body.classList.toggle("darkMode", newDarkMode);
+            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+            return newDarkMode;
+        });
+    }; 
 
   const navegarACarrito = () => {
     router.push("/carritoDeCompras");
@@ -73,9 +98,9 @@ const ProductoPage = () => {
       </Container>
 
       <div className='configUser'>
-  <Dropdown title= <FaUserGear size={42} /> >
+      <Dropdown title={<FaUserGear size={42} />}>
 <Dropdown.Menu title="User">
-<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item >{nombre}</Dropdown.Item>
 <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
 </Dropdown.Menu>     
       <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
@@ -106,9 +131,9 @@ const ProductoPage = () => {
       </Container>
 
       <div className='configUser'>
-  <Dropdown title= <FaUserGear size={42} /> >
+      <Dropdown title={<FaUserGear size={42} />}>
 <Dropdown.Menu title="User">
-<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item >{nombre}</Dropdown.Item>
 <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
 </Dropdown.Menu>     
       <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 

@@ -120,8 +120,8 @@ body {
 .ini {
   position: absolute;
   text-align: center;
-  left: 1600px;
-  top: 45px;
+  left: 1550px;
+  top: 30px;
   background-color: rgb(255, 255, 255);
   width: 105px;
   height: 50px;
@@ -604,14 +604,6 @@ cursor: pointer;
   font-family: 'Roboto Slab';
 }
 
-.logoCarrito{
-  position: absolute;
-  cursor: pointer;
-  border-radius:50%;
-  left: 1740px;
-  bottom: 875px;
-}
-
 /* FOOTER*/
 
 footer {
@@ -708,10 +700,18 @@ table, th, td {
 /* User */
 
 .configUser{
-  position: absolute;
-  left: 1630px;
- bottom:920px;
+  position: relative;
   width: 10px;
   height: 10px;
+  left: 1550px;
+  bottom: 90px;
 }
 
+
+.logoCarrito{
+  position: relative;
+  cursor: pointer;
+  border-radius:50%;
+  left: 1660px;
+  bottom: 95px;
+}

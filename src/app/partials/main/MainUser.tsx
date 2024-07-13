@@ -11,10 +11,41 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
+import { jwtDecode } from 'jwt-decode';
 
 const MainUser = () => {
     const [darkMode, setDarkMode] = useState(false);
+    
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+        setDarkMode(storedDarkMode);
+        document.body.classList.toggle("darkMode", storedDarkMode);
+    }, []);
+
+    const toggleDarkMode = () => {
+        setDarkMode(prev => {
+            const newDarkMode = !prev;
+            document.body.classList.toggle("darkMode", newDarkMode);
+            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+            return newDarkMode;
+        });
+    }; 
+    
+    
     const [productos, setProductos] = useState<Producto[]>([]);
+    const [nombre, setNombre] = useState('');
+    useEffect(() => {
+        const token = localStorage.getItem('accessToken');
+        
+        if (token) {
+          try {
+            const decodedToken: { nombre: string } = jwtDecode(token);
+            setNombre(decodedToken.nombre);
+          } catch (error) {
+            console.log("No hay un usuario")
+          }
+        }
+      }, []);
 
     const router = useRouter();
     const navegarAProducto = (modelo: string) => {
@@ -25,12 +56,9 @@ const MainUser = () => {
         verProductos().then((data: Producto[]) => {
             setProductos(data);
         })
-    })
+    }, [])
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle("darkMode", !darkMode);
-    };
+
 
     const LogOut = () => {
         localStorage.clear();
@@ -67,9 +95,9 @@ const MainUser = () => {
 
 
     <div className='configUser'>
-  <Dropdown title= <FaUserGear size={42} /> >
+    <Dropdown title={<FaUserGear size={42} />}>
 <Dropdown.Menu title="User">
-<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item >{nombre}</Dropdown.Item>
 <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
 </Dropdown.Menu>     
       <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 

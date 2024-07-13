@@ -12,17 +12,42 @@ import { useRouter } from 'next/navigation';
 
 const CarritoDeCompras = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
-  const [darkMode, setDarkMode] = useState(false);
    const [isClient, setIsClient] = useState(false);
+   const [nombre, setNombre] = useState('');
+   useEffect(() => {
+       const token = localStorage.getItem('accessToken');
+       
+       if (token) {
+         try {
+           const decodedToken: { nombre: string } = jwtDecode(token);
+           setNombre(decodedToken.nombre);
+         } catch (error) {
+           console.log("No hay un usuario")
+         }
+       }
+     }, []);
+
   const router = useRouter();
   const navegarAMain = () => {
     router.push("/mainUser");
   }
 
+  const [darkMode, setDarkMode] = useState(false);
+    
+  useEffect(() => {
+      const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+      setDarkMode(storedDarkMode);
+      document.body.classList.toggle("darkMode", storedDarkMode);
+  }, []);
+
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("darkMode", !darkMode);
-  };
+      setDarkMode(prev => {
+          const newDarkMode = !prev;
+          document.body.classList.toggle("darkMode", newDarkMode);
+          localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+          return newDarkMode;
+      });
+  }; 
 
   const LogOut = () => {
     localStorage.clear();
@@ -54,9 +79,9 @@ const CarritoDeCompras = () => {
 </Container>
 
 <div className='configUser'>
-  <Dropdown title=<FaUserGear size={42} /> >
+<Dropdown title={<FaUserGear size={42} />}>
     <Dropdown.Menu title="User">
-      <Dropdown.Item >Juan</Dropdown.Item>
+      <Dropdown.Item >{nombre}</Dropdown.Item>
       <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
     </Dropdown.Menu>
     <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
@@ -106,9 +131,9 @@ const CarritoDeCompras = () => {
       </Container>
 
       <div className='configUser'>
-        <Dropdown title=<FaUserGear size={42} /> >
+      <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="User">
-            <Dropdown.Item >Juan</Dropdown.Item>
+            <Dropdown.Item >{nombre}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
           </Dropdown.Menu>
           <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
