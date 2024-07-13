@@ -30,10 +30,15 @@ const ProductoPage = () => {
   const agregarCarrito = () => {
     let carritoActual = JSON.parse(localStorage.getItem('carrodecompras') || '[]');
     if (producto) {
+      if (carritoActual.length >= 9) {
+        alert("No puedes agregar más de 9 productos al carrito.");
+        return;
+      }
       carritoActual.push(producto);
     }
     localStorage.setItem('carrodecompras', JSON.stringify(carritoActual));
   };
+  
   const LogOut = () => {
     localStorage.clear();
     window.location.reload();

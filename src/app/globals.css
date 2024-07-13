@@ -464,16 +464,17 @@ cursor: pointer;
 
 /* CARRITO */
 
+
 .carritoProducto {
   background-color: rgb(197, 197, 197);
   width: 1332px;
   min-height: 700px; 
   position: relative;
-  bottom: 20px;
-  left: 20px;
   border: 2px solid #000000;
   border-radius: 10px;
   overflow: auto;
+  margin: 10px;
+  margin-top: 50px;
 }
 
 .productoElegido {
@@ -548,7 +549,7 @@ cursor: pointer;
   width: 453px;
   height: 600px;
   position: absolute;
-  top: 223px;
+  top: 173px;
   left: 1390px;
   border-radius: 10px;
   border-color: #000000;
@@ -561,7 +562,7 @@ cursor: pointer;
 .fin {
   background-color: rgb(255, 255, 255);
   position: absolute;
-  left: 100px;
+  left: 120px;
   top: 640px;
   width: 200px;
   height: 50px;
@@ -574,6 +575,20 @@ cursor: pointer;
   justify-content: center;
 }
 
+.borrarCarrito{
+  background-color: rgb(255, 47, 47);
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  border-color: #000000;
+  border-style: solid;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  }
+
 .nombreEnLista {
   position: relative;
   font-size: 27px;
@@ -585,6 +600,7 @@ cursor: pointer;
 .precioTotal {
   position: absolute;
   top: 515px;
+  left: 75px;
   font-family: 'Roboto Slab';
 }
 
@@ -677,11 +693,11 @@ footer {
 /*REGISTRO VENTAS */
 
 .registroV{
-  position: relative;
-width: 1850px;
-height: 200%;
+position: relative;
+width: 95%;
 background-color: rgb(231, 231, 231);
-top: 200px;
+top: 80px;
+left: 40px;
 }
 
 table, th, td {

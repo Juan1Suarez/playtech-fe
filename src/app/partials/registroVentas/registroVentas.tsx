@@ -1,12 +1,18 @@
 "use client";
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { verCompra } from '@/app/services/Registro';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
 import {  Dropdown } from 'rsuite';
 
 const RegistroVentas = () => {
   const [darkMode, setDarkMode] = useState(false);
+
+  const router = useRouter();
+    const navegarAMain = () => {
+        router.push("/mainAdmin");
+    }
 const toggleDarkMode = () => {
   setDarkMode(!darkMode);
   document.body.classList.toggle("darkMode", !darkMode);
@@ -27,7 +33,8 @@ useEffect(() => {
   return (
     <>     
 
-<img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+<img className="playmain" onClick={navegarAMain} src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+
 <div className='configUser'>
   <Dropdown title= <FaUserGear size={42} /> >
 <Dropdown.Menu title="Admin">
@@ -49,8 +56,6 @@ useEffect(() => {
     <th>ID PRODUCTO</th>
     <th>MODELO</th>
     <th>PRECIO</th>
-    <th>CANTIDAD</th>
-    <th>TOTAL</th>
   </tr>
 </thead>
 <tbody>
@@ -64,8 +69,6 @@ useEffect(() => {
       <td>{compra.productoId}</td>
       <td>{compra.modelo}</td>
       <td>{compra.precio}</td>
-      <td>{compra.cantidad}</td>
-      <td>${(compra.precio * compra.cantidad)}</td>
     </tr>
   ))}
 </tbody>
