@@ -38,7 +38,6 @@ useEffect(() => {
   </Dropdown>
 </div>
 
-
 <table className='registroV'>
 <thead>
   <tr>
@@ -65,8 +64,8 @@ useEffect(() => {
       <td>{compra.productoId}</td>
       <td>{compra.modelo}</td>
       <td>{compra.precio}</td>
-      <td>//////CANTIDAD</td>
-      <td>SUMA DE CANTIDAD X PRECIO</td>
+      <td>{compra.cantidad}</td>
+      <td>${(compra.precio * compra.cantidad)}</td>
     </tr>
   ))}
 </tbody>

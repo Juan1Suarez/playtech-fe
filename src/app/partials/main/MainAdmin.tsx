@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
-import { crearProducto, verProductos } from '@/app/services/Producto';
+import { crearProducto, upload, verProductos } from '@/app/services/Producto';
 import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import { withRoles } from '@/app/services/HOC/withRoles';
@@ -65,35 +65,35 @@ const MainAdmin = () => {
     const handleSubmit = async () => {
         try {
             if (!nuevoProducto.tipoDeProducto || !nuevoProducto.modelo || !nuevoProducto.precio || !nuevoProducto.color || !nuevoProducto.stock || !nuevoProducto.descripcion) {
-              alert('Por favor, complete todos los campos.');
-              return;
+                alert('Por favor, complete todos los campos.');
+                return;
             }
             if (nuevoProducto.modelo.length > 34) {
-              alert('El modelo no puede exceder los 34 caracteres.');
-              return;
+                alert('El modelo no puede exceder los 34 caracteres.');
+                return;
             }
             if (nuevoProducto.precio > 99999999999) {
-              alert('El precio no puede exceder los 11 caracteres.');
-              return;
+                alert('El precio no puede exceder los 11 caracteres.');
+                return;
             }
             if (nuevoProducto.color.length > 20) {
-              alert('El color no puede exceder los 20 caracteres.');
-              return;
+                alert('El color no puede exceder los 20 caracteres.');
+                return;
             }
             if (nuevoProducto.stock > 500) {
-              alert('El stock no puede ser más de 500.');
-              return;
+                alert('El stock no puede ser más de 500.');
+                return;
             }
             if (nuevoProducto.descripcion.length > 500) {
-              alert('La descripción no puede exceder los 500 caracteres.');
-              return;
+                alert('La descripción no puede exceder los 500 caracteres.');
+                return;
             }
-        await crearProducto(nuevoProducto, router);
-        verProductos();
-        handleClosePopup();
-    } catch (error) {
-        console.error('Error al modificar producto', error);
-      }
+            await crearProducto(nuevoProducto, router);
+            verProductos();
+            handleClosePopup();
+        } catch (error) {
+            console.error('Error al modificar producto', error);
+        }
     };
 
     const LogOut = () => {
@@ -121,7 +121,7 @@ const MainAdmin = () => {
             </Container>
 
             <div className='configUser'>
-                <Dropdown title=<FaUserGear size={42} /> >
+                <Dropdown title={<FaUserGear size={42} />}>
                     <Dropdown.Menu title="Admin">
                         <Dropdown.Item >Juan</Dropdown.Item>
                         <Dropdown.Item onClick={handleEditClick}>Añadir producto</Dropdown.Item>
@@ -234,7 +234,13 @@ const MainAdmin = () => {
                         <div> Stock</div>
                         <input type="number" name="stock" placeholder='Stock' onChange={handleChange} />
                         <div> Foto</div>
-                        <input type="text" name="foto" placeholder='Foto' onChange={handleChange} />
+                        <input
+                            id='foto'
+                            type="file"
+                            name="foto"
+                            accept="image/*"
+                            placeholder='Foto'
+                            onChange={handleChange} />
                         <div> Descripción</div>
                         <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
                         <button onClick={handleSubmit}> Realizar cambios</button>

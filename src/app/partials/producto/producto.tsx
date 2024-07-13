@@ -51,7 +51,37 @@ const ProductoPage = () => {
   }, [modeloParam]);
 
   if (!producto) {
-    return <p>ERROR PRODUCTO NO ENCONTRADO</p>;
+    return (
+      <>
+      <a href='mainUser'>
+        <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      </a>
+
+      <Container className='caidaproductos'>
+        <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+          <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
+          <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
+        </Dropdown>
+      </Container>
+
+      <div className='configUser'>
+  <Dropdown title= <FaUserGear size={42} /> >
+<Dropdown.Menu title="User">
+<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+</Dropdown.Menu>     
+      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
+  </Dropdown>
+</div>
+
+    <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
+    <p className='error'>Producto no encontrado</p>
+    <br></br><br></br><br></br><br></br>
+      </>
+    )
   }
 
   return (
@@ -114,11 +144,6 @@ const ProductoPage = () => {
         <p className='productoTexto'>STOCK: {producto.stock}</p>
         <p className='productoTexto'>PRECIO: {producto.precio}</p>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
     </>
   );
 };

@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Switch from '@mui/material/Switch';;
 import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { eliminarProducto, modificarProducto, verProductos } from '@/app/services/Producto';
+import { eliminarProducto, modificarProducto, upload, verProductos } from '@/app/services/Producto';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
@@ -20,6 +19,11 @@ const ProductoAdminPage = () => {
 
   const navegarARegistroVentas = () => {
     router.push("/registroVentas")
+  }
+
+  const LogOut = () => {
+    localStorage.clear();
+    window.location.reload();
   }
 
   const toggleDarkMode = () => {
@@ -41,7 +45,23 @@ const ProductoAdminPage = () => {
   }, [modeloParam]);
 
   if (!producto) {
-    return <p>ERROR PRODUCTO NO ENCONTRADO</p>;
+    return (
+      <>
+      <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a><Container className='caidaproductos'>
+        <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg">
+        </Dropdown>
+      </Container><div className='configUser'>
+          <Dropdown title={<FaUserGear size={42} />}>
+            <Dropdown.Menu title="Admin">
+              <Dropdown.Item>Juan</Dropdown.Item>
+              <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+            </Dropdown.Menu>
+            <Dropdown.Item onClick={toggleDarkMode} className='switch'>Dark mode</Dropdown.Item>
+          </Dropdown>
+        </div>
+        <p className='error'>Producto no encontrado</p>
+        </>
+    )
   }
 
   const handleEditClick = () => {
@@ -89,12 +109,6 @@ const ProductoAdminPage = () => {
       console.error('Error al modificar producto', error);
     }
   };
-
-  const LogOut = () => {
-    localStorage.clear();
-    window.location.reload();
-  }
-
   return (
     <>
       <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
@@ -106,7 +120,7 @@ const ProductoAdminPage = () => {
 
 
       <div className='configUser'>
-        <Dropdown title=<FaUserGear size={42} /> >
+      <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="Admin">
             <Dropdown.Item >Juan</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
@@ -114,20 +128,22 @@ const ProductoAdminPage = () => {
           <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
         </Dropdown>
       </div>
-      <div className='nombreproducto'>{producto.modelo}</div>
-      <div className='precioproducto'>Precio: {producto.precio}</div>
-      <div className="dropdown">
-        <button className="dropbtn">Color:</button>
-        <div className="dropdown-content">
-          <a href="#">{producto.color}</a>
-        </div>
-      </div>
 
-      <div className='productos'>
-        <img src={producto.foto} className='fotoP'></img>
-        <div className='productosComprar'>
+     <div className='productoCompleto'>
+  <img src={producto.foto} className='fotoP'></img>
+ <div className='containerDatos'>
+ <div className='nombreProducto'>{producto.modelo}</div>
+<h1 className='linea'></h1>
+ <div className='precioProducto'>Precio: {producto.precio}</div>
+ 
+ <h1 className='linea'></h1>
+ 
+ <div className="dropbtn">Color: {producto.color}</div>
+
+      <h1 className='linea'></h1>
+
           <button
-            className='botoneliminar'
+            className='botonEliminar'
             onClick={() => {
               if (window.confirm('¿Está seguro de que quiere eliminar este producto?')) {
                 eliminarProducto(producto.productoId, router);
@@ -135,7 +151,7 @@ const ProductoAdminPage = () => {
             }}
           > Eliminar producto
           </button>
-          <button className='botonagregar' onClick={handleEditClick}>
+          <button className='botonAgregar' onClick={handleEditClick}>
             Editar producto
           </button>
 
@@ -173,23 +189,18 @@ const ProductoAdminPage = () => {
               </div>
             </div>
           )}
-
-
-          <h1 className='envio'>Seleccione el t͟i͟p͟o͟ d͟e͟ e͟n͟v͟i͟o͟</h1>
-
         </div>
       </div>
 
-      <div className='productosDesc'>
-        <h1 className='desc'>Descripción del producto</h1>
-        <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
-        <p className='productoTexto'>{producto.descripcion}</p>
-        <p className='productoTexto'>STOCK: {producto.stock}</p>
-        <p className='productoTexto'>PRECIO: {producto.precio}</p>
-        <p className='productoTexto'>ID: {producto.productoId}</p>
-      </div>
-
+<div className='productosDesc'>
+<h1 className='desc'>Descripción del producto</h1>
+<h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
+<p className='productoTexto'>{producto.descripcion}</p>
+<p className='productoTexto'>STOCK: {producto.stock}</p>
+<p className='productoTexto'>PRECIO: {producto.precio}</p>
+</div>
     </>
+    
 
 
   );

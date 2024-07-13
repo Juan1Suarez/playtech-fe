@@ -9,3 +9,14 @@ export const verCompra = async (): Promise<any[]> => {
         return [];
     }
 };
+
+
+export const registroVenta = async (productoId: any, usuarioId: any) => {
+try {
+    const response = await clienteAxios.post('/compra/', {productoId, usuarioId})
+    return response.data;
+} catch (error) {
+    console.error("ERROR", error)
+    throw error;
+}
+}

@@ -225,6 +225,20 @@ body {
 
 /*productos*/
 
+.error{
+background-color: white;
+width: 50%;
+height: 150px;
+font-size: 30px;
+border-radius: 30px;
+margin: 133px;
+margin-left: 460px;
+display:flex;
+justify-content: center;
+align-items: center;
+text-decoration: underline;
+}
+
 .productoCompleto{
   background-color: white;
   width: 1400px;
@@ -339,17 +353,15 @@ font-size: 16px;
 }
 
 
-.botoneliminar {
-  position: relative;
-  left: 90px;
-  top: 70px;
-  width: 220px;
-  height: 60px;
-  font-family: 'Roboto Slab';
-  font-size: 20px;
-  border-color: black;
-  background-color: rgb(245, 58, 58);
-  border-radius: 10px;
+.botonEliminar{
+font-family: 'Roboto Slab';
+background-color: #cf0c0c;
+color: white;
+height: 50px;
+width: 180px;
+margin-left: 10px;
+border-radius: 10px;
+font-size: 16px;
 }
 
 /* LISTAPRODUCTOS */
@@ -579,7 +591,7 @@ cursor: pointer;
   cursor: pointer;
   border-radius:50%;
   left: 1740px;
-  bottom: 855px;
+  bottom: 875px;
 }
 
 /* FOOTER*/
@@ -680,7 +692,7 @@ table, th, td {
 .configUser{
   position: absolute;
   left: 1630px;
- bottom:900px;
+ bottom:920px;
   width: 10px;
   height: 10px;
 }

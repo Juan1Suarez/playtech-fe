@@ -5,6 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import Producto from '../../services/model/producto.model';
+import { registroVenta } from '@/app/services/Registro';
+import { FaUserGear } from 'react-icons/fa6';
+import { jwtDecode } from 'jwt-decode';
 
 const CarritoDeCompras = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
@@ -27,6 +30,21 @@ useEffect(() => {
     localStorage.clear();
     window.location.reload();
   }
+  
+  const finalizarCompra = () => {
+    const token = localStorage.getItem('accessToken')!;
+    const decodedToken: { usuarioId: number } = jwtDecode(token);
+    const usuarioId = decodedToken.usuarioId;
+    productos.forEach(producto => {
+      const productoId = producto.productoId; 
+      if (productoId !== undefined) {
+        console.log(`Registrando venta: Producto ID: ${productoId}, Usuario ID: ${usuarioId}`);
+        registroVenta(productoId, usuarioId); 
+      } else {
+        console.error("El productoId es undefined para uno de los productos.");
+      }
+    });
+  }
 
   return (
     <>
@@ -42,13 +60,15 @@ useEffect(() => {
       </Dropdown>
     </Container>
     
-      <div className='adminuser'>User</div>
-      <button className='adminuser' onClick={LogOut}> logout </button>
-      <div className='fondodark'>
-        <div>Dark mode</div>
-        <Switch onChange={toggleDarkMode} checked={darkMode} className='switch' form="flexSwitchCheckChecked" />
-      </div>
-
+ <div className='configUser'>
+  <Dropdown title= <FaUserGear size={42} /> >
+<Dropdown.Menu title="User">
+<Dropdown.Item >Juan</Dropdown.Item>
+<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+</Dropdown.Menu>     
+      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
+  </Dropdown>
+</div>
 
       <div className='carritoProducto'>
         {productos.map((producto, index) => (
@@ -71,7 +91,7 @@ useEffect(() => {
             </div>
             <div className='divisor1' />
             <h1 className='precioTotal'>Precio total = ${productos.reduce((total, producto) => total + producto.precio, 0)}</h1>
-            <div className='fin'>Finalizar transacción</div>
+            <div className='fin' onClick={finalizarCompra}>Finalizar transacción</div>
           </div>
         )}
       </div>
