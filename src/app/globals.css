@@ -121,10 +121,10 @@ body {
   position: absolute;
   text-align: center;
   left: 1600px;
-  top: 50px;
+  top: 45px;
   background-color: rgb(255, 255, 255);
   width: 105px;
-  height: 25px;
+  height: 50px;
   border-style: solid;
   border-color: #000000;
   color: #000000;
@@ -134,22 +134,40 @@ body {
 .fondoimg {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
-  position: relative;
-  top: 30px;
-  left: 19px;
-  display: flex;
-  justify-content: space-between;
-  place-items: left;
-  padding: 1%;
-  height: 290px;
-  width: 1750px;
-  border-radius: 20px;
+  cursor: pointer;
+   border-radius: 20px;
   border-style: solid;
   border-color: rgb(12, 12, 12);
   border-bottom-right-radius: 90px;
   border-right-width: 10px;
   border-bottom-width: 10px;
-  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  place-items: left;
+  margin: 20px;
+  height: 300px;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.fotoMain{
+  width: 200px;
+  height: 190px;
+  border-radius: 14px;
+}
+
+.subs {
+  background-color: white;
+  border-radius: 12px;
+  width: 220px;
+  height: 44px;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Roboto Slab";
+  text-decoration: underline;
+  border-style: inset;
+  margin-top: 80px;
+  margin-left:40px;
 }
 
 .img {
@@ -179,22 +197,6 @@ body {
   height: 55px;
   width: 60px;
   border-radius: 15px;
-}
-
-
-
-.subs {
-  background-color: white;
-  border-radius: 12px;
-  width: 220px;
-  height: 40px;
-  text-align: center;
-  font-family: "Roboto Slab";
-  text-decoration: underline;
-  position: relative;
-  left: 5px;
-  top: 40px;
-  border-style: inset;
 }
 
 .playmain {

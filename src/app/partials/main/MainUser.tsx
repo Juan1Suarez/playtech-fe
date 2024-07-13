@@ -90,77 +90,74 @@ const MainUser = () => {
                 </div>
             </Slider>
 
-            <h1 className='subs'>Auriculares</h1>
-            <div className='fondoimg'>
-                {productos
-                    .filter(producto => producto.tipoDeProducto === "Auriculares")
-                    .slice(0, 7)
-                    .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
-                            <img src={producto.foto} width={200} height={200}></img>
-                            <p>{producto.modelo}</p>
-                            <h1>${producto.precio}</h1>
-                        </a>
-                    ))}
-            </div>
-            <br></br>
-            <h1 className='subs'>Teclados</h1>
-            <div className='fondoimg'>
-                {productos
-                    .filter(producto => producto.tipoDeProducto === "Teclado")
-                    .slice(0, 7)
-                    .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
-                            <img src={producto.foto} width={200} height={200}></img>
-                            <p>{producto.modelo}</p>
-                            <h1>${producto.precio}$</h1>
-                        </a>
-                    ))}
-            </div>
-            <br></br>
-            <h1 className='subs'>Mouses</h1>
-            <div className='fondoimg'>
-                {productos
-                    .filter(producto => producto.tipoDeProducto === "Mouse")
-                    .slice(0, 7)
-                    .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
-                            <img src={producto.foto} width={200} height={200}></img>
-                            <p>{producto.modelo}</p>
-                            <h1>${producto.precio}$</h1>
-                        </a>
-                    ))}
-            </div>
-            <br></br>
-            <h1 className='subs'>Mousepads</h1>
-            <div className='fondoimg'>
-                {productos
-                    .filter(producto => producto.tipoDeProducto === "Mousepad")
-                    .slice(0, 7)
-                    .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
-                            <img src={producto.foto} width={200} height={200}></img>
-                            <p>{producto.modelo}</p>
-                            <h1>${producto.precio}$</h1>
-                        </a>
-                    ))}
-            </div>
-            <br></br>
-            <h1 className='subs'>Sillas Gamers</h1>
-            <div className='fondoimg'>
-                {productos
-                    .filter(producto => producto.tipoDeProducto === "Silla Gamer")
-                    .slice(0, 7)
-                    .map(producto => (
-                        <a key={producto.productoId}  onClick={() => navegarAProducto(producto.modelo)}>
-                            <img src={producto.foto} width={200} height={200}></img>
-                            <p>{producto.modelo}</p>
-                            <h1>${producto.precio}</h1>
-                        </a>
-                        
-                    ))}
-    
-            </div>
+<div className='subs'>Auriculares</div>
+<div className='fondoimg'>
+    {productos
+        .filter(producto => producto.tipoDeProducto === "Auriculares")
+        .slice(0, 7)
+        .map(producto => (
+            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                <img className='fotoMain' src={producto.foto}></img>
+                <p>{producto.modelo}</p>
+                <div>${producto.precio}</div>
+            </a>
+        ))}
+</div>
+
+<h2 className='subs'>Teclados</h2>
+<div className='fondoimg'>
+    {productos
+        .filter(producto => producto.tipoDeProducto === "Teclado")
+        .slice(0, 7)
+        .map(producto => (
+            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                <img className='fotoMain' src={producto.foto}></img>
+                <p>{producto.modelo}</p>
+                <div>${producto.precio}</div>
+            </a>
+        ))}
+</div>
+
+<h2 className='subs'>Mouses</h2>
+<div className='fondoimg'>
+    {productos
+        .filter(producto => producto.tipoDeProducto === "Mouse")
+        .slice(0, 7)
+        .map(producto => (
+            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                <img className='fotoMain' src={producto.foto}></img>
+                <p>{producto.modelo}</p>
+                <div>${producto.precio}</div>
+            </a>
+        ))}
+</div>
+
+<h2 className='subs'>Mousepads</h2>
+<div className='fondoimg'>
+    {productos
+        .filter(producto => producto.tipoDeProducto === "Mousepad")
+        .slice(0, 7)
+        .map(producto => (
+            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                <img className='fotoMain' src={producto.foto}></img>
+                <p>{producto.modelo}</p>
+                <div>${producto.precio}</div>
+            </a>
+        ))}
+</div>
+
+<h2 className='subs'>Sillas Gamers</h2>
+<div className='fondoimg'>
+    {productos
+        .filter(producto => producto.tipoDeProducto === "Silla Gamer")
+        .map(producto => (
+            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                <img className="fotoMain" src={producto.foto}></img>
+                <p>{producto.modelo}</p>
+                <div>${producto.precio}</div>
+            </a>
+        ))}
+</div>
 </>
     );
 }

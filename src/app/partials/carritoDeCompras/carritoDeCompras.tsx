@@ -38,10 +38,7 @@ useEffect(() => {
     productos.forEach(producto => {
       const productoId = producto.productoId; 
       if (productoId !== undefined) {
-        console.log(`Registrando venta: Producto ID: ${productoId}, Usuario ID: ${usuarioId}`);
         registroVenta(productoId, usuarioId); 
-      } else {
-        console.error("El productoId es undefined para uno de los productos.");
       }
     });
   }
