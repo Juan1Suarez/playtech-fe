@@ -119,9 +119,10 @@ const ListaProducto = () => {
               <img src={producto.foto} className="imgListado" alt={producto.modelo}></img>
               <div className='detalles'>
                 <h1 className='prod'>{producto.modelo}</h1>
-                <h1 className='preci'>{producto.precio} $</h1>
+                <h1 className='linea'></h1>
+                <h2 className='preci'>${producto.precio} </h2>
+                <h1 className='lineaColor'></h1>
                 <h3 className='co'>Color: {producto.color}</h3>
-                <h3 className='sto'>STOCK: {producto.stock}</h3>
                 <button className='verP' onClick={() => navegarAProducto(producto.modelo)}>Ver Producto</button>
               </div>
             </div>

@@ -369,7 +369,7 @@ font-size: 16px;
 /* LISTAPRODUCTOS */
 
 .containerProductos {
-  border: 2px solid #012430;
+  border: 2px solid #000000;
   border-radius: 15px;
   width: 300px;
   padding: 12px;
@@ -382,16 +382,17 @@ font-size: 16px;
   width: 300px;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #012430;
+  border: 1px solid #000000;
   border-radius: 9px;
-  background-color: #ADD8E6;
-  color: rgb(3, 0, 0);
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   font-size: 17px;
   cursor: pointer;
 }
 
 .productosListado:hover {
-  background-color: #82c4e3;
+  background-color: #000000;
+  color: white;
 }
 
 .buscadorProductos {
@@ -412,7 +413,7 @@ font-size: 16px;
   border-radius: 7px;
   width: 980px;
   height: 270px;
-  background-color: rgb(190, 237, 255);
+  background-color: rgb(255, 255, 255);
   position: relative;
   left: 10px;
   top: 5px;
@@ -420,27 +421,37 @@ font-size: 16px;
 }
 
 .imgListado{
-  width:260px;
-  height:270px;
+ margin-left: 12px;
+  margin-top: 9px; 
+  width:240px;
+  height:250px;
   background-color: white;
-}
+  border-radius: 5px;
 
+}
 
 
 .detalles{
   position: relative;
   left: 300px;
-  bottom: 280px;
+  bottom: 250px;
 }
 
 .sto{
 position: relative;
-top: 10px;
+
+}
+
+.lineaColor{
+  background-color: black;
+  height: 2px;
+  width: 250px;
+  opacity: 50%;
 }
 
 .co{
 position: relative;
-top: 15px;
+
 }
 
 .verP{
@@ -450,10 +461,10 @@ border: solid;
 border-radius: 5px;
 position: relative;
 left: 400px;
-bottom: 20px;
+bottom: 60px;
 font-size:larger;
-background-color: #ffffff;
-color: rgb(32, 199, 255);
+background-color: #dadada;
+color: rgb(0, 0, 0);
 border-color: #000000;
 cursor: pointer;
 }
