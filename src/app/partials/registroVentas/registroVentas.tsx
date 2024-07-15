@@ -1,6 +1,7 @@
 "use client";
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { eliminarUsuario } from '@/app/services/Login';
+import Compra from '@/app/services/model/compra.model';
 import { verCompra } from '@/app/services/Registro';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
@@ -37,9 +38,9 @@ const RegistroVentas = () => {
     window.location.reload();
   }
 
-  const [registro, setRegistro] = useState<any[]>([]);
+  const [registro, setRegistro] = useState<Compra[]>([]);
   useEffect(() => {
-    verCompra().then((data: any[]) => {
+    verCompra().then((data: Compra[]) => {
       setRegistro(data);
     })
   }, [])
@@ -61,13 +62,26 @@ const RegistroVentas = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-  // Calcular los elementos a mostrar en la página actual
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = registro.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Cambiar página
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const [sortOrder, setSortOrder] = useState('asc');
+
+  const sortRegistro = () => {
+    const sortedRegistro = [...registro].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.precio - b.precio;
+      } else {
+        return b.precio - a.precio;
+      }
+    });
+    setRegistro(sortedRegistro);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
 
 
   return (
@@ -91,13 +105,17 @@ const RegistroVentas = () => {
         </Dropdown>
       </div>
 
-      <div>
+      <div className='paginado'>
         {Array.from({ length: Math.ceil(registro.length / itemsPerPage) }, (_, i) => (
           <button key={i} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? 'active' : ''}>
             {i + 1}
           </button>
         ))}
       </div>
+
+      <button className='precioRegistro' onClick={sortRegistro}>
+        Precio {sortOrder === 'asc' ? '↓' : '↑'}
+      </button>
       <table className='registroV'>
         <thead>
           <tr>
@@ -126,6 +144,7 @@ const RegistroVentas = () => {
           ))}
         </tbody>
       </table>
+      
     </>
   );
 }

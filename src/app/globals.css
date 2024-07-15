@@ -409,7 +409,7 @@ font-size: 16px;
 }
 
 .cardProducto {
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 7px;
   width: 980px;
   height: 270px;
@@ -708,6 +708,15 @@ table, th, td {
   text-align: center;
 }
 
+.paginado{
+  margin-left: 40px;
+}
+
+.precioRegistro{
+  position: relative;
+  left: 1700px;
+  top: 75px;
+}
 /* User */
 
 .configUser{
@@ -726,3 +735,4 @@ table, th, td {
   left: 1660px;
   bottom: 95px;
 }
+
