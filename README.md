@@ -14,7 +14,8 @@ Somos Ian Moyano y Juan Suárez, y estamos orgullosos de presentar Playtech, tu 
 
 Con Playtech, estás un paso más cerca de alcanzar tu máximo potencial como gamer. ¡Explora nuestra tienda y descubre todo lo que tenemos para ofrecerte!
 
-Si queres saber más acerca de este proyecto, te invitamos a visitar el siguiente documento que contiene información relevante: https://docs.google.com/document/d/1dU0P5RLonE4899nilwtI-cN0389d4K2Ln5FHJf2ICIw/edit#heading=h.9slf707ce0ua
+Si queres saber más acerca de este proyecto, te invitamos a visitar el siguiente documento que contiene información relevante: 
+https://docs.google.com/document/d/1dU0P5RLonE4899nilwtI-cN0389d4K2Ln5FHJf2ICIw/edit#heading=h.9slf707ce0ua
 
 Ian Moyano y Juan Suárez
 Fundadores de Playtech
