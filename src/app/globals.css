@@ -265,7 +265,8 @@ height: 400px;
 
 .nombreProducto{
  font-family: 'Roboto Slab';
- font-size: 40px;
+ font-size: 30px;
+ margin-top: 10px;
 }
 
 .linea{
@@ -302,10 +303,6 @@ font-size: 16px;
   border-radius: 10px;
   font-size: 16px;
   }
-
-
-
-
 
 .productosDesc {
   background-color: #3e3e3e;
@@ -478,21 +475,21 @@ cursor: pointer;
 
 .carritoProducto {
   background-color: rgb(197, 197, 197);
-  width: 1332px;
-  min-height: 700px; 
+  width: 1200px;
+  min-height: 600px; 
   position: relative;
   border: 2px solid #000000;
   border-radius: 10px;
   overflow: auto;
-  margin: 10px;
+  margin-left: 40px;
   margin-top: 50px;
 }
 
 .productoElegido {
   position: relative;
   background-color: white;
-  width: 950px;
-  height: 200px;
+  width: 850px;
+  height: 160px;
   margin-bottom: 12px;
   top: 25px;
   left: 30px;
@@ -504,19 +501,20 @@ cursor: pointer;
 
 .fotonisuta {
   position: relative;
-  height: 180px;
-  width: 190px;
+  height: 150px;
+  width: 160px;
   top: 10px;
   left: 45px;
 }
 
 .divisor {
   position: absolute;
+
   background-color: #000000;
   width: 2px;
   height: 100%;
-  left: 1009px;
-  bottom: 30px;
+  left: 908px;
+  bottom: 10px;
   border-radius: 10px;
 }
 
@@ -526,7 +524,7 @@ cursor: pointer;
   background-color: #000000;
   width: 400px;
   height: 2px;
-  top: 520px;
+  top: 500px;
   left: 25px;
   border-radius: 10px;
 }
@@ -534,15 +532,15 @@ cursor: pointer;
 .textoProducto {
   font-family: 'Roboto Slab';
   position: relative;
-  bottom: 130px;
-  left: 350px;
+  bottom: 115px;
+  left: 300px;
 }
 
 .valorproducto {
   background-color: white;
   font-family: 'Roboto Slab';
-  height: 200px;
-  width: 250px;
+  height: 160px;
+  width: 230px;
   border-radius: 10px;
   border-style: solid;
   border-color: #393939;
@@ -551,22 +549,23 @@ cursor: pointer;
   align-items: center;
   display: flex;
   justify-content: center;  
-  left: 999px;
-  bottom: 272px;
+  left: 900px;
+  bottom: 242px;
 }
 
 .comprarProducto {
   background-color: rgb(224, 224, 224);
-  width: 453px;
+  width: 480px;
   height: 600px;
   position: absolute;
-  top: 173px;
-  left: 1390px;
+  top: 185px;
+  left: 1330px;
   border-radius: 10px;
   border-color: #000000;
   border-style: solid;
   display: flex;
   justify-content: center;
+  border-width: 2px;
  
 }
 
@@ -597,12 +596,13 @@ cursor: pointer;
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: 10px;
+  margin-left: 40px;
+  margin-top: 10px;
   }
 
 .nombreEnLista {
   position: relative;
-  font-size: 27px;
+  font-size: 10px;
   font-family: 'Roboto Slab';
   top: 20px;
   margin-bottom: 10px;
