@@ -79,8 +79,8 @@ const MainAdmin = () => {
                 alert('Por favor, complete todos los campos.');
                 return;
             }
-            if (nuevoProducto.modelo.length > 34) {
-                alert('El modelo no puede exceder los 34 caracteres.');
+            if (nuevoProducto.modelo.length > 20) {
+                alert('El modelo no puede exceder los 20 caracteres.');
                 return;
             }
             if (nuevoProducto.precio > 99999999999) {

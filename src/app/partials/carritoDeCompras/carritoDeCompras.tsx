@@ -114,6 +114,10 @@ const CarritoDeCompras = () => {
   }
 
   const borrarCompra = () => {
+    const confirm = window.confirm("¿Estás seguro de que quieres eliminar el carrito?");
+    if (!confirm) {
+        return;
+    }
     localStorage.removeItem('carrodecompras');
     window.location.reload();
   }
