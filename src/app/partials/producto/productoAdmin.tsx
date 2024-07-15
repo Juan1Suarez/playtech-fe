@@ -8,6 +8,7 @@ import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import { FaUserGear } from "react-icons/fa6";
 import { jwtDecode } from 'jwt-decode';
+import { eliminarUsuario } from '@/app/services/Login';
 
 
 
@@ -82,6 +83,7 @@ const ProductoAdminPage = () => {
             <Dropdown.Menu title="Admin">
               <Dropdown.Item>{nombre}</Dropdown.Item>
               <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+              <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
             </Dropdown.Menu>
             <Dropdown.Item onClick={toggleDarkMode} className='switch'>Dark mode</Dropdown.Item>
           </Dropdown>

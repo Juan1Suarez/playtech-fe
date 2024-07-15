@@ -10,6 +10,7 @@ import { verProductos } from '@/app/services/Producto';
 import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
 import { jwtDecode } from 'jwt-decode';
+import { eliminarUsuario } from '@/app/services/Login';
 
 const ProductoPage = () => {
   const router = useRouter();
@@ -19,40 +20,40 @@ const ProductoPage = () => {
   const [producto, setProducto] = useState<Producto | null>(null);
   const [nombre, setNombre] = useState('');
   useEffect(() => {
-      const token = localStorage.getItem('accessToken');
-      
-      if (token) {
-        try {
-          const decodedToken: { nombre: string } = jwtDecode(token);
-          setNombre(decodedToken.nombre);
-        } catch (error) {
-          console.log("No hay un usuario")
-        }
+    const token = localStorage.getItem('accessToken');
+
+    if (token) {
+      try {
+        const decodedToken: { nombre: string } = jwtDecode(token);
+        setNombre(decodedToken.nombre);
+      } catch (error) {
+        console.log("No hay un usuario")
       }
-    }, []);
+    }
+  }, []);
 
-    const [darkMode, setDarkMode] = useState(false);
-    
-    useEffect(() => {
-        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-        setDarkMode(storedDarkMode);
-        document.body.classList.toggle("darkMode", storedDarkMode);
-    }, []);
+  const [darkMode, setDarkMode] = useState(false);
 
-    const toggleDarkMode = () => {
-        setDarkMode(prev => {
-            const newDarkMode = !prev;
-            document.body.classList.toggle("darkMode", newDarkMode);
-            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-            return newDarkMode;
-        });
-    }; 
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(storedDarkMode);
+    document.body.classList.toggle("darkMode", storedDarkMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      const newDarkMode = !prev;
+      document.body.classList.toggle("darkMode", newDarkMode);
+      localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+      return newDarkMode;
+    });
+  };
 
   const navegarACarrito = () => {
     router.push("/carritoDeCompras");
   };
 
-  const agregarCarrito = () => {
+  const agregarCarrito = (mostrarAlerta = true) => {
     let carritoActual = JSON.parse(localStorage.getItem('carrodecompras') || '[]');
     if (producto) {
       if (carritoActual.length >= 9) {
@@ -62,8 +63,11 @@ const ProductoPage = () => {
       carritoActual.push(producto);
     }
     localStorage.setItem('carrodecompras', JSON.stringify(carritoActual));
+    if (mostrarAlerta) {
+      alert("Artículo añadido exitosamente.");
+    }
   };
-  
+
   const LogOut = () => {
     localStorage.clear();
     window.location.reload();
@@ -83,33 +87,34 @@ const ProductoPage = () => {
   if (!producto) {
     return (
       <>
-      <a href='mainUser'>
-        <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-      </a>
+        <a href='mainUser'>
+          <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+        </a>
 
-      <Container className='caidaproductos'>
-        <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-          <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
-        </Dropdown>
-      </Container>
+        <Container className='caidaproductos'>
+          <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+            <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
+            <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
+            <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
+            <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
+            <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
+          </Dropdown>
+        </Container>
 
-      <div className='configUser'>
-      <Dropdown title={<FaUserGear size={42} />}>
-<Dropdown.Menu title="User">
-<Dropdown.Item >{nombre}</Dropdown.Item>
-<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-</Dropdown.Menu>     
-      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
-  </Dropdown>
-</div>
+        <div className='configUser'>
+          <Dropdown title={<FaUserGear size={42} />}>
+            <Dropdown.Menu title="User">
+              <Dropdown.Item >{nombre}</Dropdown.Item>
+              <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+              <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
+            </Dropdown.Menu>
+            <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+          </Dropdown>
+        </div>
 
-    <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
-    <p className='error'>Producto no encontrado</p>
-    <br></br><br></br><br></br><br></br>
+        <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
+        <p className='error'>Producto no encontrado</p>
+        <br></br><br></br><br></br><br></br>
       </>
     )
   }
@@ -131,42 +136,43 @@ const ProductoPage = () => {
       </Container>
 
       <div className='configUser'>
-      <Dropdown title={<FaUserGear size={42} />}>
-<Dropdown.Menu title="User">
-<Dropdown.Item >{nombre}</Dropdown.Item>
-<Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-</Dropdown.Menu>     
-      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
-  </Dropdown>
-</div>
+        <Dropdown title={<FaUserGear size={42} />}>
+          <Dropdown.Menu title="User">
+            <Dropdown.Item >{nombre}</Dropdown.Item>
+            <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+            <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
+          </Dropdown.Menu>
+          <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+        </Dropdown>
+      </div>
 
-    <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
+      <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
 
-<div className='productoCompleto'>
-  <img src={producto.foto} className='fotoP'></img>
- <div className='containerDatos'>
- <div className='nombreProducto'>{producto.modelo}</div>
-<h1 className='linea'></h1>
- <div className='precioProducto'>Precio: {producto.precio}</div>
- 
- <h1 className='linea'></h1>
- 
- <div className="dropbtn">Color: {producto.color}</div>
+      <div className='productoCompleto'>
+        <img src={producto.foto} className='fotoP'></img>
+        <div className='containerDatos'>
+          <div className='nombreProducto'>{producto.modelo}</div>
+          <h1 className='linea'></h1>
+          <div className='precioProducto'>Precio: {producto.precio}</div>
 
-      <h1 className='linea'></h1>
+          <h1 className='linea'></h1>
 
- <button className='botonAhora' onClick={() => { navegarACarrito(); agregarCarrito(); }}>
+          <div className="dropbtn">Color: {producto.color}</div>
+
+          <h1 className='linea'></h1>
+
+          <button className='botonAhora' onClick={() => { agregarCarrito(false); navegarACarrito(); }}>
             Comprar ahora
           </button>
-          <button className='botonAgregar' onClick={agregarCarrito}>
+          <button className='botonAgregar' onClick={() => agregarCarrito(true)}>
             Agregar al carrito
           </button>
- 
- </div>
+
+        </div>
 
 
-</div>
-     
+      </div>
+
       <div className='productosDesc'>
         <h1 className='desc'>Descripción del producto</h1>
         <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>

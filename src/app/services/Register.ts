@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import clienteAxios from "./Axios";
 import Usuario from "./model/usuario.model";
 
@@ -17,8 +18,10 @@ export const crearUsuarios = async (Usuario: Usuario, router: any) => {
         console.log(response);
         const {accessToken} = response.data
         localStorage.setItem('accessToken', accessToken)
-        router.push("mainUser")
+        alert("¡Usuario creado exitosamente! Por favor inicie sesión");
+        router.push("/login")
     } catch (error) {
         console.log (error)
     }
 }
+
