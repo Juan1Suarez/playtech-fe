@@ -15,6 +15,10 @@ export default function Register() {
         router.push("login")
 
     }
+
+    const navegarATerminos = () => {
+        router.push("terminosYCondiciones")
+    }
     
     const validationSchema = Yup.object().shape({
         nombre: Yup.string()
@@ -80,12 +84,8 @@ export default function Register() {
 
                         <div className="form-check form-switch">
                             <Field className="form-check-input" type="checkbox" role="switch" name="terminos" />
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los T͟e͟r͟m͟i͟n͟o͟s͟ y͟ c͟o͟n͟d͟i͟c͟i͟o͟n͟e͟s͟</label>
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los <a className='terminosYCondiciones'  onClick={() => navegarATerminos()}>Terminos y condiciones</a></label>
                             <ErrorMessage name="terminos" component="div" className='colorcheck' />
-                        </div>
-                        <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">¡Quiero enterarme de las novedades!</label>
                         </div>
 
                         <button className="boton" type="submit" disabled={isSubmitting}>Crear cuenta</button>

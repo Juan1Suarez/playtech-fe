@@ -736,3 +736,18 @@ table, th, td {
   bottom: 95px;
 }
 
+/*TERMINOS Y CONDICIONES */
+
+.terminos{
+  font-family: 'Roboto Slab';
+  padding: 20px;
+}
+
+.volver{
+  position: relative;
+  border-radius: 5px;
+  right: 500px;
+  height: 60px;
+  width: 100px;
+top: 20px;
+}
