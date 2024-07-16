@@ -16,12 +16,17 @@ export const crearUsuarios = async (Usuario: Usuario, router: any) => {
     try{
         const response = await clienteAxios.post('/usuarios', Usuario);
         console.log(response);
-        const {accessToken} = response.data
-        localStorage.setItem('accessToken', accessToken)
-        alert("¡Usuario creado exitosamente! Por favor inicie sesión");
-        router.push("/login")
-    } catch (error) {
-        console.log (error)
+
+        if (response.status === 201 ) {
+            const {accessToken} = response.data
+            localStorage.setItem('accessToken', accessToken)
+            alert("¡Usuario creado exitosamente! Por favor inicie sesión");
+            router.push("/login")
+        }
+    } catch (error: any) {
+         if (error.response.status === 500) {
+            alert ("Ya existe un usuario con este mail")
+        }
     }
 }
 

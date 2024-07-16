@@ -135,7 +135,7 @@ body {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   cursor: pointer;
-   border-radius: 20px;
+  border-radius: 20px;
   border-style: solid;
   border-color: rgb(12, 12, 12);
   border-bottom-right-radius: 90px;
@@ -150,7 +150,7 @@ body {
   font-size: 20px;
 }
 
-.fotoMain{
+.fotoMain {
   width: 200px;
   height: 190px;
   border-radius: 14px;
@@ -167,7 +167,7 @@ body {
   text-decoration: underline;
   border-style: inset;
   margin-top: 80px;
-  margin-left:40px;
+  margin-left: 40px;
 }
 
 .img {
@@ -216,7 +216,7 @@ body {
   width: 100px;
 }
 
-.carousel{
+.carousel {
   position: relative;
   top: 30px;
   width: 1400px;
@@ -227,74 +227,74 @@ body {
 
 /*productos*/
 
-.error{
-background-color: white;
-width: 50%;
-height: 150px;
-font-size: 30px;
-border-radius: 30px;
-margin: 133px;
-margin-left: 460px;
-display:flex;
-justify-content: center;
-align-items: center;
-text-decoration: underline;
+.error {
+  background-color: white;
+  width: 50%;
+  height: 150px;
+  font-size: 30px;
+  border-radius: 30px;
+  margin: 133px;
+  margin-left: 460px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
 }
 
-.productoCompleto{
+.productoCompleto {
   background-color: white;
   width: 1400px;
   height: 660px;
   margin-left: 220px;
   border-radius: 10px;
   margin-top: 50px;
-  
+
 }
 
-.fotoP{
-margin: 110px;
-width: 400px;
-height: 400px;
+.fotoP {
+  margin: 110px;
+  width: 400px;
+  height: 400px;
 }
 
- 
-.containerDatos{
+
+.containerDatos {
   margin-left: 53%;
   margin-top: -470px;
 }
 
-.nombreProducto{
- font-family: 'Roboto Slab';
- font-size: 30px;
- margin-top: 10px;
+.nombreProducto {
+  font-family: 'Roboto Slab';
+  font-size: 30px;
+  margin-top: 10px;
 }
 
-.linea{
- background-color: black;
+.linea {
+  background-color: black;
   height: 2px;
   width: 500px;
   opacity: 50%;
 }
 
-.precioProducto{
-  
+.precioProducto {
+
   font-family: 'Roboto Slab';
   font-size: 31px;
 
 }
 
-.botonAhora{
+.botonAhora {
   font-family: 'Roboto Slab';
   background-color: #012430;
-color: white;
-height: 50px;
-width: 180px;
-margin-left: 10px;
-border-radius: 10px;
-font-size: 16px;
+  color: white;
+  height: 50px;
+  width: 180px;
+  margin-left: 10px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
-.botonAgregar{
+.botonAgregar {
   font-family: 'Roboto Slab';
   color: rgb(0, 0, 0);
   height: 50px;
@@ -302,18 +302,18 @@ font-size: 16px;
   margin-left: 15px;
   border-radius: 10px;
   font-size: 16px;
-  }
+}
 
 .productosDesc {
   background-color: #3e3e3e;
   width: 1700px;
   height: 100%;
   color: white;
- margin: 75px;
+  margin: 75px;
   border-radius: 15px;
   border-color: rgb(255, 255, 255);
   border-style: solid;
-  border-width: 2px;  
+  border-width: 2px;
 }
 
 
@@ -330,10 +330,10 @@ font-size: 16px;
   left: 20px;
   width: 1550px;
   font-size: 21px;
- 
+
 }
 
-.productoNombre{
+.productoNombre {
   position: relative;
   left: 20px;
   font-family: 'Roboto Slab';
@@ -343,8 +343,8 @@ font-size: 16px;
 
 .dropbtn {
   font-family: 'Roboto Slab';
-  color: rgb(0, 0, 0); 
-  font-size: 16px; 
+  color: rgb(0, 0, 0);
+  font-size: 16px;
   border-radius: 5px;
   border-width: 1px;
   width: 100%;
@@ -352,15 +352,15 @@ font-size: 16px;
 }
 
 
-.botonEliminar{
-font-family: 'Roboto Slab';
-background-color: #cf0c0c;
-color: white;
-height: 50px;
-width: 180px;
-margin-left: 10px;
-border-radius: 10px;
-font-size: 16px;
+.botonEliminar {
+  font-family: 'Roboto Slab';
+  background-color: #cf0c0c;
+  color: white;
+  height: 50px;
+  width: 180px;
+  margin-left: 10px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 /* LISTAPRODUCTOS */
@@ -398,7 +398,7 @@ font-size: 16px;
   width: 1000px;
   bottom: 275px;
   background-color: rgb(241, 241, 241);
-  padding:  15px ;
+  padding: 15px;
   position: relative;
   left: 550px;
   display: flex;
@@ -417,53 +417,53 @@ font-size: 16px;
   margin-bottom: 15px;
 }
 
-.imgListado{
- margin-left: 12px;
-  margin-top: 9px; 
-  width:240px;
-  height:250px;
+.imgListado {
+  margin-left: 12px;
+  margin-top: 9px;
+  width: 240px;
+  height: 250px;
   background-color: white;
   border-radius: 5px;
 
 }
 
 
-.detalles{
+.detalles {
   position: relative;
   left: 300px;
   bottom: 250px;
 }
 
-.sto{
-position: relative;
+.sto {
+  position: relative;
 
 }
 
-.lineaColor{
+.lineaColor {
   background-color: black;
   height: 2px;
   width: 250px;
   opacity: 50%;
 }
 
-.co{
-position: relative;
+.co {
+  position: relative;
 
 }
 
-.verP{
-height: 50px;
-width: 200px;
-border: solid;
-border-radius: 5px;
-position: relative;
-left: 400px;
-bottom: 60px;
-font-size:larger;
-background-color: #dadada;
-color: rgb(0, 0, 0);
-border-color: #000000;
-cursor: pointer;
+.verP {
+  height: 50px;
+  width: 200px;
+  border: solid;
+  border-radius: 5px;
+  position: relative;
+  left: 400px;
+  bottom: 60px;
+  font-size: larger;
+  background-color: #dadada;
+  color: rgb(0, 0, 0);
+  border-color: #000000;
+  cursor: pointer;
 }
 
 .verP:hover {
@@ -476,7 +476,7 @@ cursor: pointer;
 .carritoProducto {
   background-color: rgb(197, 197, 197);
   width: 1200px;
-  min-height: 600px; 
+  min-height: 600px;
   position: relative;
   border: 2px solid #000000;
   border-radius: 10px;
@@ -545,10 +545,10 @@ cursor: pointer;
   border-style: solid;
   border-color: #393939;
   border-width: 2px;
-  position: relative; 
+  position: relative;
   align-items: center;
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   left: 900px;
   bottom: 242px;
 }
@@ -566,7 +566,7 @@ cursor: pointer;
   display: flex;
   justify-content: center;
   border-width: 2px;
- 
+
 }
 
 .fin {
@@ -585,7 +585,7 @@ cursor: pointer;
   justify-content: center;
 }
 
-.borrarCarrito{
+.borrarCarrito {
   background-color: rgb(255, 47, 47);
   width: 200px;
   height: 50px;
@@ -598,7 +598,7 @@ cursor: pointer;
   justify-content: center;
   margin-left: 40px;
   margin-top: 10px;
-  }
+}
 
 .nombreEnLista {
   position: relative;
@@ -695,31 +695,34 @@ footer {
 
 /*REGISTRO VENTAS */
 
-.registroV{
-position: relative;
-width: 95%;
-background-color: rgb(231, 231, 231);
-top: 80px;
-left: 40px;
+.registroV {
+  position: relative;
+  width: 95%;
+  background-color: rgb(231, 231, 231);
+  top: 80px;
+  left: 40px;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid;
   text-align: center;
 }
 
-.paginado{
+.paginado {
   margin-left: 40px;
 }
 
-.precioRegistro{
+.precioRegistro {
   position: relative;
   left: 1700px;
   top: 75px;
 }
+
 /* User */
 
-.configUser{
+.configUser {
   position: relative;
   width: 10px;
   height: 10px;
@@ -728,26 +731,42 @@ table, th, td {
 }
 
 
-.logoCarrito{
+.logoCarrito {
   position: relative;
   cursor: pointer;
-  border-radius:50%;
+  border-radius: 50%;
   left: 1660px;
   bottom: 95px;
 }
 
 /*TERMINOS Y CONDICIONES */
 
-.terminos{
+.terminos {
   font-family: 'Roboto Slab';
   padding: 20px;
+  background-color: white;
 }
 
-.volver{
+.volver {
   position: relative;
   border-radius: 5px;
   right: 500px;
   height: 60px;
   width: 100px;
-top: 20px;
+  top: 20px;
+  font-family: 'Roboto Slab';
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.darkT {
+  position: relative;
+  height: 60px;
+  width: 100px;
+  left: 1070px;
+  top: 20px;
+  border-radius: 5px;
+  font-family: 'Roboto Slab';
+  font-size: 15px;
+  cursor: pointer;
 }
