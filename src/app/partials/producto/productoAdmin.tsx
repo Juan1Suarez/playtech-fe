@@ -9,10 +9,12 @@ import 'rsuite/Dropdown/styles/index.css';
 import { FaUserGear } from "react-icons/fa6";
 import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
-
-
+import { LogOut } from '@/app/services/LogOut';
+import { UsardarkMode } from '@/app/services/DarkMode';
+import { usarNombre } from '@/app/services/Nombre';
 
 const ProductoAdminPage = () => {
+  const { darkMode, activarDarkMode } = UsardarkMode();
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -22,42 +24,6 @@ const ProductoAdminPage = () => {
   const navegarARegistroVentas = () => {
     router.push("/registroVentas")
   }
-
-  const LogOut = () => {
-    localStorage.clear();
-    window.location.reload();
-  }
-
-  const [nombre, setNombre] = useState('');
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-
-    if (token) {
-      try {
-        const decodedToken: { nombre: string } = jwtDecode(token);
-        setNombre(decodedToken.nombre);
-      } catch (error) {
-        console.log("No hay un usuario")
-      }
-    }
-  }, []);
-
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(storedDarkMode);
-    document.body.classList.toggle("darkMode", storedDarkMode);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode(prev => {
-      const newDarkMode = !prev;
-      document.body.classList.toggle("darkMode", newDarkMode);
-      localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-      return newDarkMode;
-    });
-  };
 
   const [producto, setProducto] = useState<Producto | null>(null);
 
@@ -81,11 +47,11 @@ const ProductoAdminPage = () => {
         </Container><div className='configUser'>
           <Dropdown title={<FaUserGear size={42} />}>
             <Dropdown.Menu title="Admin">
-              <Dropdown.Item>{nombre}</Dropdown.Item>
+              <Dropdown.Item>{usarNombre()}</Dropdown.Item>
               <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
               <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
             </Dropdown.Menu>
-            <Dropdown.Item onClick={toggleDarkMode} className='switch'>Dark mode</Dropdown.Item>
+            <Dropdown.Item onClick={activarDarkMode} className='switch'>Dark mode</Dropdown.Item>
           </Dropdown>
         </div>
         <p className='error'>Producto no encontrado</p>
@@ -163,10 +129,10 @@ const ProductoAdminPage = () => {
       <div className='configUser'>
         <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="Admin">
-            <Dropdown.Item >{nombre}</Dropdown.Item>
+            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
           </Dropdown.Menu>
-          <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
         </Dropdown>
       </div>
 
@@ -240,9 +206,6 @@ const ProductoAdminPage = () => {
         <p className='productoTexto'>PRECIO: {producto.precio}</p>
       </div>
     </>
-
-
-
   );
 }
 

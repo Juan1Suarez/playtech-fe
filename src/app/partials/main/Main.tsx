@@ -10,7 +10,6 @@ import 'rsuite/Dropdown/styles/index.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { TiShoppingCart } from "react-icons/ti";
-import { FaUserGear } from 'react-icons/fa6';
 
 export default function Home() {
     const [productos, setProductos] = useState<Producto[]>([]);
@@ -20,14 +19,11 @@ export default function Home() {
         router.push("/login");
     }
 
-
     useEffect(() => {
         verProductos().then((data: Producto[]) => {
             setProductos(data);
         });
     }, []);
-
-
 
     const settings = {
         dots: true,
@@ -38,7 +34,6 @@ export default function Home() {
         autoplay: true,
         autoplaySpeed: 3000,
     };
-
 
     return (
         <>

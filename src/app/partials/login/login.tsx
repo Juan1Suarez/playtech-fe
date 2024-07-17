@@ -2,12 +2,10 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Switch from '@mui/material/Switch';;
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { login } from '@/app/services/Login';
 import Login from '../../services/model/login.model';
-
 
 export default function Home() {
   const router = useRouter();
@@ -19,9 +17,6 @@ export default function Home() {
     router.push("/")
   }
   
-  
-
-
   const validationSchema = Yup.object().shape({
    
     email: Yup.string()
@@ -32,8 +27,6 @@ export default function Home() {
       .min(4, 'La contraseña debe contener al menos 4 caracteres'),
   });
 
-  
-  
   return (
 
     <>
@@ -69,8 +62,6 @@ export default function Home() {
               placeholder="Introduzca su contraseña"
             />
             <ErrorMessage name="password" component="div" className='color' />
-
-          
 
             <button className="boton" type="submit" disabled={isSubmitting}>Iniciar sesion</button>
 

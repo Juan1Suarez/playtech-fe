@@ -1,6 +1,5 @@
 "use client";
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { eliminarUsuario } from '@/app/services/Login';
 import Compra from '@/app/services/model/compra.model';
 import { verCompra } from '@/app/services/Registro';
 import { jwtDecode } from 'jwt-decode';
@@ -10,34 +9,16 @@ import { FaUserGear } from "react-icons/fa6";
 import { Container, Dropdown } from 'rsuite';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import 'rsuite/Dropdown/styles/index.css';
+import { LogOut } from '@/app/services/LogOut';
+import { UsardarkMode } from '@/app/services/DarkMode';
+import { usarNombre } from '@/app/services/Nombre';
 
 const RegistroVentas = () => {
-
+  const { darkMode, activarDarkMode } = UsardarkMode();
   const router = useRouter();
   const navegarAMain = () => {
     router.push("/mainAdmin");
-  }
-
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(storedDarkMode);
-    document.body.classList.toggle("darkMode", storedDarkMode);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode(prev => {
-      const newDarkMode = !prev;
-      document.body.classList.toggle("darkMode", newDarkMode);
-      localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-      return newDarkMode;
-    });
-  };
-
-  const LogOut = () => {
-    localStorage.clear();
-    window.location.reload();
   }
 
   const [registro, setRegistro] = useState<Compra[]>([]);
@@ -47,20 +28,6 @@ const RegistroVentas = () => {
       setRegistro(data);
     })
   }, [])
-
-  const [nombre, setNombre] = useState('');
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-
-    if (token) {
-      try {
-        const decodedToken: { nombre: string } = jwtDecode(token);
-        setNombre(decodedToken.nombre);
-      } catch (error) {
-        console.log("No hay un usuario")
-      }
-    }
-  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
@@ -117,11 +84,10 @@ const RegistroVentas = () => {
       <div className='configUser'>
         <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="Admin">
-            <Dropdown.Item >{nombre}</Dropdown.Item>
+            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-            <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
           </Dropdown.Menu>
-          <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
         </Dropdown>
       </div>
 

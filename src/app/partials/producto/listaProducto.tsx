@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Switch from '@mui/material/Switch';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
@@ -10,42 +9,15 @@ import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
-import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
+import { LogOut } from '@/app/services/LogOut';
+import { UsardarkMode } from '@/app/services/DarkMode';
+import { usarNombre } from '@/app/services/Nombre';
 
 const ListaProducto = () => {
+  const { darkMode, activarDarkMode } = UsardarkMode();
   const [productos, setProductos] = useState<Producto[]>([]);
   const [tipoProducto, setTipoProducto] = useState<string>('');
-  const [nombre, setNombre] = useState('');
-  useEffect(() => {
-      const token = localStorage.getItem('accessToken');
-      
-      if (token) {
-        try {
-          const decodedToken: { nombre: string } = jwtDecode(token);
-          setNombre(decodedToken.nombre);
-        } catch (error) {
-          console.log("No hay un usuario")
-        }
-      }
-    }, []);
-
-    const [darkMode, setDarkMode] = useState(false);
-    
-    useEffect(() => {
-        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-        setDarkMode(storedDarkMode);
-        document.body.classList.toggle("darkMode", storedDarkMode);
-    }, []);
-
-    const toggleDarkMode = () => {
-        setDarkMode(prev => {
-            const newDarkMode = !prev;
-            document.body.classList.toggle("darkMode", newDarkMode);
-            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-            return newDarkMode;
-        });
-    }; 
     
   const searchParams = useSearchParams();
   const tipoParam = searchParams.get('tipo');
@@ -69,18 +41,13 @@ const ListaProducto = () => {
     router.push(`/listaProducto?tipo=${tipo.replace(/ /g, '%20')}`);
   };
 
-  const LogOut = () => {
-    localStorage.clear();
-    window.location.reload();
-  }
-
   const navegarACarrito = () => {
     router.push("/carritoDeCompras");
   };
 
   return (
     <>
-      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"></img></a>
+      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
 
       <Container className='caidaproductos'>
       <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
@@ -95,11 +62,11 @@ const ListaProducto = () => {
     <div className='configUser'>
     <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="User">
-            <Dropdown.Item >{nombre}</Dropdown.Item>
+            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
             <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
           </Dropdown.Menu>
-          <Dropdown.Item onClick={toggleDarkMode} className='switch' >Dark mode</Dropdown.Item>
+          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
         </Dropdown>
       </div>
 
@@ -118,7 +85,7 @@ const ListaProducto = () => {
           .filter(producto => producto.tipoDeProducto === tipoProducto)
           .map(producto => (
             <div className='cardProducto' key={producto.productoId}>
-              <img src={producto.foto} className="imgListado" alt={producto.modelo}></img>
+              <img src={producto.foto} className="imgListado"></img>
               <div className='detalles'>
                 <h1 className='prod'>{producto.modelo}</h1>
                 <h1 className='linea'></h1>

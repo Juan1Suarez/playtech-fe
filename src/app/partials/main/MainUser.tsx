@@ -13,40 +13,13 @@ import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
 import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
+import { LogOut } from '@/app/services/LogOut';
+import { UsardarkMode } from '@/app/services/DarkMode';
+import { usarNombre } from '@/app/services/Nombre';
 
 const MainUser = () => {
-    const [darkMode, setDarkMode] = useState(false);
-    
-    useEffect(() => {
-        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-        setDarkMode(storedDarkMode);
-        document.body.classList.toggle("darkMode", storedDarkMode);
-    }, []);
-
-    const toggleDarkMode = () => {
-        setDarkMode(prev => {
-            const newDarkMode = !prev;
-            document.body.classList.toggle("darkMode", newDarkMode);
-            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-            return newDarkMode;
-        });
-    }; 
-    
-    
+    const { darkMode, activarDarkMode } = UsardarkMode();
     const [productos, setProductos] = useState<Producto[]>([]);
-    const [nombre, setNombre] = useState('');
-    useEffect(() => {
-        const token = localStorage.getItem('accessToken');
-        
-        if (token) {
-          try {
-            const decodedToken: { nombre: string } = jwtDecode(token);
-            setNombre(decodedToken.nombre);
-          } catch (error) {
-            console.log("No hay un usuario")
-          }
-        }
-      }, []);
 
     const router = useRouter();
     const navegarAProducto = (modelo: string) => {
@@ -58,14 +31,6 @@ const MainUser = () => {
             setProductos(data);
         })
     }, [])
-
-
-
-    const LogOut = () => {
-        localStorage.clear();
-        window.location.reload();
-      }
-
 
       const settings = {
         dots: true,
@@ -98,11 +63,11 @@ const MainUser = () => {
     <div className='configUser'>
     <Dropdown title={<FaUserGear size={42} />}>
 <Dropdown.Menu title="User">
-<Dropdown.Item >{nombre}</Dropdown.Item>
+<Dropdown.Item >{usarNombre()}</Dropdown.Item>
 <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
 <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
 </Dropdown.Menu>     
-      <Dropdown.Item onClick={toggleDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
+      <Dropdown.Item onClick={activarDarkMode}  className='switch' >Dark mode</Dropdown.Item> 
   </Dropdown>
 </div>
 

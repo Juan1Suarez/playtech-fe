@@ -4,37 +4,21 @@ import 'rsuite/Dropdown/styles/index.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/navigation"
+import { UsardarkMode } from '@/app/services/DarkMode';
 
 export default function   TerminosYCondiciones() {
+    const { darkMode, activarDarkMode } = UsardarkMode();
     const router = useRouter();
     const navegarARegister = () => {
         router.push("register")
     }
-
-    const [darkMode, setDarkMode] = useState(false);
-
-    useEffect(() => {
-        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-        setDarkMode(storedDarkMode);
-        document.body.classList.toggle("darkMode", storedDarkMode);
-    }, []);
-
-    const toggleDarkMode = () => {
-        setDarkMode(prev => {
-            const newDarkMode = !prev;
-            document.body.classList.toggle("darkMode", newDarkMode);
-            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-            return newDarkMode;
-        });
-    };
-    
     
     return (
         <>
            <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Main" />
 
             <button className='volver' onClick={() => navegarARegister()}>Volver</button>
-            <button className='darkT' onClick={toggleDarkMode} >Dark mode</button>
+            <button className='darkT' onClick={activarDarkMode} >Dark mode</button>
 
             <br></br><br></br><br></br><br></br><br></br><br></br>
             <div className='terminos'>

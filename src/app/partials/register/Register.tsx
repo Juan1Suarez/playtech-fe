@@ -2,7 +2,6 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Switch from '@mui/material/Switch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from "next/navigation"
 import { crearUsuarios, verUsuarios } from '../../services/Register';
@@ -39,9 +38,6 @@ export default function Register() {
 
         <>
             <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-
-           
-
             <Formik
                 initialValues={{
                     nombre: '',
