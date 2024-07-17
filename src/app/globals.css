@@ -560,7 +560,7 @@ margin-left: 70px;
 .comprarProducto {
   background-color: rgb(224, 224, 224);
   width: 480px;
-  height: 600px;
+  height: 625px;
   position: absolute;
   top: 185px;
   left: 1330px;
@@ -605,10 +605,8 @@ margin-left: 70px;
 }
 
 .nombreEnLista {
-  position: relative;
   font-size: 10px;
   font-family: 'Roboto Slab';
-  top: 20px;
   margin-bottom: 10px;
 }
 
