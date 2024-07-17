@@ -117,6 +117,10 @@ body {
 
 /*MAIN*/
 
+.verAdmin{
+margin-left: 70px;
+}
+
 .ini {
   position: absolute;
   text-align: center;
@@ -715,9 +719,13 @@ td {
 }
 
 .precioRegistro {
+  margin-left: 1570px;
   position: relative;
-  left: 1700px;
   top: 75px;
+}
+
+.exportar{
+  margin-left: 40px;
 }
 
 /* User */

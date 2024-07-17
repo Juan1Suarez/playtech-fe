@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Switch from '@mui/material/Switch';
 import { crearProducto, upload, verProductos } from '@/app/services/Producto';
 import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
@@ -11,7 +10,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaUserGear } from "react-icons/fa6";
-import DropdownItem from 'rsuite/esm/Dropdown/DropdownItem';
 import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
 
@@ -35,6 +33,10 @@ const MainAdmin = () => {
 
     const navegarARegistroVentas = () => {
         router.push("/registroVentas")
+    }
+
+    const navegarAVerAdmin = () => {
+        router.push("/verAdmin")
     }
 
     useEffect(() => {
@@ -139,7 +141,7 @@ const MainAdmin = () => {
     return (
         <>
             <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-
+            <button className='verAdmin' onClick={() => navegarAVerAdmin()}>Ver todos los productos</button>
             <Container className='caidaproductos'>
                 <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
                 </Dropdown>
@@ -260,13 +262,7 @@ const MainAdmin = () => {
                         <div> Stock</div>
                         <input type="number" name="stock" placeholder='Stock' onChange={handleChange} />
                         <div> Foto</div>
-                        <input
-                            id='foto'
-                            type="file"
-                            name="foto"
-                            accept="image/*"
-                            placeholder='Foto'
-                            onChange={handleChange} />
+                        <small>Para cambiar foto vaya a editar producto.</small>
                         <div> Descripción</div>
                         <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
                         <button onClick={handleSubmit}> Realizar cambios</button>

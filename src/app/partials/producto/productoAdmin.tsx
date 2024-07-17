@@ -30,34 +30,34 @@ const ProductoAdminPage = () => {
 
   const [nombre, setNombre] = useState('');
   useEffect(() => {
-      const token = localStorage.getItem('accessToken');
-      
-      if (token) {
-        try {
-          const decodedToken: { nombre: string } = jwtDecode(token);
-          setNombre(decodedToken.nombre);
-        } catch (error) {
-          console.log("No hay un usuario")
-        }
+    const token = localStorage.getItem('accessToken');
+
+    if (token) {
+      try {
+        const decodedToken: { nombre: string } = jwtDecode(token);
+        setNombre(decodedToken.nombre);
+      } catch (error) {
+        console.log("No hay un usuario")
       }
-    }, []);
+    }
+  }, []);
 
-    const [darkMode, setDarkMode] = useState(false);
-    
-    useEffect(() => {
-        const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-        setDarkMode(storedDarkMode);
-        document.body.classList.toggle("darkMode", storedDarkMode);
-    }, []);
+  const [darkMode, setDarkMode] = useState(false);
 
-    const toggleDarkMode = () => {
-        setDarkMode(prev => {
-            const newDarkMode = !prev;
-            document.body.classList.toggle("darkMode", newDarkMode);
-            localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
-            return newDarkMode;
-        });
-    }; 
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(storedDarkMode);
+    document.body.classList.toggle("darkMode", storedDarkMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      const newDarkMode = !prev;
+      document.body.classList.toggle("darkMode", newDarkMode);
+      localStorage.setItem('darkMode', newDarkMode ? 'true' : 'false');
+      return newDarkMode;
+    });
+  };
 
   const [producto, setProducto] = useState<Producto | null>(null);
 
@@ -106,6 +106,12 @@ const ProductoAdminPage = () => {
     setProducto({ ...producto, [name]: value });
   };
 
+  let file: Blob[] = []
+  const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    file = Array.from(e.target.files ?? [])
+    console.log("files:", file)
+  }
+
   const handleSubmit = async () => {
     try {
       if (!producto.tipoDeProducto || !producto.modelo || !producto.precio || !producto.color || !producto.stock || !producto.descripcion) {
@@ -132,6 +138,12 @@ const ProductoAdminPage = () => {
         alert('La descripción no puede exceder los 500 caracteres.');
         return;
       }
+      if (file[0]){
+      const form = new FormData()
+      form.set('file', file[0])
+      form.set('productoId', producto.productoId?.toString()??'')
+      await upload(form)      
+    }
       await modificarProducto(producto.productoId, producto, router);
       handleClosePopup();
     } catch (error) {
@@ -207,10 +219,9 @@ const ProductoAdminPage = () => {
                 <input type="text" name="stock" value={producto.stock} onChange={handleChange} />
                 <div> Foto</div>
                 <input
-                  type="text"
+                  type="file"
                   name="foto"
-                  value={producto.foto}
-                  onChange={handleChange} />
+                  onChange={handleFileSelected} />
                 <div> Descripción</div>
                 <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} />
                 <button onClick={handleSubmit}> Realizar cambios</button>

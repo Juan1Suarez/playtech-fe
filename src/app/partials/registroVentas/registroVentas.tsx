@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
 import { Container, Dropdown } from 'rsuite';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 const RegistroVentas = () => {
 
@@ -41,6 +43,7 @@ const RegistroVentas = () => {
   const [registro, setRegistro] = useState<Compra[]>([]);
   useEffect(() => {
     verCompra().then((data: Compra[]) => {
+      console.log(data)
       setRegistro(data);
     })
   }, [])
@@ -83,6 +86,23 @@ const RegistroVentas = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
+  const generarPDF = () => {
+    const doc = new jsPDF() as jsPDF & { autoTable: typeof autoTable };
+    autoTable(doc, {
+      head: [['ID COMPRA', 'ID CLIENTE', 'CLIENTE', 'EMAIL', 'FECHA', 'ID PRODUCTO', 'MODELO', 'PRECIO']],
+      body: currentItems.map(compra => [
+        compra.compraId,
+        compra.usuarioId,
+        compra.nombre,
+        compra.email,
+        (new Date(compra.fecha)).toLocaleString(),
+        compra.productoId,
+        compra.modelo,
+        compra.precio
+      ]),
+    });
+    doc.save('registro_ventas.pdf');
+  };
 
   return (
     <>
@@ -113,6 +133,10 @@ const RegistroVentas = () => {
         ))}
       </div>
 
+      <button onClick={generarPDF} className="exportar">
+        Exportar a PDF
+      </button>
+
       <button className='precioRegistro' onClick={sortRegistro}>
         Precio {sortOrder === 'asc' ? '↓' : '↑'}
       </button>
@@ -120,7 +144,7 @@ const RegistroVentas = () => {
         <thead>
           <tr>
             <th>ID COMPRA</th>
-            <th>ID CL</th>
+            <th>ID CLIENTE</th>
             <th>CLIENTE</th>
             <th>EMAIL</th>
             <th>FECHA</th>
@@ -136,7 +160,7 @@ const RegistroVentas = () => {
               <td>{compra.usuarioId}</td>
               <td>{compra.nombre}</td>
               <td>{compra.email}</td>
-              <td>{compra.fecha}</td>
+              <td>{(new Date(compra.fecha)).toLocaleString()}</td> 
               <td>{compra.productoId}</td>
               <td>{compra.modelo}</td>
               <td>{compra.precio}</td>

@@ -46,7 +46,7 @@ export const crearProducto = async (producto: Producto, router: any) => {
     const response = await clienteAxios.post(`/producto/`, producto);
     
     if (response.status === 201) {
-      router.push("/mainAdmin");
+      router.push(`/productoAdmin?modelo=${producto.modelo}`);
     }
     return response.data;
 
@@ -57,9 +57,9 @@ export const crearProducto = async (producto: Producto, router: any) => {
 };
 
 
-export const upload = async (foto: FormData, productoId: number) => {
+export const upload = async (form: FormData) => {
   try {
-  const response = await clienteAxios.post('imagen/upload', {foto, productoId})
+  const response = await clienteAxios.post('imagen/upload', form)
   return response.data;
 } catch (error) {
     console.error("ERROR", error);
