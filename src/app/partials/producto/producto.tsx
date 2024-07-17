@@ -119,6 +119,7 @@ const ProductoPage = () => {
         <img src={producto.foto} className='fotoP'></img>
         <div className='containerDatos'>
           <div className='nombreProducto'>{producto.modelo}</div>
+          <div>Stock: {producto.stock}</div>
           <h1 className='linea'></h1>
           <div className='precioProducto'>Precio: {producto.precio}</div>
 
@@ -134,10 +135,7 @@ const ProductoPage = () => {
           <button className='botonAgregar' onClick={() => agregarCarrito(true)}>
             Agregar al carrito
           </button>
-
         </div>
-
-
       </div>
 
       <div className='productosDesc'>

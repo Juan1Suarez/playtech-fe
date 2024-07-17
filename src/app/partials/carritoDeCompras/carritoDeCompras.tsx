@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import Producto from '../../services/model/producto.model';
-import { registroVenta } from '@/app/services/Registro';
+import { registroVenta, restarStock } from '@/app/services/Registro';
 import { FaUserGear } from 'react-icons/fa6';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
@@ -66,21 +66,35 @@ const CarritoDeCompras = () => {
   }
 
 
-  const finalizarCompra = () => {
+  const finalizarCompra = async () => {
     const token = localStorage.getItem('accessToken')!;
     const decodedToken: { usuarioId: number } = jwtDecode(token);
     const usuarioId = decodedToken.usuarioId;
-
-    productos.forEach(producto => {
+  
+    const restarStockPromises = productos.map(producto => {
       const productoId = producto.productoId;
       if (productoId !== undefined) {
-        registroVenta(productoId, usuarioId);
+        return restarStock(productoId);
       }
+      return Promise.resolve();
     });
-    alert("¡Tu compra se ha completado con éxito!");
-    localStorage.removeItem('carrodecompras');
-    navegarAMain();
-  }
+    try {
+      await Promise.all(restarStockPromises);
+  
+      const registroPromises = productos.map(producto => {
+        const productoId = producto.productoId;
+        return registroVenta(productoId, usuarioId);
+      });
+      
+      await Promise.all(registroPromises); 
+      alert("¡Tu compra se ha completado con éxito!");
+      localStorage.removeItem('carrodecompras');
+      navegarAMain();
+    } catch (error) {
+      alert("Uno de los productos elegidos no esta en stock. Intenta nuevamente.");
+      console.error(error);
+    }
+  };
 
   const borrarCompra = () => {
     const confirm = window.confirm("¿Estás seguro de que quieres eliminar el carrito?");
@@ -119,7 +133,7 @@ const CarritoDeCompras = () => {
       <div className='carritoProducto'>
         {productos.map((producto, index) => (
           <div key={index} className='productoElegido'>
-            <img className='fotonisuta' src={producto.foto} />
+            <img className='fotoCarrito' src={producto.foto} />
             <h1 className='textoProducto'>{producto.modelo}</h1>
             <h1 className='valorproducto'>$ {producto.precio}</h1>
           </div>
@@ -130,7 +144,7 @@ const CarritoDeCompras = () => {
 
       <div className='comprarProducto'>
         {productos.length > 0 && (
-          <div className='contenidoCompra'>
+          <div>
             <div className='nombreEnLista'>
               {productos.map((producto, index) => (
                 <div className='nombreProducto' key={index}>{producto.modelo}</div>
@@ -139,7 +153,6 @@ const CarritoDeCompras = () => {
             <div className='divisor1' />
             <h1 className='precioTotal'>Precio total = ${productos.reduce((total, producto) => total + producto.precio, 0)}</h1>
             <div className='fin' onClick={finalizarCompra}>Finalizar transacción</div>
-
           </div>
         )}
       </div>

@@ -20,3 +20,14 @@ try {
     throw error;
 }
 }
+
+export const restarStock = async (productoId: number) => {
+    try {
+        const response = await clienteAxios.put('/compra/' + productoId)
+        return response.data;
+    } catch (error) {
+        console.error("ERROR", error)
+        throw error;
+    }
+    }
+    

@@ -503,9 +503,9 @@ margin-left: 70px;
   border-width: 2px;
 }
 
-.fotonisuta {
+.fotoCarrito {
   position: relative;
-  height: 150px;
+  height: 140px;
   width: 160px;
   top: 10px;
   left: 45px;
@@ -554,7 +554,7 @@ margin-left: 70px;
   display: flex;
   justify-content: center;
   left: 900px;
-  bottom: 242px;
+  bottom: 230px;
 }
 
 .comprarProducto {
@@ -614,8 +614,8 @@ margin-left: 70px;
 
 .precioTotal {
   position: absolute;
-  top: 515px;
-  left: 75px;
+  top: 520px;
+  left: 60px;
   font-family: 'Roboto Slab';
 }
 
