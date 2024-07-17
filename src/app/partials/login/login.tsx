@@ -2,26 +2,21 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Switch from '@mui/material/Switch';;
 import { useRouter } from "next/navigation"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { login } from '@/app/services/Login';
-import Login from '../model/login.model';
-
+import Login from '../../services/model/login.model';
 
 export default function Home() {
   const router = useRouter();
   const navegarARegister = () => {
-    router.push("/")
+    router.push("/register")
   }
 
-  const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-  function darkMode() {
-    var element = document.body;
-    element.classList.toggle("darkMode");
- }
-
+  const navegarAMain = () => {
+    router.push("/")
+  }
+  
   const validationSchema = Yup.object().shape({
    
     email: Yup.string()
@@ -36,11 +31,8 @@ export default function Home() {
 
     <>
 
-      <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-      <div className='fondodark'>
-        <div className='switch'>Dark mode</div>
-        <Switch  onChange={darkMode} className='switch'  form="flexSwitchCheckChecked" />    
-   </div>
+      <img  onClick={() => navegarAMain()} className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      
       <Formik
         initialValues={{
           email: '',
@@ -56,7 +48,7 @@ export default function Home() {
         {({ isSubmitting }) => (  
           <Form className='form'>
             <h1 className="login">Log-In</h1>
-            <h1 className='titulofield'>GMAIL</h1>
+            <h1 className='titulofield'>EMAIL</h1>
             <Field className="field"
               type="string"
               name="email"
@@ -70,8 +62,6 @@ export default function Home() {
               placeholder="Introduzca su contraseña"
             />
             <ErrorMessage name="password" component="div" className='color' />
-
-          
 
             <button className="boton" type="submit" disabled={isSubmitting}>Iniciar sesion</button>
 

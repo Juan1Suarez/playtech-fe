@@ -1,5 +1,6 @@
+import { jwtDecode } from "jwt-decode";
 import clienteAxios from "./Axios";
-import Usuario from "../partials/model/usuario.model";
+import Usuario from "./model/usuario.model";
 
 export const verUsuarios = async () => {
     try {
@@ -12,13 +13,16 @@ export const verUsuarios = async () => {
 }
 
 export const crearUsuarios = async (Usuario: Usuario, router: any) => {
-    try{
+    try {
         const response = await clienteAxios.post('/usuarios', Usuario);
         console.log(response);
-        const {accessToken} = response.data
+        const { accessToken } = response.data
         localStorage.setItem('accessToken', accessToken)
-        router.push("mainUser")
-    } catch (error) {
-        console.log (error)
+        alert("¡Usuario creado exitosamente! Por favor inicie sesión");
+        router.push("/login")
+    } catch (error: any) {
+        if (error.response.status === 403) {
+            alert("Ya existe un usuario con este mail")
+        }
     }
 }

@@ -2,11 +2,10 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Switch from '@mui/material/Switch';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useRouter } from "next/navigation"
 import { crearUsuarios, verUsuarios } from '../../services/Register';
-import Usuario from '../model/usuario.model';
+import Usuario from '../../services/model/usuario.model';
 
 
 export default function Register() {
@@ -15,15 +14,11 @@ export default function Register() {
         router.push("login")
 
     }
-    
-    function darkMode() {
-        var element = document.body;
-        element.classList.toggle("darkMode");
+
+    const navegarATerminos = () => {
+        router.push("terminosYCondiciones")
     }
-
-    const [value, setValue] = React.useState<number | null>(5);
-
-
+    
     const validationSchema = Yup.object().shape({
         nombre: Yup.string()
             .required('El nombre completo es requerido')
@@ -43,12 +38,6 @@ export default function Register() {
 
         <>
             <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-
-            <div className='fondodark'>
-                <div className='switch'>Dark mode</div>
-                <Switch onChange={darkMode} className='switch' form="flexSwitchCheckChecked" />
-            </div>
-
             <Formik
                 initialValues={{
                     nombre: '',
@@ -74,7 +63,7 @@ export default function Register() {
                             placeholder="Escriba su nombre completo"
                         />
                         <ErrorMessage name="nombre" component="div" className='color' />
-                        <h1 className='titulofield'>GMAIL</h1>
+                        <h1 className='titulofield'>EMAIL</h1>
                         <Field className="field"
                             type="text"
                             name="email"
@@ -91,12 +80,8 @@ export default function Register() {
 
                         <div className="form-check form-switch">
                             <Field className="form-check-input" type="checkbox" role="switch" name="terminos" />
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los T͟e͟r͟m͟i͟n͟o͟s͟ y͟ c͟o͟n͟d͟i͟c͟i͟o͟n͟e͟s͟</label>
+                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Acepto los <a className='terminosYCondiciones'  onClick={() => navegarATerminos()}>Terminos y condiciones</a></label>
                             <ErrorMessage name="terminos" component="div" className='colorcheck' />
-                        </div>
-                        <div className="form-check form-switch">
-                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">¡Quiero enterarme de las novedades!</label>
                         </div>
 
                         <button className="boton" type="submit" disabled={isSubmitting}>Crear cuenta</button>

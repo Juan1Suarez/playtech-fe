@@ -1,15 +1,15 @@
 "use client"
 
 import Footer from "@/app/partials/footer/footer"
-import MainAdmin from "@/app/partials/main/MainAdmin"
+import Producto from "@/app/partials/producto/producto"
 
 
 export default function Home() {
   return (<>
 
     
-<MainAdmin/>
-<Footer/>
+<Producto/>
+<Footer/>  
   </>
   )
 }

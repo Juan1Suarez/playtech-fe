@@ -1,83 +1,244 @@
 "use client";
-import React from 'react';
-import Switch from '@mui/material/Switch';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import React, { useEffect, useState } from 'react';
+import { crearProducto, verProductos } from '@/app/services/Producto';
+import Producto from '../../services/model/producto.model';
+import { useRouter } from 'next/navigation';
+import { withRoles } from '@/app/services/HOC/withRoles';
+import { Container, Dropdown } from 'rsuite';
+import 'rsuite/Dropdown/styles/index.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { FaUserGear } from "react-icons/fa6";
+import { eliminarUsuario } from '@/app/services/Login';
+import { LogOut } from '@/app/services/LogOut';
+import { UsardarkMode } from '@/app/services/DarkMode';
+import { usarNombre } from '@/app/services/Nombre';
 
-export default function MainAdmin() {
-  function darkMode() {
-    var element = document.body;
-    element.classList.toggle("darkMode");
-  }
-  const [value, setValue] = React.useState<number | null>(5);
-  return (
-    <>
-      <input className='navigation' placeholder='Buscar Producto'></input>
-      <button className='buscar'>GO</button>
-      <div className='admin'>
-        <p className='adminletra'>Admin</p></div>
-      <div className='fondodark'>
-        <div>Dark mode</div>
-        <Switch onChange={darkMode} className='switch' form="flexSwitchCheckChecked" />
-      </div>
-      <br></br>
-      <h1 className='subtitulo'>Auriculares</h1>
-      <div className='Auriculares'>
-        <a href="https://www.mercadolibre.com.ar/auriculares-gamer-nisuta-nsaug300-negro-y-azul/p/MLA15317091#searchVariation=MLA15317091&position=17&search_layout=stack&type=product&tracking_id=5939455b-3284-499b-9db3-18a0989a6883"  > <img className='img' src="./img/nisuta.webp" />
-          Auriculares gamer Nisuta NSAUG300
-          <h1>$35.054</h1>
-        </a>
-        <a href="https://www.mercadolibre.com.ar/auriculares-gamer-inalambricos-logitech-g-g-series-g435-g435-negro-y-amarillo-fluorescente-con-luz-azul-turquesa/p/MLA18651916?pdp_filters=category:MLA6049#searchVariation=MLA18651916&position=11&search_layout=stack&type=product&tracking_id=0bec4b49-b29d-473f-9804-3afb26536f6b"  > <img className='img' src="./img/logitech.webp" />
-          Auriculares gamer inalámbricos Logitech G Series G435
-          <h1>$150.799</h1>
-        </a>
-      </div>
+const MainAdmin = () => {
+    const { darkMode, activarDarkMode } = UsardarkMode();
+    const [productos, setProductos] = useState<Producto[]>([]);
+    const [showPopup, setShowPopup] = useState(false);
+    const [nuevoProducto, setNuevoProducto] = useState<Producto>({
+        tipoDeProducto: '',
+        modelo: '',
+        precio: 0,
+        color: '',
+        stock: 0,
+        foto: '',
+        descripcion: ''
+    });
 
-      <br />
+    const router = useRouter();
+    const navegarAProducto = (modelo: string) => {
+        router.push("/productoAdmin?modelo=" + modelo);
+    }
 
-      <h1 className='subtitulo'>Teclados</h1>
-      <div className='Teclados'>
-        <a href="https://www.mercadolibre.com.ar/teclado-gamer-redragon-kumara-k552-qwerty-espanol-latinoamerica-color-negro-con-luz-rgb/p/MLA19472215?pdp_filters=category:MLA418448#searchVariation=MLA19472215&position=7&search_layout=stack&type=product&tracking_id=853d3b61-16f4-4ad5-a355-e0a089be478a"  > <img className='imgred' src="./img/reddragon.jpg" />
-          Teclado gamer Redragon Kumara K552 QWERTY
-          <h1>$70.991,83</h1>
-        </a>
-        <a href="https://www.mercadolibre.com.ar/logitechpro-teclado-gamer-edicion-especial-league-of-legends-idioma-ingles-us-color-negro/p/MLA24529871?pdp_filters=category:MLA418448#searchVariation=MLA24529871&position=36&search_layout=stack&type=product&tracking_id=db1dcf30-aa72-44e5-a54b-c53613f0871c"  > <img className='imglol' src="./img/LOL.jpg" />
-          Logitech pro Teclado Gamer Edición Especial League Of Legends
-          <h1>$172.199</h1>
-        </a>
-      </div>
+    const navegarARegistroVentas = () => {
+        router.push("/registroVentas")
+    }
 
-      <br />
+    const navegarAVerAdmin = () => {
+        router.push("/verAdmin")
+    }
 
-      <h1 className='subtitulo'>Sillas</h1>
-      <div className='Sillas'>
-        <a href="https://www.mercadolibre.com.ar/auriculares-gamer-nisuta-nsaug300-negro-y-azul/p/MLA15317091#searchVariation=MLA15317091&position=17&search_layout=stack&type=product&tracking_id=5939455b-3284-499b-9db3-18a0989a6883"  > <img className='img' src="./img/nisuta.webp" />
-          Auriculares gamer Nisuta NSAUG300
-          <h1>$120.000</h1>
-        </a>
-        <a href="https://www.mercadolibre.com.ar/auriculares-gamer-inalambricos-logitech-g-g-series-g435-g435-negro-y-amarillo-fluorescente-con-luz-azul-turquesa/p/MLA18651916?pdp_filters=category:MLA6049#searchVariation=MLA18651916&position=11&search_layout=stack&type=product&tracking_id=0bec4b49-b29d-473f-9804-3afb26536f6b"  > <img className='img' src="./img/logitech.webp" />
-          Auriculares gamer Nisuta NSAUG300
-          <h1>$120.000</h1>
-        </a>
-      </div>
+    useEffect(() => {
+        verProductos().then((data: Producto[]) => {
+            setProductos(data);
+        })
+    })
+    
+    const handleEditClick = () => {
+        setShowPopup(true);
+    };
 
-      <Box
-        className='rating'
-        sx={{
-          '& > legend': { mt: 2 },
-        }}
-      >
-        <Typography component="legend">¡Deja tu opinión!</Typography>
-        <Rating
-          name="simple-controlled"
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        />
-      </Box>
-    </>
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
 
-  )
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setNuevoProducto({ ...nuevoProducto, [name]: value });
+    };
+
+    const handleSubmit = async () => {
+        try {
+            if (!nuevoProducto.tipoDeProducto || !nuevoProducto.modelo || !nuevoProducto.precio || !nuevoProducto.color || !nuevoProducto.stock || !nuevoProducto.descripcion) {
+                alert('Por favor, complete todos los campos.');
+                return;
+            }
+            if (nuevoProducto.modelo.length > 20) {
+                alert('El modelo no puede exceder los 20 caracteres.');
+                return;
+            }
+            if (nuevoProducto.precio > 99999999999) {
+                alert('El precio no puede exceder los 11 caracteres.');
+                return;
+            }
+            if (nuevoProducto.color.length > 20) {
+                alert('El color no puede exceder los 20 caracteres.');
+                return;
+            }
+            if (nuevoProducto.stock > 500) {
+                alert('El stock no puede ser más de 500.');
+                return;
+            }
+            if (nuevoProducto.descripcion.length > 500) {
+                alert('La descripción no puede exceder los 500 caracteres.');
+                return;
+            }
+            await crearProducto(nuevoProducto, router);
+            verProductos();
+            handleClosePopup();
+        } catch (error) {
+            console.error('Error al modificar producto', error);
+        }
+    };
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+    };
+
+    return (
+        <>
+            <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+            <button className='verAdmin' onClick={() => navegarAVerAdmin()}>Ver todos los productos</button>
+            <Container className='caidaproductos'>
+                <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
+                </Dropdown>
+            </Container>
+
+            <div className='configUser'>
+                <Dropdown title={<FaUserGear size={42} />}>
+                    <Dropdown.Menu title="Admin">
+                        <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+                        <Dropdown.Item onClick={handleEditClick}>Añadir producto</Dropdown.Item>
+                        <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
+                        <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
+                    </Dropdown.Menu>
+                    <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
+                </Dropdown>
+            </div>
+
+            <Slider {...settings} className='carousel'>
+                <div>
+                    <img src="./img/1.png" style={{ width: '100%' }} />
+                </div>
+                <div>
+                    <img src="./img/2.png" style={{ width: '100%' }} />
+                </div>
+                <div>
+                    <img src="./img/3.png" style={{ width: '100%' }} />
+                </div>
+            </Slider>
+
+            <div className='subs'>Auriculares</div>
+            <div className='fondoimg'>
+                {productos
+                    .filter(producto => producto.tipoDeProducto === "Auriculares")
+                    .slice(0, 7)
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                            <img className='fotoMain' src={producto.foto}></img>
+                            <p>{producto.modelo}</p>
+                            <div>${producto.precio}</div>
+                        </a>
+                    ))}
+            </div>
+
+            <h2 className='subs'>Teclados</h2>
+            <div className='fondoimg'>
+                {productos
+                    .filter(producto => producto.tipoDeProducto === "Teclado")
+                    .slice(0, 7)
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                            <img className='fotoMain' src={producto.foto}></img>
+                            <p>{producto.modelo}</p>
+                            <div>${producto.precio}</div>
+                        </a>
+                    ))}
+            </div>
+
+            <h2 className='subs'>Mouses</h2>
+            <div className='fondoimg'>
+                {productos
+                    .filter(producto => producto.tipoDeProducto === "Mouse")
+                    .slice(0, 7)
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                            <img className='fotoMain' src={producto.foto}></img>
+                            <p>{producto.modelo}</p>
+                            <div>${producto.precio}</div>
+                        </a>
+                    ))}
+            </div>
+
+            <h2 className='subs'>Mousepads</h2>
+            <div className='fondoimg'>
+                {productos
+                    .filter(producto => producto.tipoDeProducto === "Mousepad")
+                    .slice(0, 7)
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                            <img className='fotoMain' src={producto.foto}></img>
+                            <p>{producto.modelo}</p>
+                            <div>${producto.precio}</div>
+                        </a>
+                    ))}
+            </div>
+
+            <h2 className='subs'>Sillas Gamers</h2>
+            <div className='fondoimg'>
+                {productos
+                    .filter(producto => producto.tipoDeProducto === "Silla Gamer")
+                    .map(producto => (
+                        <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                            <img className="fotoMain" src={producto.foto}></img>
+                            <p>{producto.modelo}</p>
+                            <div>${producto.precio}</div>
+                        </a>
+                    ))}
+            </div>
+
+            {showPopup && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <span className="close" onClick={handleClosePopup}>&times;</span>
+                        <div> Tipo de producto</div>
+                        <select name="tipoDeProducto" onChange={handleChange} defaultValue="">
+                            <option value="" disabled>Seleccionar tipo de producto</option>
+                            <option value="Auriculares">Auriculares</option>
+                            <option value="Teclado">Teclado</option>
+                            <option value="Mouse">Mouse</option>
+                            <option value="Mousepad">Mousepad</option>
+                            <option value="Silla Gamer">Silla Gamer</option>
+                        </select>
+                        <div> Modelo</div>
+                        <input type="text" name="modelo" placeholder='Modelo' onChange={handleChange} />
+                        <div> Precio</div>
+                        <input type="number" name="precio" placeholder='Precio' onChange={handleChange} />
+                        <div> Color</div>
+                        <input type="text" name="color" placeholder='Color' onChange={handleChange} />
+                        <div> Stock</div>
+                        <input type="number" name="stock" placeholder='Stock' onChange={handleChange} />
+                        <div> Foto</div>
+                        <small>Para cambiar foto vaya a editar producto.</small>
+                        <div> Descripción</div>
+                        <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
+                        <button onClick={handleSubmit}> Realizar cambios</button>
+                        <button onClick={handleClosePopup}>Cancelar</button>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
+
+export default withRoles(MainAdmin, [1], "/login");

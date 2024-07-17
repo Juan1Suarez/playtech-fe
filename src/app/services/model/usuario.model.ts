@@ -1,4 +1,5 @@
 interface Usuario {
+    usuarioId?: number;
     nombre: string;
     email: string;
     password: string;
