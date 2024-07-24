@@ -11,10 +11,11 @@ import { useRouter } from 'next/navigation';
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
-import { usarNombre } from '@/app/services/Nombre';
+import { useNombre } from '@/app/services/Nombre';
 
 
 const CarritoDeCompras = () => {
+  const nombre = useNombre();
   const { darkMode, activarDarkMode } = UsardarkMode();
   const [productos, setProductos] = useState<Producto[]>([]);
    const [isClient, setIsClient] = useState(false);
@@ -36,7 +37,7 @@ const CarritoDeCompras = () => {
   if (isClient && !localStorage.getItem('carrodecompras')) {
     return (
       <>
-<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
+<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="" loading="lazy"></img></a>
 
 <Container className='caidaproductos'>
   <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
@@ -51,7 +52,7 @@ const CarritoDeCompras = () => {
 <div className='configUser'>
 <Dropdown title={<FaUserGear size={42} />}>
     <Dropdown.Menu title="User">
-      <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+      <Dropdown.Item >{nombre}</Dropdown.Item>
       <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
       <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
     </Dropdown.Menu>
@@ -107,7 +108,7 @@ const CarritoDeCompras = () => {
 
   return (
     <>
-      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
+      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="" loading="lazy"></img></a>
 
       <Container className='caidaproductos'>
         <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
@@ -122,7 +123,7 @@ const CarritoDeCompras = () => {
       <div className='configUser'>
       <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="User">
-            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+            <Dropdown.Item >{nombre}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
             <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
           </Dropdown.Menu>
@@ -133,7 +134,7 @@ const CarritoDeCompras = () => {
       <div className='carritoProducto'>
         {productos.map((producto, index) => (
           <div key={index} className='productoElegido'>
-            <img className='fotoCarrito' src={producto.foto} />
+            <img className='fotoCarrito' src={producto.foto} alt="Foto del producto" loading="lazy"/>
             <h1 className='textoProducto'>{producto.modelo}</h1>
             <h1 className='valorproducto'>$ {producto.precio}</h1>
           </div>

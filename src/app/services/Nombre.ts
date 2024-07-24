@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
-export const usarNombre= () => {
+export const useNombre = () => {
 const [nombre, setNombre] = useState('');
 useEffect(() => {
     const token = localStorage.getItem('accessToken');

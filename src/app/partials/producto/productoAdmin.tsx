@@ -11,9 +11,10 @@ import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
-import { usarNombre } from '@/app/services/Nombre';
+import { useNombre } from '@/app/services/Nombre';
 
 const ProductoAdminPage = () => {
+  const nombre = useNombre();
   const { darkMode, activarDarkMode } = UsardarkMode();
   const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
@@ -47,7 +48,7 @@ const ProductoAdminPage = () => {
         </Container><div className='configUser'>
           <Dropdown title={<FaUserGear size={42} />}>
             <Dropdown.Menu title="Admin">
-              <Dropdown.Item>{usarNombre()}</Dropdown.Item>
+              <Dropdown.Item>{nombre}</Dropdown.Item>
               <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
               <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
             </Dropdown.Menu>
@@ -129,7 +130,7 @@ const ProductoAdminPage = () => {
       <div className='configUser'>
         <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="Admin">
-            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+            <Dropdown.Item >{nombre}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
           </Dropdown.Menu>
           <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>

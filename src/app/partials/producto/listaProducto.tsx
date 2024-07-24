@@ -12,7 +12,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
-import { usarNombre } from '@/app/services/Nombre';
+import { useNombre } from '@/app/services/Nombre';
 
 const ListaProducto = () => {
   const { darkMode, activarDarkMode } = UsardarkMode();
@@ -62,7 +62,7 @@ const ListaProducto = () => {
     <div className='configUser'>
     <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="User">
-            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+            <Dropdown.Item >{useNombre()}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
             <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
           </Dropdown.Menu>
