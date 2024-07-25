@@ -6,7 +6,6 @@ import { LogOut } from '@/app/services/LogOut';
 import Producto from '@/app/services/model/producto.model';
 import { useNombre } from '@/app/services/Nombre';
 import { verProductos } from '@/app/services/Producto';
-import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
@@ -34,7 +33,21 @@ const VerAdminPage = () => {
     verProductos().then((data: Producto[]) => {
         setProductos(data);
     })
-})
+}, [])
+
+const [sortOrder, setSortOrder] = useState('asc');
+
+const sortProducto = () => {
+  const sortedProducto = [...productos].sort((a, b) => {
+    if (sortOrder === 'asc') {
+      return a.precio - b.precio;
+    } else {
+      return b.precio - a.precio;
+    }
+  });
+  setProductos(sortedProducto);
+  setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+};
   return (
     <>
 <img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
@@ -56,9 +69,8 @@ const VerAdminPage = () => {
   </Dropdown>
 </div>
 
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-
-<div className='buscadorProductos'>
+<button className='adminPrecio' onClick={sortProducto}>Precio {sortOrder === 'asc' ? '↓' : '↑'}</button>
+<div className='buscadorProductosAdmin'>
         {productos
           .map(producto => (
             <div className='cardProducto' key={producto.productoId}>

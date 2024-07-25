@@ -31,6 +31,20 @@ const ListaProducto = () => {
       setTipoProducto(tipoParam);
     }
   }, [tipoParam]);
+  
+  const [sortOrder, setSortOrder] = useState('asc');
+
+  const sortProducto = () => {
+    const sortedProducto = [...productos].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.precio - b.precio;
+      } else {
+        return b.precio - a.precio;
+      }
+    });
+    setProductos(sortedProducto);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
 
   const router = useRouter();
   const navegarAProducto = (modelo: string) => {
@@ -58,7 +72,7 @@ const ListaProducto = () => {
         <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
       </Dropdown>
     </Container>
-    <br></br>
+    
     <div className='configUser'>
     <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="User">
@@ -69,17 +83,15 @@ const ListaProducto = () => {
           <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
         </Dropdown>
       </div>
-
     <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42}/></button>
       
-
+    <button className='listaPrecio' onClick={sortProducto}>Precio {sortOrder === 'asc' ? '↓' : '↑'}</button>
       <div className='containerProductos'>
         <button className='productosListado' onClick={() => botonProducto('Auriculares')}>Auriculares</button>
         <button className='productosListado' onClick={() => botonProducto('Teclado')}>Teclado</button>
         <button className='productosListado' onClick={() => botonProducto('Mousepad')}>Mousepad</button>
         <button className='productosListado' onClick={() => botonProducto('Silla Gamer')}>Silla gamer</button>
       </div>
-
       <div className='buscadorProductos'>
         {productos
           .filter(producto => producto.tipoDeProducto === tipoProducto)
