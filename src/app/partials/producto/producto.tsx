@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
 import { Container, Dropdown } from 'rsuite';
@@ -12,9 +12,10 @@ import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
-import { usarNombre } from '@/app/services/Nombre';
+import { useNombre } from '@/app/services/Nombre';
 
 const ProductoPage = () => {
+  const nombre = useNombre();
   const { darkMode, activarDarkMode } = UsardarkMode();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -71,7 +72,7 @@ const ProductoPage = () => {
         <div className='configUser'>
           <Dropdown title={<FaUserGear size={42} />}>
             <Dropdown.Menu title="User">
-              <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+              <Dropdown.Item >{nombre}</Dropdown.Item>
               <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
               <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
             </Dropdown.Menu>
@@ -105,7 +106,7 @@ const ProductoPage = () => {
       <div className='configUser'>
         <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="User">
-            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+            <Dropdown.Item >{nombre}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
             <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
           </Dropdown.Menu>

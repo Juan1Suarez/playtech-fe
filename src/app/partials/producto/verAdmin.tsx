@@ -4,9 +4,8 @@ import { withRoles } from '@/app/services/HOC/withRoles';
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
 import Producto from '@/app/services/model/producto.model';
-import { usarNombre } from '@/app/services/Nombre';
+import { useNombre } from '@/app/services/Nombre';
 import { verProductos } from '@/app/services/Producto';
-import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
@@ -14,7 +13,7 @@ import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 
 
-const verAdminPage = () => {
+const VerAdminPage = () => {
   const { darkMode, activarDarkMode } = UsardarkMode();
     const router = useRouter();
   const navegarAMain = () => {
@@ -34,7 +33,21 @@ const verAdminPage = () => {
     verProductos().then((data: Producto[]) => {
         setProductos(data);
     })
-})
+}, [])
+
+const [sortOrder, setSortOrder] = useState('asc');
+
+const sortProducto = () => {
+  const sortedProducto = [...productos].sort((a, b) => {
+    if (sortOrder === 'asc') {
+      return a.precio - b.precio;
+    } else {
+      return b.precio - a.precio;
+    }
+  });
+  setProductos(sortedProducto);
+  setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+};
   return (
     <>
 <img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
@@ -48,7 +61,7 @@ const verAdminPage = () => {
 <div className='configUser'>
   <Dropdown title={<FaUserGear size={42} />}>
     <Dropdown.Menu title="Admin">
-      <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+      <Dropdown.Item >{useNombre()}</Dropdown.Item>
       <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
       <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
     </Dropdown.Menu>
@@ -56,9 +69,8 @@ const verAdminPage = () => {
   </Dropdown>
 </div>
 
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-
-<div className='buscadorProductos'>
+<button className='adminPrecio' onClick={sortProducto}>Precio {sortOrder === 'asc' ? '↓' : '↑'}</button>
+<div className='buscadorProductosAdmin'>
         {productos
           .map(producto => (
             <div className='cardProducto' key={producto.productoId}>
@@ -78,4 +90,4 @@ const verAdminPage = () => {
   );
 }
 
-export default withRoles(verAdminPage, [1], '/login');
+export default withRoles(VerAdminPage, [1], '/login');

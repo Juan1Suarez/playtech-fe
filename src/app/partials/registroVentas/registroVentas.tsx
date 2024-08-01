@@ -12,7 +12,7 @@ import autoTable from 'jspdf-autotable';
 import 'rsuite/Dropdown/styles/index.css';
 import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
-import { usarNombre } from '@/app/services/Nombre';
+import { useNombre } from '@/app/services/Nombre';
 
 const RegistroVentas = () => {
   const { darkMode, activarDarkMode } = UsardarkMode();
@@ -84,7 +84,7 @@ const RegistroVentas = () => {
       <div className='configUser'>
         <Dropdown title={<FaUserGear size={42} />}>
           <Dropdown.Menu title="Admin">
-            <Dropdown.Item >{usarNombre()}</Dropdown.Item>
+            <Dropdown.Item >{useNombre()}</Dropdown.Item>
             <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
           </Dropdown.Menu>
           <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
