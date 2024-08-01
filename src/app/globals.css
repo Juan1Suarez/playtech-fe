@@ -229,6 +229,70 @@ margin-left: 70px;
   margin: auto;
 }
 
+.fotoAdmin{
+  position: relative;
+  left: 20px;
+  margin-top: 20px;
+  width: 90px;
+  height: 50px;
+}
+
+
+.adminPrecio{
+  margin-left: 1350px;
+  width: 130px;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 9px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.fotoAdmin{
+  height: 80px;
+
+}
+
+
+
+.englobadorPAdmin{
+margin-left: 150px;
+  width: 1400px;
+ 
+  background-color: #ffffff;
+  border: 1px solid #000000;
+border-radius: 5px;
+
+}
+
+
+
+
+.precioPAdmin{
+display: inline-block;
+margin-right: 400px;
+width: 100px;
+
+}
+
+.modeloPAdmin{
+  display: inline-block;
+  margin-left: 100px;
+  width: 300px;
+  height: 20px;
+}
+
+.verPAdmin{
+  display: inline-block;
+  margin-right: 10px;
+  height: 50px;
+  width: 170px;
+  border: solid 2px black;
+  border-radius: 10px;
+}
+
 /*productos*/
 
 .error {
@@ -787,32 +851,5 @@ td {
   border-radius: 5px;
   font-family: 'Roboto Slab';
   font-size: 15px;
-  cursor: pointer;
-}
-
-/*verAdmin*/
-
-.buscadorProductosAdmin {
-  margin-left: 450px;
-  margin-top: 10px;
-  border: 1px solid;
-  border-radius: 7px;
-  width: 1000px;
-  background-color: rgb(241, 241, 241);
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-.adminPrecio{
-  margin-left: 1350px;
-  width: 130px;
-  padding: 5px;
-  border: 1px solid #000000;
-  border-radius: 9px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  font-size: 13px;
   cursor: pointer;
 }

@@ -11,7 +11,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
-import { jwtDecode } from 'jwt-decode';
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
@@ -31,6 +30,7 @@ const MainUser = () => {
             setProductos(data);
         })
     }, [])
+    
 
       const settings = {
         dots: true,
@@ -45,6 +45,8 @@ const MainUser = () => {
     const navegarACarrito = () => {
         router.push("/carritoDeCompras");
       };
+      
+      const tiposDeProducto = Array.from(new Set(productos.map(producto => producto.tipoDeProducto)));
   
     return (
         <>
@@ -84,75 +86,29 @@ const MainUser = () => {
                     <img src="./img/3.png" style={{ width: '100%' }} />
                 </div>
             </Slider>
+            
 
-<div className='subs'>Auriculares</div>
-<div className='fondoimg'>
-    {productos
-        .filter(producto => producto.tipoDeProducto === "Auriculares")
-        .slice(0, 7)
-        .map(producto => (
-            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                <img className='fotoMain' src={producto.foto}></img>
-                <p>{producto.modelo}</p>
-                <div>${producto.precio}</div>
-            </a>
-        ))}
-</div>
+  
+            {tiposDeProducto.map(tipo => (
+                <div key={tipo}>
+                    <a>
+                        <div className='subs'>{tipo}</div>
+                    </a>
+                    <div className='fondoimg'>
+                        {productos
+                            .filter(producto => producto.tipoDeProducto === tipo)
+                            .slice(0, 7)
+                            .map(producto => (
+                                <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
+                                    <img className='fotoMain' src={producto.foto} alt={producto.modelo}></img>
+                                    <p>{producto.modelo}</p>
+                                    <div>${producto.precio}</div>
+                                </a>
+                            ))}
+                    </div>
+                </div>
+            ))}
 
-<h2 className='subs'>Teclados</h2>
-<div className='fondoimg'>
-    {productos
-        .filter(producto => producto.tipoDeProducto === "Teclado")
-        .slice(0, 7)
-        .map(producto => (
-            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                <img className='fotoMain' src={producto.foto}></img>
-                <p>{producto.modelo}</p>
-                <div>${producto.precio}</div>
-            </a>
-        ))}
-</div>
-
-<h2 className='subs'>Mouses</h2>
-<div className='fondoimg'>
-    {productos
-        .filter(producto => producto.tipoDeProducto === "Mouse")
-        .slice(0, 7)
-        .map(producto => (
-            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                <img className='fotoMain' src={producto.foto}></img>
-                <p>{producto.modelo}</p>
-                <div>${producto.precio}</div>
-            </a>
-        ))}
-</div>
-
-<h2 className='subs'>Mousepads</h2>
-<div className='fondoimg'>
-    {productos
-        .filter(producto => producto.tipoDeProducto === "Mousepad")
-        .slice(0, 7)
-        .map(producto => (
-            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                <img className='fotoMain' src={producto.foto}></img>
-                <p>{producto.modelo}</p>
-                <div>${producto.precio}</div>
-            </a>
-        ))}
-</div>
-
-<h2 className='subs'>Sillas Gamers</h2>
-<div className='fondoimg'>
-    {productos
-        .filter(producto => producto.tipoDeProducto === "Silla Gamer")
-        .map(producto => (
-            <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                <img className="fotoMain" src={producto.foto}></img>
-                <p>{producto.modelo}</p>
-                <div>${producto.precio}</div>
-            </a>
-        ))}
-</div>
 </>
     );
 }
