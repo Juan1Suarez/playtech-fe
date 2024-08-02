@@ -42,7 +42,7 @@ const ProductoAdminPage = () => {
   if (!producto) {
     return (
       <>
-        <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a><Container className='caidaproductos'>
+        <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/></a><Container className='caidaproductos'>
           <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg">
           </Dropdown>
         </Container><div className='configUser'>
@@ -119,7 +119,7 @@ const ProductoAdminPage = () => {
   };
   return (
     <>
-      <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
+      <a href='mainAdmin'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/></a>
 
       <Container className='caidaproductos'>
         <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
@@ -138,7 +138,7 @@ const ProductoAdminPage = () => {
       </div>
 
       <div className='productoCompleto'>
-        <img src={producto.foto} className='fotoP'></img>
+        <img src={producto.foto} className='fotoP' alt='Logo'/>
         <div className='containerDatos'>
           <div className='nombreProducto'>{producto.modelo}</div>
           <div >Stock: {producto.stock}</div>

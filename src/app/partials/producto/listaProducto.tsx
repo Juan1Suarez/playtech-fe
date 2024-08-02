@@ -61,7 +61,7 @@ const ListaProducto = () => {
 
   return (
     <>
-      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img></a>
+      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/></a>
 
       <Container className='caidaproductos'>
       <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
@@ -97,7 +97,7 @@ const ListaProducto = () => {
           .filter(producto => producto.tipoDeProducto === tipoProducto)
           .map(producto => (
             <div className='cardProducto' key={producto.productoId}>
-              <img src={producto.foto} className="imgListado"></img>
+              <img src={producto.foto} className="imgListado" alt={producto.modelo}/>
               <div className='detalles'>
                 <h1 className='prod'>{producto.modelo}</h1>
                 <h1 className='linea'></h1>

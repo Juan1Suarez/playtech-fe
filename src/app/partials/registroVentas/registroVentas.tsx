@@ -2,7 +2,6 @@
 import { withRoles } from '@/app/services/HOC/withRoles';
 import Compra from '@/app/services/model/compra.model';
 import { verCompra } from '@/app/services/Registro';
-import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
@@ -73,7 +72,7 @@ const RegistroVentas = () => {
 
   return (
     <>
-      <img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      <img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
 
       <Container className='caidaproductos'>
         <Dropdown title="Redireccionar al registro de ventas" size="lg" >

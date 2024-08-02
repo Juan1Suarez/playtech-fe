@@ -50,7 +50,7 @@ const MainUser = () => {
   
     return (
         <>
-            <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+            <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
             <Container className='caidaproductos'>
       <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
         <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
@@ -77,13 +77,13 @@ const MainUser = () => {
 
             <Slider {...settings} className='carousel'>
                 <div>
-                    <img src="./img/1.png" style={{ width: '100%'}} />
+                    <img src="./img/1.png" style={{ width: '100%'}} alt='Nuestras marcas'/>
                 </div>
                 <div>
-                    <img src="./img/2.png" style={{ width: '100%' }} />
+                    <img src="./img/2.png" style={{ width: '100%' }} alt='Nuestras marcas' />
                 </div>
                 <div>
-                    <img src="./img/3.png" style={{ width: '100%' }} />
+                    <img src="./img/3.png" style={{ width: '100%' }} alt='Nuestras marcas' />
                 </div>
             </Slider>
             
@@ -100,7 +100,7 @@ const MainUser = () => {
                             .slice(0, 7)
                             .map(producto => (
                                 <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                                    <img className='fotoMain' src={producto.foto} alt={producto.modelo}></img>
+                                    <img className='fotoMain' src={producto.foto} alt={producto.modelo}/>
                                     <p>{producto.modelo}</p>
                                     <div>${producto.precio}</div>
                                 </a>

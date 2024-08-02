@@ -37,7 +37,7 @@ const CarritoDeCompras = () => {
   if (isClient && !localStorage.getItem('carrodecompras')) {
     return (
       <>
-<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="" loading="lazy"></img></a>
+<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"/></a>
 
 <Container className='caidaproductos'>
   <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
@@ -108,7 +108,7 @@ const CarritoDeCompras = () => {
 
   return (
     <>
-      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="" loading="lazy"></img></a>
+      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"/></a>
 
       <Container className='caidaproductos'>
         <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
@@ -134,7 +134,7 @@ const CarritoDeCompras = () => {
       <div className='carritoProducto'>
         {productos.map((producto, index) => (
           <div key={index} className='productoElegido'>
-            <img className='fotoCarrito' src={producto.foto} alt="Foto del producto" loading="lazy"/>
+            <img className='fotoCarrito' src={producto.foto} alt={producto.modelo}/>
             <h1 className='textoProducto'>{producto.modelo}</h1>
             <h1 className='valorproducto'>$ {producto.precio}</h1>
           </div>

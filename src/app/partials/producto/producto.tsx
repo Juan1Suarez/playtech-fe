@@ -56,7 +56,7 @@ const ProductoPage = () => {
     return (
       <>
         <a href='mainUser'>
-          <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+          <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
         </a>
 
         <Container className='caidaproductos'>
@@ -90,7 +90,7 @@ const ProductoPage = () => {
   return (
     <>
       <a href='mainUser'>
-        <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+        <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'alt='Logo' />
       </a>
 
       <Container className='caidaproductos'>
@@ -117,7 +117,7 @@ const ProductoPage = () => {
       <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
 
       <div className='productoCompleto'>
-        <img src={producto.foto} className='fotoP'></img>
+        <img src={producto.foto} className='fotoP' alt={producto.modelo}/>
         <div className='containerDatos'>
           <div className='nombreProducto'>{producto.modelo}</div>
           <div>Stock: {producto.stock}</div>

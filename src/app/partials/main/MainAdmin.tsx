@@ -50,8 +50,7 @@ const sortProducto = () => {
 };
   return (
     <>
-<img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-
+<img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
 <Container className='caidaproductos'>
 <Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
   </Dropdown>
@@ -74,7 +73,7 @@ const sortProducto = () => {
           .map(producto => (
             <div className='nompbrePAdmin'  key={producto.productoId}>
              <div className='englobadorPAdmin'> 
-                <img className='fotoAdmin' src={producto.foto} ></img>                
+                <img className='fotoAdmin' src={producto.foto} alt={producto.modelo}/>             
                 <h3 className='modeloPAdmin' >{producto.modelo}</h3>     
                 <h3 className='precioPAdmin'>${producto.precio} </h3>
                <button className='verPAdmin' onClick={() => navegarAProducto(producto.modelo)}>Ver Producto</button>
