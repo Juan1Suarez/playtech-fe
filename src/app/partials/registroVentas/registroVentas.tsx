@@ -105,8 +105,9 @@ const RegistroVentas = () => {
       <button className='precioRegistro' onClick={sortRegistro}>
         Precio {sortOrder === 'asc' ? '↓' : '↑'}
       </button>
-      <table className='registroV'>
-        <thead>
+      <br></br><br></br>
+      <table className="table table-bordered border-dark">
+      <thead className="table-dark">
           <tr>
             <th>ID COMPRA</th>
             <th>ID CLIENTE</th>

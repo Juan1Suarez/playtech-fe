@@ -117,8 +117,31 @@ body {
 
 /*MAIN*/
 
-.verAdmin{
-margin-left: 70px;
+.filtrarLabel{
+  margin: 10px;
+  width: 150px;
+}
+
+.filtrarButton{  
+margin-left: 800px;
+position:relative;
+bottom: 60px;
+}
+
+.filtrarProducto{
+  background-color: lightgray;
+  width: 1400px;
+  margin: 90px;
+  margin-left: 200px;
+  height: 90px;
+}
+
+.filtrarInput{
+  margin-left:220px;
+}
+
+.verAdmin {
+  margin-left: 70px;
 }
 
 .ini {
@@ -229,7 +252,7 @@ margin-left: 70px;
   margin: auto;
 }
 
-.fotoAdmin{
+.fotoAdmin {
   position: relative;
   left: 20px;
   margin-top: 20px;
@@ -238,8 +261,8 @@ margin-left: 70px;
 }
 
 
-.adminPrecio{
-  margin-left: 1350px;
+.adminPrecio {
+  margin-left: 670px;
   width: 130px;
   padding: 5px;
   border: 1px solid #000000;
@@ -248,43 +271,44 @@ margin-left: 70px;
   color: rgb(0, 0, 0);
   font-size: 13px;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
-.fotoAdmin{
+.fotoAdmin {
   height: 80px;
-
+  width: 80px;
 }
 
 
-
-.englobadorPAdmin{
-margin-left: 150px;
+.englobadorPAdmin {
+  margin-left: 150px;
   width: 1400px;
- 
   background-color: #ffffff;
   border: 1px solid #000000;
-border-radius: 5px;
+  border-radius: 5px;
 
 }
 
+.keyAdmin {
+  margin: 1px;
+  margin-left: 50px;
+}
 
-
-
-.precioPAdmin{
-display: inline-block;
-margin-right: 400px;
-width: 100px;
+.precioPAdmin {
+  display: inline-block;
+  margin-right: 400px;
+  width: 100px;
 
 }
 
-.modeloPAdmin{
+.modeloPAdmin {
   display: inline-block;
   margin-left: 100px;
   width: 300px;
   height: 20px;
 }
 
-.verPAdmin{
+.verPAdmin {
   display: inline-block;
   margin-right: 10px;
   height: 50px;
@@ -433,7 +457,7 @@ width: 100px;
 
 /* LISTAPRODUCTOS */
 
-.listaPrecio{
+.listaPrecio {
   margin-left: 1390px;
   margin-bottom: 10px;
   width: 130px;
@@ -774,20 +798,6 @@ footer {
 
 /*REGISTRO VENTAS */
 
-.registroV {
-  position: relative;
-  width: 95%;
-  background-color: rgb(231, 231, 231);
-  top: 80px;
-  left: 40px;
-}
-
-table,
-th,
-td {
-  border: 1px solid;
-  text-align: center;
-}
 
 .paginado {
   margin-left: 40px;
@@ -795,11 +805,9 @@ td {
 
 .precioRegistro {
   margin-left: 1570px;
-  position: relative;
-  top: 75px;
 }
 
-.exportar{
+.exportar {
   margin-left: 40px;
 }
 
