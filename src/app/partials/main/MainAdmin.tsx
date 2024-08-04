@@ -1,20 +1,13 @@
 "use client";
-import { UsardarkMode } from '@/app/services/DarkMode';
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { eliminarUsuario } from '@/app/services/Login';
-import { LogOut } from '@/app/services/LogOut';
 import Producto from '@/app/services/model/producto.model';
-import { useNombre } from '@/app/services/Nombre';
 import { crearProducto, verProductos } from '@/app/services/Producto';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { FaUserGear } from "react-icons/fa6";
-import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 
 
 const VerAdminPage = () => {
-  const { darkMode, activarDarkMode } = UsardarkMode();
   const [showPopup, setShowPopup] = useState(false);
   const [nuevoProducto, setNuevoProducto] = useState<Producto>({
     tipoDeProducto: '',
@@ -27,14 +20,6 @@ const VerAdminPage = () => {
 });
 
     const router = useRouter();
-  const navegarAMain = () => {
-    router.push("/mainAdmin");
-  }
-
-  const navegarARegistroVentas = () => {
-    router.push("/registroVentas")
-}
-
   const navegarAProducto = (modelo: string) => {
     router.push("/productoAdmin?modelo=" + modelo);
 }
@@ -109,25 +94,6 @@ const handleSubmit = async () => {
 
   return (
     <>
-<img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
-<Container className='caidaproductos'>
-<Dropdown onClick={() => navegarARegistroVentas()} title="Redireccionar al registro de ventas" size="lg" >
-  </Dropdown>
-</Container>
-
-
-<div className='configUser'>
-  <Dropdown title={<FaUserGear size={42} />}>
-    <Dropdown.Menu title="Admin">
-      <Dropdown.Item >{useNombre()}</Dropdown.Item>
-      <Dropdown.Item onClick={handleEditClick}>Añadir producto</Dropdown.Item>
-      <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-      <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
-    </Dropdown.Menu>
-    <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-  </Dropdown>
-</div>
-
 <div className='filtrarProducto'>
   <div className='filtrarInput'>
   <label className='filtrarLabel'>Buscar por modelo</label>
@@ -136,7 +102,7 @@ const handleSubmit = async () => {
   <label className='filtrarLabel'>Tipo de producto</label>
 
   <select>
-  <option className='filtrarInput'>...ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
+  <option className='filtrarInput'>...</option>
   <option value="Auriculares">Auriculares</option>
   <option value="Teclados">Teclados</option>
   <option value="Silla gamer">Silla gamer</option>
@@ -148,12 +114,13 @@ const handleSubmit = async () => {
   <button className='filtrarButton'>Buscar</button>
 </div>
 
+<button className='crearProducto' onClick={handleEditClick}>Añadir producto</button>
 <button className='adminPrecio' onClick={sortProducto}>Precio {sortOrder === 'asc' ? '↓' : '↑'}</button>
         {productos
           .map(producto => (
             <div className='keyAdmin' key={producto.productoId}>
              <div className='englobadorPAdmin'> 
-                <img className='fotoAdmin' src={producto.foto} alt={producto.modelo}/>             
+                <img className='fotoAdmin' src={producto.foto}/>             
                 <h3 className='modeloPAdmin' >{producto.modelo}</h3>     
                 <h3 className='precioPAdmin'>${producto.precio} </h3>
                <button className='verPAdmin' onClick={() => navegarAProducto(producto.modelo)}>Ver Producto</button>

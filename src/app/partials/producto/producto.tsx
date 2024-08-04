@@ -52,100 +52,48 @@ const ProductoPage = () => {
     }
   }, [modeloParam]);
 
-  if (!producto) {
-    return (
-      <>
-        <a href='mainUser'>
-          <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
-        </a>
-
-        <Container className='caidaproductos'>
-          <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-            <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-            <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-            <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-            <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-            <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
-          </Dropdown>
-        </Container>
-
-        <div className='configUser'>
-          <Dropdown title={<FaUserGear size={42} />}>
-            <Dropdown.Menu title="User">
-              <Dropdown.Item >{nombre}</Dropdown.Item>
-              <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-              <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
-            </Dropdown.Menu>
-            <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-          </Dropdown>
-        </div>
-
-        <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
-        <p className='error'>Producto no encontrado</p>
-        <br></br><br></br><br></br><br></br>
-      </>
-    )
-  }
-
   return (
     <>
-      <a href='mainUser'>
-        <img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'alt='Logo' />
-      </a>
+      {producto && (
+        <>
+          <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
+          <div className='productoCompleto'>
+            <img src={producto.foto} className='fotoP' alt={producto.modelo} />
+            <div className='containerDatos'>
+              <div className='nombreProducto'>{producto.modelo}</div>
+              <div>Stock: {producto.stock}</div>
+              <h1 className='linea'></h1>
+              <div className='precioProducto'>Precio: {producto.precio}</div>
 
-      <Container className='caidaproductos'>
-        <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-          <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
-        </Dropdown>
-      </Container>
+              <h1 className='linea'></h1>
 
-      <div className='configUser'>
-        <Dropdown title={<FaUserGear size={42} />}>
-          <Dropdown.Menu title="User">
-            <Dropdown.Item >{nombre}</Dropdown.Item>
-            <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-            <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
-          </Dropdown.Menu>
-          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-        </Dropdown>
-      </div>
+              <div className="dropbtn">Color: {producto.color}</div>
 
-      <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
+              <h1 className='linea'></h1>
 
-      <div className='productoCompleto'>
-        <img src={producto.foto} className='fotoP' alt={producto.modelo}/>
-        <div className='containerDatos'>
-          <div className='nombreProducto'>{producto.modelo}</div>
-          <div>Stock: {producto.stock}</div>
-          <h1 className='linea'></h1>
-          <div className='precioProducto'>Precio: {producto.precio}</div>
-
-          <h1 className='linea'></h1>
-
-          <div className="dropbtn">Color: {producto.color}</div>
-
-          <h1 className='linea'></h1>
-
-          <button className='botonAhora' onClick={() => { agregarCarrito(false); navegarACarrito(); }}>
-            Comprar ahora
-          </button>
-          <button className='botonAgregar' onClick={() => agregarCarrito(true)}>
-            Agregar al carrito
-          </button>
-        </div>
-      </div>
-
-      <div className='productosDesc'>
-        <h1 className='desc'>Descripción del producto</h1>
-        <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
-        <p className='productoTexto'>{producto.descripcion}</p>
-        <p className='productoTexto'>STOCK: {producto.stock}</p>
-        <p className='productoTexto'>PRECIO: {producto.precio}</p>
-      </div>
+              <button className='botonAhora' onClick={() => { agregarCarrito(false); navegarACarrito(); }}>
+                Comprar ahora
+              </button>
+              <button className='botonAgregar' onClick={() => agregarCarrito(true)}>
+                Agregar al carrito
+              </button>
+            </div>
+          </div><div className='productosDesc'>
+            <h1 className='desc'>Descripción del producto</h1>
+            <h2 className='productoNombre'>Modelo : {producto.modelo}</h2>
+            <p className='productoTexto'>{producto.descripcion}</p>
+            <p className='productoTexto'>STOCK: {producto.stock}</p>
+            <p className='productoTexto'>PRECIO: {producto.precio}</p>
+          </div> </>
+      )}
+      {!producto && (
+        <>
+          <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
+          <p className='error'>Producto no encontrado</p>
+          <br></br><br></br><br></br><br></br>
+        </>
+      )
+      }
     </>
   );
 };

@@ -234,12 +234,17 @@ bottom: 60px;
   left: 20px;
 }
 
+.irARegistro{
+  width: 300px;
+  font-family: "Roboto Slab";
+  height: 60px;
+}
+
 .caidaproductos {
   position: relative;
   left: 800px;
   top: -35px;
   font-family: "Roboto Slab";
-
   width: 100px;
 }
 
@@ -252,6 +257,8 @@ bottom: 60px;
   margin: auto;
 }
 
+
+
 .fotoAdmin {
   position: relative;
   left: 20px;
@@ -260,9 +267,21 @@ bottom: 60px;
   height: 50px;
 }
 
+.crearProducto{
+  margin-left: 200px;
+  width: 130px;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 9px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
 
 .adminPrecio {
-  margin-left: 670px;
+  margin-left: 330px;
   width: 130px;
   padding: 5px;
   border: 1px solid #000000;
@@ -352,7 +371,7 @@ bottom: 60px;
 
 .containerDatos {
   margin-left: 53%;
-  margin-top: -470px;
+  margin-top: -560px;
 }
 
 .nombreProducto {
@@ -450,7 +469,6 @@ bottom: 60px;
   color: white;
   height: 50px;
   width: 180px;
-  margin-left: 10px;
   border-radius: 10px;
   font-size: 16px;
 }
@@ -473,7 +491,7 @@ bottom: 60px;
 .containerProductos {
   border: 2px solid #000000;
   border-radius: 15px;
-  width: 300px;
+  width: 330px;
   padding: 12px;
   background-color: #f3f0f0;
   position: relative;
@@ -655,7 +673,7 @@ bottom: 60px;
   display: flex;
   justify-content: center;
   left: 900px;
-  bottom: 230px;
+  bottom:200px;
 }
 
 .comprarProducto {
@@ -714,7 +732,7 @@ bottom: 60px;
 .precioTotal {
   position: absolute;
   top: 520px;
-  left: 60px;
+  left: 30px;
   font-family: 'Roboto Slab';
 }
 
@@ -783,7 +801,7 @@ footer {
   background-color: #fff;
   padding: 20px;
   border: 1px solid #888;
-  width: 300px;
+  width: 350px;
   position: relative;
 }
 

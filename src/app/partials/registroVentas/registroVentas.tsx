@@ -72,24 +72,6 @@ const RegistroVentas = () => {
 
   return (
     <>
-      <img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
-
-      <Container className='caidaproductos'>
-        <Dropdown title="Redireccionar al registro de ventas" size="lg" >
-        </Dropdown>
-      </Container>
-
-
-      <div className='configUser'>
-        <Dropdown title={<FaUserGear size={42} />}>
-          <Dropdown.Menu title="Admin">
-            <Dropdown.Item >{useNombre()}</Dropdown.Item>
-            <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-          </Dropdown.Menu>
-          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-        </Dropdown>
-      </div>
-
       <div className='paginado'>
         {Array.from({ length: Math.ceil(registro.length / itemsPerPage) }, (_, i) => (
           <button key={i} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? 'active' : ''}>
