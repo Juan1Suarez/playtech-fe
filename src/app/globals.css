@@ -117,13 +117,26 @@ body {
 
 /*MAIN*/
 
+.noProductos{
+    margin-left: 150px;
+    margin-top: 10px;
+    width: 1400px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .filtrarLabel{
   margin: 10px;
   width: 150px;
 }
 
 .filtrarButton{  
-margin-left: 800px;
+margin-left: 900px;
 position:relative;
 bottom: 60px;
 }
@@ -137,7 +150,7 @@ bottom: 60px;
 }
 
 .filtrarInput{
-  margin-left:220px;
+  margin-left:320px;
 }
 
 .verAdmin {

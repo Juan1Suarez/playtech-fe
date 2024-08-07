@@ -4,17 +4,11 @@ import Compra from '@/app/services/model/compra.model';
 import { verCompra } from '@/app/services/Registro';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { FaUserGear } from "react-icons/fa6";
-import { Container, Dropdown } from 'rsuite';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import 'rsuite/Dropdown/styles/index.css';
-import { LogOut } from '@/app/services/LogOut';
-import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
 
 const RegistroVentas = () => {
-  const { darkMode, activarDarkMode } = UsardarkMode();
   const router = useRouter();
   const navegarAMain = () => {
     router.push("/mainAdmin");

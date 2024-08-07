@@ -1,24 +1,15 @@
 "use client";
 import { withRoles } from '@/app/services/HOC/withRoles';
 import React, { useEffect, useState } from 'react';
-import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import Producto from '../../services/model/producto.model';
 import { registroVenta, restarStock } from '@/app/services/Registro';
-import { FaUserGear } from 'react-icons/fa6';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
-import { eliminarUsuario } from '@/app/services/Login';
-import { LogOut } from '@/app/services/LogOut';
-import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
 
 
 const CarritoDeCompras = () => {
-  const nombre = useNombre();
-  const { darkMode, activarDarkMode } = UsardarkMode();
   const [productos, setProductos] = useState<Producto[]>([]);
-   const [isClient, setIsClient] = useState(false);
 
   const router = useRouter();
   const navegarAMain = () => {
@@ -26,7 +17,6 @@ const CarritoDeCompras = () => {
   }
 
   useEffect(() => {
-    setIsClient(true);
     const storedProductos = localStorage.getItem('carrodecompras');
     if (storedProductos) {
       const productosRecuperados: Producto[] = JSON.parse(storedProductos);
@@ -34,7 +24,7 @@ const CarritoDeCompras = () => {
     }
   }, []);
 
-  if (isClient && !localStorage.getItem('carrodecompras')) {
+  if (!localStorage.getItem('carrodecompras')) {
     return (
       <>
     <p className='error'>No hay articulos en el carrito de compra</p>

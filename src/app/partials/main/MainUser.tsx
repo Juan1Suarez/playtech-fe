@@ -1,36 +1,37 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { verProductos } from '@/app/services/Producto';
+import { verProductos, verTipoDeProductos } from '@/app/services/Producto';
 import Producto from '../../services/model/producto.model';
 import { useRouter } from 'next/navigation';
 import {withRoles} from '@/app/services/HOC/withRoles';
-import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
-import { eliminarUsuario } from '@/app/services/Login';
-import { LogOut } from '@/app/services/LogOut';
 import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
+import tipoDeProducto from '@/app/services/model/tipoDeProducto.model';
 
 const MainUser = () => {
-    const { darkMode, activarDarkMode } = UsardarkMode();
     const [productos, setProductos] = useState<Producto[]>([]);
+    const [grupo, setGrupo] = useState<tipoDeProducto[]>([]);
 
     const router = useRouter();
     const navegarAProducto = (modelo: string) => {
         router.push("/producto?modelo="+ modelo);
     }
-
-    useEffect(() => {
+    
+        useEffect(() => {
         verProductos().then((data: Producto[]) => {
             setProductos(data);
-        })
-    }, [])
+        });
+    }, []);
     
+    useEffect(() => {
+        verTipoDeProductos().then((data: tipoDeProducto[]) => {
+            setGrupo(data);
+        });
+    }, []);
 
       const settings = {
         dots: true,
@@ -64,14 +65,12 @@ const MainUser = () => {
                 </div>
             </Slider>
   
-            {tiposDeProducto.map(tipo => (
-                <div key={tipo}>
-                    <a>
-                        <div className='subs'>{tipo}</div>
-                    </a>
+            {grupo.map(grupo => (
+                <div key={grupo.tipoDeProductoId}>
+                    <div className='subs'>{grupo.grupo}</div>
                     <div className='fondoimg'>
                         {productos
-                            .filter(producto => producto.tipoDeProducto === tipo)
+                            .filter(producto => producto.tipoDeProducto === grupo.grupo)
                             .slice(0, 7)
                             .map(producto => (
                                 <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
@@ -83,8 +82,7 @@ const MainUser = () => {
                     </div>
                 </div>
             ))}
-
-</>
+</>                               
     );
 }
 

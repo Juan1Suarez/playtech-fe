@@ -8,7 +8,11 @@ import React, { useEffect, useState } from 'react';
 
 const VerAdminPage = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [buscarModelo, setBuscarModelo] = useState('')
+  const [buscarModelo, setBuscarModelo] = useState('');
+  const [grupoSeleccionado, setGrupoSeleccionado] = useState('');
+  const [filtrosActivos, setFiltrosActivos] = useState(false);
+  const [filtroModelo, setFiltroModelo] = useState('');
+  const [filtroGrupo, setFiltroGrupo] = useState('');
   const [nuevoProducto, setNuevoProducto] = useState<Producto>({
     tipoDeProducto: '',
     modelo: '',
@@ -23,7 +27,6 @@ const VerAdminPage = () => {
   const navegarAProducto = (modelo: string, editar: boolean) => {
     router.push(`/productoAdmin?modelo=${modelo}&edit=${editar}`);
   }
-
 
   const [productos, setProductos] = useState<Producto[]>([]);
   useEffect(() => {
@@ -100,16 +103,16 @@ const VerAdminPage = () => {
     }
   };
 
-  const [grupoSeleccionado, setGrupoSeleccionado] = useState('');
-  const handleGrupoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setGrupoSeleccionado(e.target.value);
+  const handleBuscarClick = () => {
+    setFiltroModelo(buscarModelo);
+    setFiltroGrupo(grupoSeleccionado);
+    setFiltrosActivos(true);
   };
 
-  const productosFiltrados = productos.filter(producto =>
-    producto.modelo.toLowerCase().includes(buscarModelo.toLowerCase())
-    &&
-    (!grupoSeleccionado || producto.tipoDeProducto === grupoSeleccionado)
-  );
+  const productosFiltrados = filtrosActivos ? productos.filter(producto =>
+    producto.modelo.toLowerCase().includes(filtroModelo.toLowerCase()) &&
+    (!filtroGrupo || producto.tipoDeProducto === filtroGrupo)
+  ) : productos;
 
   return (
     <>
@@ -121,34 +124,35 @@ const VerAdminPage = () => {
             value={buscarModelo}
             onChange={(e) => setBuscarModelo(e.target.value)}
           />
-          <br></br>
-          
-   <label className='filtrarLabel'>Tipo de producto</label>
-          <select value={grupoSeleccionado} onChange={handleGrupoChange}>
+          <br />
+          <label className='filtrarLabel'>Tipo de producto</label>
+          <select value={grupoSeleccionado} onChange={(e) => setGrupoSeleccionado(e.target.value)}>
             <option value="">Filtrar por tipo producto</option>
             {grupo.map(grupo => (
               <option key={grupo.tipoDeProductoId} value={grupo.grupo}>{grupo.grupo}</option>
             ))}
           </select>
         </div>
-        <button className='filtrarButton'>Buscar</button>
+        <button className='filtrarButton' onClick={handleBuscarClick}>Buscar</button>
       </div>
-
       <button className='crearProducto' onClick={handleEditClick}>Añadir producto</button>
       <button className='adminPrecio' onClick={sortProducto}>Precio {sortOrder === 'asc' ? '↓' : '↑'}</button>
 
-      {productosFiltrados
-        .map(producto => (
-          <div className='keyAdmin' key={producto.productoId}>
-            <div className='englobadorPAdmin'>
-              <img className='fotoAdmin' src={producto.foto} />
-              <h3 className='modeloPAdmin' >{producto.modelo}</h3>
-              <h3 className='precioPAdmin'>${producto.precio} </h3>
-              <button className='verPAdmin' onClick={() => navegarAProducto(producto.modelo, false)}>Ver Producto</button>
-              <button className='verPAdmin' onClick={() => navegarAProducto(producto.modelo, true)}>Editar producto</button>
-            </div>
+      {productosFiltrados.length === 0 && filtrosActivos && (
+        <div className='noProductos'>No hay productos disponibles</div>
+      )}
+
+      {productosFiltrados.map(producto => (
+        <div className='keyAdmin' key={producto.productoId}>
+          <div className='englobadorPAdmin'>
+            <img className='fotoAdmin' src={producto.foto} />
+            <h3 className='modeloPAdmin'>{producto.modelo}</h3>
+            <h3 className='precioPAdmin'>${producto.precio} </h3>
+            <button className='verPAdmin' onClick={() => navegarAProducto(producto.modelo, false)}>Ver Producto</button>
+            <button className='verPAdmin' onClick={() => navegarAProducto(producto.modelo, true)}>Editar producto</button>
           </div>
-        ))}
+        </div>
+      ))}
 
       {showPopup && (
         <div className="popup">
@@ -157,11 +161,9 @@ const VerAdminPage = () => {
             <div> Tipo de producto</div>
             <select name="tipoDeProducto" onChange={handleChange} defaultValue="">
               <option value="" disabled>Seleccionar tipo de producto</option>
-              {grupo
-                .map(grupo => (
-                  <option value={grupo.grupo} >{grupo.grupo}</option>
-                )
-                )}
+              {grupo.map(grupo => (
+                <option key={grupo.tipoDeProductoId} value={grupo.grupo}>{grupo.grupo}</option>
+              ))}
             </select>
             <div> Modelo</div>
             <input type="text" name="modelo" placeholder='Modelo' onChange={handleChange} />

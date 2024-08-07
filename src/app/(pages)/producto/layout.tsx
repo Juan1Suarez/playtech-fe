@@ -36,7 +36,7 @@ export default function UserLayout({
 <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
         {grupo
         .map(grupo =>(
-          <Dropdown.Item as="a" onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</Dropdown.Item>
+          <Dropdown.Item  key={grupo.tipoDeProductoId} as="a" onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</Dropdown.Item>
         )
         )}
   </Dropdown>

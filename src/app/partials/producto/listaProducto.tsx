@@ -22,7 +22,7 @@ const ListaProducto = () => {
     verTipoDeProductos().then((data:tipoDeProducto[]) =>{
       setGrupo(data);
     })
-  })
+  }, [])
 
   useEffect(() => {
     verProductos().then((data: Producto[]) => {
@@ -70,13 +70,13 @@ const ListaProducto = () => {
       <div className='containerProductos'>
         {grupo
         .map(grupo =>(
-          <button className='productosListado' onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</button>
+          <button key={grupo.tipoDeProductoId} className='productosListado' onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</button>
         )
         )}
         </div>  
 
       <div className='buscadorProductos'>
-      {productos.filter(producto => producto.tipoDeProducto === tipoProducto).length === 0 ? (  // *Cambio: Verificar si no hay productos para el tipo seleccionado*
+      {productos.filter(producto => producto.tipoDeProducto === tipoProducto).length === 0 ? (
             <p className='errorL'>No hay productos disponibles para el tipo seleccionado.</p>
           ) : (
         productos

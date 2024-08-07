@@ -24,7 +24,8 @@ export default function UserLayout({
     verTipoDeProductos().then((data:tipoDeProducto[]) =>{
       setGrupo(data);
     })
-  })
+  }, [])
+
   const botonProducto = (tipo: string) => {
     router.push(`/listaProducto?tipo=${tipo.replace(/ /g, '%20')}`);
   };
@@ -36,7 +37,7 @@ export default function UserLayout({
 <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
         {grupo
         .map(grupo =>(
-          <Dropdown.Item as="a" onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</Dropdown.Item>
+          <Dropdown.Item key={grupo.tipoDeProductoId} as="a" onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</Dropdown.Item>
         )
         )}
   </Dropdown>
