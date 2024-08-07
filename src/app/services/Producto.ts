@@ -11,6 +11,27 @@ export const verProductos = async (): Promise<Producto[]> => {
     }
 };
 
+export const verTipoDeProductos = async (): Promise<any[]> => {
+  try {
+      const response = await clienteAxios.get('/producto/tipoDeProducto');
+      return response.data;
+  } catch (error) {
+      console.error("ERROR", error);
+      return [];
+  }
+};
+
+export const verProductoGrupo = async (tipoDeProductoId: number): Promise<Producto[]> => {
+  try {
+      const response = await clienteAxios.get('/producto/'+ tipoDeProductoId);
+      return response.data;
+  } catch (error) {
+      console.error("ERROR", error);
+      return [];
+  }
+};
+
+
 export const eliminarProducto = async (productoId: any, router: any) => {
     try {
         const response = await clienteAxios.delete('/producto/'+productoId);
@@ -46,7 +67,7 @@ export const crearProducto = async (producto: Producto, router: any) => {
     const response = await clienteAxios.post(`/producto/`, producto);
     
     if (response.status === 201) {
-      router.push(`/productoAdmin?modelo=${producto.modelo}`);
+      router.push(`/productoAdmin?modelo=${producto.modelo}&edit=true`);
     }
     return response.data;
 

@@ -2,28 +2,27 @@
 import React, { useEffect, useState } from 'react';
 import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { eliminarProducto, modificarProducto, upload, verProductos } from '@/app/services/Producto';
+import { eliminarProducto, modificarProducto, upload, verProductos, verTipoDeProductos } from '@/app/services/Producto';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Container, Dropdown } from 'rsuite';
-import 'rsuite/Dropdown/styles/index.css';
-import { FaUserGear } from "react-icons/fa6";
-import { jwtDecode } from 'jwt-decode';
-import { eliminarUsuario } from '@/app/services/Login';
-import { LogOut } from '@/app/services/LogOut';
-import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
+import tipoDeProducto from '@/app/services/model/tipoDeProducto.model';
 
 const ProductoAdminPage = () => {
-  const nombre = useNombre();
-  const { darkMode, activarDarkMode } = UsardarkMode();
-  const [showPopup, setShowPopup] = useState(false);
+  const [editar, setEditar] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [file, setFile] = useState<File | null>(null);
   const modeloParam = searchParams.get('modelo');
+  const editParam = searchParams.get('edit');
+  const [grupo, setGrupo] = useState<tipoDeProducto[]>([]);
+  useEffect(() => {
+    verTipoDeProductos().then((data:tipoDeProducto[]) =>{
+      setGrupo(data);
+    })
+  }, [])
 
 
-  const navegarARegistroVentas = () => {
-    router.push("/registroVentas")
+  const navegarAMain = () => {
+    router.push("/mainAdmin")
   }
 
   const [producto, setProducto] = useState<Producto | null>(null);
@@ -33,8 +32,9 @@ const ProductoAdminPage = () => {
       verProductos().then((data: Producto[]) => {
         const productoEncontrado = data.find(prod => prod.modelo === modeloParam);
         setProducto(productoEncontrado || null);
+        setEditar(editParam === 'true');
       }).catch(error => {
-        console.error('Error fetching products:', error);
+        console.error('Error', error);
       });
     }
   }, [modeloParam]);
@@ -47,24 +47,16 @@ const ProductoAdminPage = () => {
     )
   }
 
-  const handleEditClick = () => {
-    setShowPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setProducto({ ...producto, [name]: value });
   };
 
-  let file: Blob[] = []
   const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    file = Array.from(e.target.files ?? [])
-    console.log("files:", file)
-  }
+    const selectedFile = e.target.files?.[0] ?? null;
+    setFile(selectedFile);
+    console.log("files:", selectedFile);
+  };
 
   const handleSubmit = async () => {
     try {
@@ -92,14 +84,13 @@ const ProductoAdminPage = () => {
         alert('La descripción no puede exceder los 500 caracteres.');
         return;
       }
-      if (file[0]){
+      if (file) {
       const form = new FormData()
-      form.set('file', file[0])
+      form.set('file', file);
       form.set('productoId', producto.productoId?.toString()??'')
       await upload(form)      
     }
       await modificarProducto(producto.productoId, producto, router);
-      handleClosePopup();
     } catch (error) {
       console.error('Error al modificar producto', error);
     }
@@ -110,39 +101,46 @@ const ProductoAdminPage = () => {
         <img src={producto.foto} className='fotoP'/>
         <div className='containerDatos'>
              <div> Tipo de producto</div>
-                <select name="tipoDeProducto" onChange={handleChange} defaultValue={producto.tipoDeProducto} disabled>
-                  <option value="Auriculares">Auriculares</option>
-                  <option value="Teclado">Teclado</option>
-                  <option value="Mouse">Mouse</option>
-                  <option value="Mousepad">Mousepad</option>
-                  <option value="Silla Gamer">Silla Gamer</option>
+                <select name="tipoDeProducto" onChange={handleChange} defaultValue={producto.tipoDeProducto} disabled={!editar}>
+                {grupo
+                .map(grupo => (
+                  <option key={grupo.tipoDeProductoId} value={grupo.grupo} >{grupo.grupo}</option>
+                )
+                )}
                 </select>
                 <div> Modelo</div>
-                <input type="text" name="modelo" value={producto.modelo} onChange={handleChange} readOnly />
+                <input type="text" name="modelo" value={producto.modelo} onChange={handleChange} readOnly={!editar} />
                 <div> Precio</div>
-                <input type="number" name="precio" value={producto.precio} onChange={handleChange} readOnly />
+                <input type="number" name="precio" value={producto.precio} onChange={handleChange} readOnly={!editar} />
                 <div> Color</div>
-                <input type="text" name="color" value={producto.color} onChange={handleChange} readOnly />
+                <input type="text" name="color" value={producto.color} onChange={handleChange} readOnly={!editar} />
                 <div> Stock</div>
-                <input type="number" name="stock" value={producto.stock} onChange={handleChange} readOnly />
+                <input type="number" name="stock" value={producto.stock} onChange={handleChange} readOnly={!editar} />
                 <div> Foto</div>
                 <input
                   type="file"
                   name="foto"
-                  onChange={handleFileSelected} />
+                  onChange={handleFileSelected} disabled={!editar} />
                 <div> Descripción</div>
-                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px',maxHeight: '190px' }}  readOnly/>  
+                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px',maxHeight: '190px' }}  readOnly={!editar}/>  
 <br></br>
-          <button
-            className='botonEliminar'
-            onClick={() => {
-              if (window.confirm('¿Está seguro de que quiere eliminar este producto?')) {
-                eliminarProducto(producto.productoId, router);
-              }
-            }}
-          > Eliminar producto
-          </button>
-          <button onClick={handleSubmit} style={{margin:10}}> Realizar cambios</button>
+{editar ? (
+            <>
+              <button
+                className='botonEliminar'
+                onClick={() => {
+                  if (window.confirm('¿Está seguro de que quiere eliminar este producto?')) {
+                    eliminarProducto(producto.productoId, router);
+                  }
+                }}
+              >
+                Eliminar producto
+              </button>
+              <button onClick={handleSubmit} style={{ margin: 10 }}>Realizar cambios</button>
+            </>
+          ) : (
+            <button className='botonAhora' onClick={() => navegarAMain()}>Volver a productos</button>
+          )}
         </div>
       </div>
 

@@ -374,6 +374,11 @@ bottom: 60px;
   margin-top: -560px;
 }
 
+.containerDatosUser{
+  margin-left: 53%;
+  margin-top: -460px;
+}
+
 .nombreProducto {
   font-family: 'Roboto Slab';
   font-size: 30px;
@@ -383,6 +388,7 @@ bottom: 60px;
 .linea {
   background-color: black;
   height: 2px;
+  margin: 9px;
   width: 500px;
   opacity: 50%;
 }
@@ -475,8 +481,14 @@ bottom: 60px;
 
 /* LISTAPRODUCTOS */
 
+.errorL{
+  margin: 200px;
+  margin-left: 300px;
+  text-decoration: underline;
+}
+
 .listaPrecio {
-  margin-left: 1390px;
+  margin-left: 1300px;
   margin-bottom: 10px;
   width: 130px;
   padding: 5px;
@@ -491,11 +503,17 @@ bottom: 60px;
 .containerProductos {
   border: 2px solid #000000;
   border-radius: 15px;
+  height: 100%;
   width: 330px;
   padding: 12px;
   background-color: #f3f0f0;
   position: relative;
   left: 100px;
+}
+
+.containerLista {
+  display: flex;
+  gap: 190px;
 }
 
 .productosListado {
@@ -519,11 +537,9 @@ bottom: 60px;
   border: 1px solid;
   border-radius: 7px;
   width: 1000px;
-  bottom: 275px;
   background-color: rgb(241, 241, 241);
   padding: 15px;
   position: relative;
-  left: 550px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -535,7 +551,6 @@ bottom: 60px;
   height: 270px;
   background-color: rgb(255, 255, 255);
   position: relative;
-  left: 10px;
   top: 5px;
   margin-bottom: 15px;
 }

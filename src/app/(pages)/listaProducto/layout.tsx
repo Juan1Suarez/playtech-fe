@@ -2,8 +2,9 @@
 import { UsardarkMode } from '@/app/services/DarkMode';
 import { eliminarUsuario } from '@/app/services/Login';
 import { LogOut } from '@/app/services/LogOut';
+import tipoDeProducto from '@/app/services/model/tipoDeProducto.model';
 import { useNombre } from '@/app/services/Nombre';
-import { crearProducto, verProductos } from '@/app/services/Producto';
+import { crearProducto, verProductos, verTipoDeProductos } from '@/app/services/Producto';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaUserGear } from "react-icons/fa6";
@@ -16,18 +17,28 @@ export default function UserLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const { darkMode, activarDarkMode } = UsardarkMode();
+  const [grupo, setGrupo] = useState<tipoDeProducto[]>([]);
+  useEffect(() => {
+    verTipoDeProductos().then((data:tipoDeProducto[]) =>{
+      setGrupo(data);
+    })
+  })
+  const botonProducto = (tipo: string) => {
+    router.push(`/listaProducto?tipo=${tipo.replace(/ /g, '%20')}`);
+  };
   return (
 <>
 <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"/></a>
 
 <Container className='caidaproductos'>
-  <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-    <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
+<Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
+        {grupo
+        .map(grupo =>(
+          <Dropdown.Item as="a" onClick={() => botonProducto(grupo.grupo)}>{grupo.grupo}</Dropdown.Item>
+        )
+        )}
   </Dropdown>
 </Container>
 
