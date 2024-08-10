@@ -1,22 +1,13 @@
 "use client";
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import Producto from '../../services/model/producto.model';
 import { withRoles } from '@/app/services/HOC/withRoles';
-import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { verProductos } from '@/app/services/Producto';
-import { FaUserGear } from "react-icons/fa6";
 import { TiShoppingCart } from "react-icons/ti";
-import { jwtDecode } from 'jwt-decode';
-import { eliminarUsuario } from '@/app/services/Login';
-import { LogOut } from '@/app/services/LogOut';
-import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
 
-const ProductoPage = () => {
-  const nombre = useNombre();
-  const { darkMode, activarDarkMode } = UsardarkMode();
+const ProductoPage = () => {;
   const router = useRouter();
   const searchParams = useSearchParams();
   const modeloParam = searchParams.get('modelo');

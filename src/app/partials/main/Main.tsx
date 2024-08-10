@@ -62,7 +62,7 @@ export default function Home() {
 
             <button className='logoCarrito' onClick={() => { navegarALogin() }}><TiShoppingCart size={42} /></button>
 
-            <button onClick={() => navegarALogin()} className='ini'>Iniciar sesión</button>
+            <button onClick={() => navegarALogin()} className='iniM'>Iniciar sesión</button>
 
                 <Slider {...settings} className='carousel'>
                     <div>

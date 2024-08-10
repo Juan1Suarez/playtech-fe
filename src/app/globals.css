@@ -171,6 +171,20 @@ bottom: 60px;
   border-radius: 5px;
 }
 
+.iniM {
+  position: absolute;
+  text-align: center;
+  left: 1520px;
+  top: 20px;
+  background-color: rgb(255, 255, 255);
+  width: 125px;
+  height: 30px;
+  border-style: solid;
+  border-color: #000000;
+  color: #000000;
+  border-radius: 5px;
+}
+
 .fondoimg {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
