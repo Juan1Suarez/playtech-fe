@@ -49,7 +49,7 @@ const ProductoPage = () => {;
         <>
           <button className='logoCarrito' onClick={() => { navegarACarrito() }}><TiShoppingCart size={42} /></button>
           <div className='productoCompleto'>
-            <img src={producto.foto} className='fotoP' alt={producto.modelo} />
+            <img src={producto.foto} className='fotoP'/>
             <div className='containerDatosUser'>
               <div className='nombreProducto'>{producto.modelo}</div>
               <div>Stock: {producto.stock}</div>

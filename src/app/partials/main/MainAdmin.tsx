@@ -176,7 +176,7 @@ const VerAdminPage = () => {
             <div> Foto</div>
             <small>Para cambiar foto vaya a editar producto.</small>
             <div> Descripción</div>
-            <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px' }} onChange={handleChange} />
+            <textarea name="descripcion" placeholder='Descripción' style={{ fontFamily: 'inherit', width: '300px', height: '100px',maxHeight: '250px', minHeight: '90px' }} onChange={handleChange} />
             <button onClick={handleSubmit}> Realizar cambios</button>
             <button onClick={handleClosePopup}>Cancelar</button>
           </div>

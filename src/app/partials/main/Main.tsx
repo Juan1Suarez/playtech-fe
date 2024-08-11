@@ -85,7 +85,7 @@ export default function Home() {
                             .slice(0, 7)
                             .map(producto => (
                                 <a key={producto.productoId} onClick={() => navegarALogin()}>
-                                    <img className='fotoMain' src={producto.foto} alt={producto.modelo}/>
+                                    <img className='fotoMain' src={producto.foto}/>
                                     <p>{producto.modelo}</p>
                                     <div>${producto.precio}</div>
                                 </a>

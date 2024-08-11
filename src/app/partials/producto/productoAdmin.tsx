@@ -122,7 +122,7 @@ const ProductoAdminPage = () => {
                   name="foto"
                   onChange={handleFileSelected} disabled={!editar} />
                 <div> Descripción</div>
-                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px',maxHeight: '190px' }}  readOnly={!editar}/>  
+                <textarea name="descripcion" value={producto.descripcion} onChange={handleChange} style={{ fontFamily: 'inherit', width: '300px', height: '100px',maxHeight: '190px', minHeight: '90px'  }}  readOnly={!editar}/>  
 <br></br>
 {editar ? (
             <>

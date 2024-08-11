@@ -74,7 +74,7 @@ const MainUser = () => {
                             .slice(0, 7)
                             .map(producto => (
                                 <a key={producto.productoId} onClick={() => navegarAProducto(producto.modelo)}>
-                                    <img className='fotoMain' src={producto.foto} alt={producto.modelo}/>
+                                    <img className='fotoMain' src={producto.foto}/>
                                     <p>{producto.modelo}</p>
                                     <div>${producto.precio}</div>
                                 </a>
