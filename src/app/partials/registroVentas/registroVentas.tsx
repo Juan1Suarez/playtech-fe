@@ -2,17 +2,12 @@
 import { withRoles } from '@/app/services/HOC/withRoles';
 import Compra from '@/app/services/model/compra.model';
 import { verCompra } from '@/app/services/Registro';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import 'rsuite/Dropdown/styles/index.css';
 
 const RegistroVentas = () => {
-  const router = useRouter();
-  const navegarAMain = () => {
-    router.push("/mainAdmin");
-  }
 
   const [registro, setRegistro] = useState<Compra[]>([]);
   useEffect(() => {
@@ -25,7 +20,6 @@ const RegistroVentas = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = registro.slice(indexOfFirstItem, indexOfLastItem);
@@ -33,6 +27,7 @@ const RegistroVentas = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const [sortOrder, setSortOrder] = useState('asc');
+  const [dateOrder, setDateOrder] = useState('asc');
 
   const sortRegistro = () => {
     const sortedRegistro = [...registro].sort((a, b) => {
@@ -44,6 +39,18 @@ const RegistroVentas = () => {
     });
     setRegistro(sortedRegistro);
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  const sortRegistroPorFecha = () => {
+    const sortedRegistro = [...registro].sort((a, b) => {
+      if (dateOrder === 'asc') {
+        return new Date(a.fecha).getTime() - new Date(b.fecha).getTime();
+      } else {
+        return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
+      }
+    });
+    setRegistro(sortedRegistro);
+    setDateOrder(dateOrder === 'asc' ? 'desc' : 'asc');
   };
 
   const generarPDF = () => {
@@ -81,9 +88,14 @@ const RegistroVentas = () => {
       <button className='precioRegistro' onClick={sortRegistro}>
         Precio {sortOrder === 'asc' ? '↓' : '↑'}
       </button>
+
+      <button className='fechaRegistro' onClick={sortRegistroPorFecha}>
+        Fecha {dateOrder === 'asc' ? '↓' : '↑'}
+      </button>
+      
       <br></br><br></br>
       <table className="table table-bordered border-dark">
-      <thead className="table-dark">
+        <thead className="table-dark">
           <tr>
             <th>ID COMPRA</th>
             <th>ID CLIENTE</th>
@@ -102,7 +114,7 @@ const RegistroVentas = () => {
               <td>{compra.usuarioId}</td>
               <td>{compra.nombre}</td>
               <td>{compra.email}</td>
-              <td>{(new Date(compra.fecha)).toLocaleString()}</td> 
+              <td>{(new Date(compra.fecha)).toLocaleString()}</td>
               <td>{compra.productoId}</td>
               <td>{compra.modelo}</td>
               <td>{compra.precio}</td>
@@ -110,7 +122,6 @@ const RegistroVentas = () => {
           ))}
         </tbody>
       </table>
-      
     </>
   );
 }
