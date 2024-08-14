@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { TiShoppingCart } from "react-icons/ti";
-import { UsardarkMode } from '@/app/services/DarkMode';
 import tipoDeProducto from '@/app/services/model/tipoDeProducto.model';
 
 const MainUser = () => {
@@ -47,7 +46,6 @@ const MainUser = () => {
         router.push("/carritoDeCompras");
       };
       
-      const tiposDeProducto = Array.from(new Set(productos.map(producto => producto.tipoDeProducto)));
   
     return (
         <>

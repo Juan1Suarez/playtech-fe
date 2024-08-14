@@ -638,7 +638,6 @@ bottom: 60px;
 
 /* CARRITO */
 
-
 .carritoProducto {
   background-color: rgb(197, 197, 197);
   width: 1200px;
@@ -717,6 +716,16 @@ bottom: 60px;
   justify-content: center;
   left: 900px;
   bottom:200px;
+}
+
+.borrarEste{
+  color: red;
+  font-size: 15px;
+  border-radius: 10%;
+  margin-left: 815px;
+  position: relative;
+  bottom: 360px;
+  border-width: 0.1px;
 }
 
 .comprarProducto {

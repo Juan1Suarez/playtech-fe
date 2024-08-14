@@ -88,6 +88,16 @@ const CarritoDeCompras = () => {
     window.location.reload();
   }
 
+  const borrarProducto = (producto: Producto) => {
+    const id = productos.findIndex(p => p.productoId === producto.productoId);
+    if (id !== -1) {
+      const productosActualizados = [...productos];
+      productosActualizados.splice(id, 1);
+      setProductos(productosActualizados);
+      localStorage.setItem('carrodecompras', JSON.stringify(productosActualizados));
+    }
+  };
+
   return (
     <>
       <div className='carritoProducto'>
@@ -96,6 +106,7 @@ const CarritoDeCompras = () => {
             <img className='fotoCarrito' src={producto.foto}/>
             <h1 className='textoProducto'>{producto.modelo}</h1>
             <h1 className='valorproducto'>$ {producto.precio}</h1>
+            <button className='borrarEste' onClick={() => borrarProducto(producto)}>X</button>
           </div>
         ))}
         <div className='divisor'></div>
