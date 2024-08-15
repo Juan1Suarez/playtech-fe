@@ -1,32 +1,22 @@
 "use client";
 import { withRoles } from '@/app/services/HOC/withRoles';
 import React, { useEffect, useState } from 'react';
-import { Container, Dropdown } from 'rsuite';
 import 'rsuite/Dropdown/styles/index.css';
 import Producto from '../../services/model/producto.model';
 import { registroVenta, restarStock } from '@/app/services/Registro';
-import { FaUserGear } from 'react-icons/fa6';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
-import { eliminarUsuario } from '@/app/services/Login';
-import { LogOut } from '@/app/services/LogOut';
-import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
 
 
 const CarritoDeCompras = () => {
-  const nombre = useNombre();
-  const { darkMode, activarDarkMode } = UsardarkMode();
   const [productos, setProductos] = useState<Producto[]>([]);
-   const [isClient, setIsClient] = useState(false);
-
   const router = useRouter();
+
   const navegarAMain = () => {
     router.push("/mainUser");
   }
 
   useEffect(() => {
-    setIsClient(true);
     const storedProductos = localStorage.getItem('carrodecompras');
     if (storedProductos) {
       const productosRecuperados: Producto[] = JSON.parse(storedProductos);
@@ -34,31 +24,9 @@ const CarritoDeCompras = () => {
     }
   }, []);
 
-  if (isClient && !localStorage.getItem('carrodecompras')) {
+  if (productos.length === 0) {
     return (
       <>
-<a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="" loading="lazy"></img></a>
-
-<Container className='caidaproductos'>
-  <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-    <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-    <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
-  </Dropdown>
-</Container>
-
-<div className='configUser'>
-<Dropdown title={<FaUserGear size={42} />}>
-    <Dropdown.Menu title="User">
-      <Dropdown.Item >{nombre}</Dropdown.Item>
-      <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-      <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
-    </Dropdown.Menu>
-    <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-  </Dropdown>
-</div>
     <p className='error'>No hay articulos en el carrito de compra</p>
     <br></br><br></br><br></br><br></br>
 
@@ -72,27 +40,41 @@ const CarritoDeCompras = () => {
     const decodedToken: { usuarioId: number } = jwtDecode(token);
     const usuarioId = decodedToken.usuarioId;
   
-    const restarStockPromises = productos.map(producto => {
-      const productoId = producto.productoId;
-      if (productoId !== undefined) {
-        return restarStock(productoId);
-      }
-      return Promise.resolve();
-    });
     try {
-      await Promise.all(restarStockPromises);
+      const productoCantidadMap = productos.reduce((cantidad, producto) => {
+        if (producto.productoId !== undefined) {
+          cantidad[producto.productoId] = (cantidad[producto.productoId] || 0) + 1;
+        }
+        return cantidad;
+      }, {} as Record<number, number>);
   
-      const registroPromises = productos.map(producto => {
-        const productoId = producto.productoId;
-        return registroVenta(productoId, usuarioId);
-      });
+      const verificarStockPromises = Object.entries(productoCantidadMap).map(
+        async ([productoId, cantidad]) => {
+          const producto = productos.find(p => p.productoId === parseInt(productoId));
+          if (producto && producto.stock < cantidad) {
+            throw new Error("Stock insuficiente");
+          }
+        }
+      );
       
-      await Promise.all(registroPromises); 
+      await Promise.all(verificarStockPromises);
+  
+      const restarYRegistrarPromises = Object.entries(productoCantidadMap).map(
+        async ([productoId, cantidad]) => {
+          for (let i = 0; i < cantidad; i++) {
+            await restarStock(parseInt(productoId));
+            await registroVenta(parseInt(productoId), usuarioId);
+          }
+        }
+      );
+  
+      await Promise.all(restarYRegistrarPromises);
+  
       alert("¡Tu compra se ha completado con éxito!");
       localStorage.removeItem('carrodecompras');
       navegarAMain();
     } catch (error) {
-      alert("Uno de los productos elegidos no esta en stock. Intenta nuevamente.");
+      alert("Uno de los productos elegidos no está en stock. Intenta nuevamente.");
       console.error(error);
     }
   };
@@ -106,37 +88,25 @@ const CarritoDeCompras = () => {
     window.location.reload();
   }
 
+  const borrarProducto = (producto: Producto) => {
+    const id = productos.findIndex(p => p.productoId === producto.productoId);
+    if (id !== -1) {
+      const productosActualizados = [...productos];
+      productosActualizados.splice(id, 1);
+      setProductos(productosActualizados);
+      localStorage.setItem('carrodecompras', JSON.stringify(productosActualizados));
+    }
+  };
+
   return (
     <>
-      <a href='mainUser'><img className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="" loading="lazy"></img></a>
-
-      <Container className='caidaproductos'>
-        <Dropdown title="¿Qué tipo de producto estás buscando?" size="lg">
-          <Dropdown.Item as="a" href="listaProducto?tipo=Auriculares">Auriculares</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Teclado">Teclados</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Mouse">Mouses</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Mousepad">Mousepads</Dropdown.Item>
-          <Dropdown.Item as="a" href="listaProducto?tipo=Silla%20Gamer">Sillas</Dropdown.Item>
-        </Dropdown>
-      </Container>
-
-      <div className='configUser'>
-      <Dropdown title={<FaUserGear size={42} />}>
-          <Dropdown.Menu title="User">
-            <Dropdown.Item >{nombre}</Dropdown.Item>
-            <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-            <Dropdown.Item onClick={eliminarUsuario}>Eliminar cuenta</Dropdown.Item>
-          </Dropdown.Menu>
-          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-        </Dropdown>
-      </div>
-
       <div className='carritoProducto'>
         {productos.map((producto, index) => (
           <div key={index} className='productoElegido'>
-            <img className='fotoCarrito' src={producto.foto} alt="Foto del producto" loading="lazy"/>
+            <img className='fotoCarrito' src={producto.foto}/>
             <h1 className='textoProducto'>{producto.modelo}</h1>
             <h1 className='valorproducto'>$ {producto.precio}</h1>
+            <button className='borrarEste' onClick={() => borrarProducto(producto)}>X</button>
           </div>
         ))}
         <div className='divisor'></div>

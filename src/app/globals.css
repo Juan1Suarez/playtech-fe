@@ -117,8 +117,44 @@ body {
 
 /*MAIN*/
 
-.verAdmin{
-margin-left: 70px;
+.noProductos{
+    margin-left: 150px;
+    margin-top: 10px;
+    width: 1400px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filtrarLabel{
+  margin: 10px;
+  width: 150px;
+}
+
+.filtrarButton{  
+margin-left: 900px;
+position:relative;
+bottom: 60px;
+}
+
+.filtrarProducto{
+  background-color: lightgray;
+  width: 1400px;
+  margin: 90px;
+  margin-left: 200px;
+  height: 90px;
+}
+
+.filtrarInput{
+  margin-left:320px;
+}
+
+.verAdmin {
+  margin-left: 70px;
 }
 
 .ini {
@@ -129,6 +165,20 @@ margin-left: 70px;
   background-color: rgb(255, 255, 255);
   width: 105px;
   height: 50px;
+  border-style: solid;
+  border-color: #000000;
+  color: #000000;
+  border-radius: 5px;
+}
+
+.iniM {
+  position: absolute;
+  text-align: center;
+  left: 1520px;
+  top: 20px;
+  background-color: rgb(255, 255, 255);
+  width: 125px;
+  height: 30px;
   border-style: solid;
   border-color: #000000;
   color: #000000;
@@ -209,6 +259,13 @@ margin-left: 70px;
   height: 70px;
   top: 20px;
   left: 20px;
+  cursor: pointer;
+}
+
+.irARegistro{
+  width: 300px;
+  font-family: "Roboto Slab";
+  height: 60px;
 }
 
 .caidaproductos {
@@ -216,7 +273,6 @@ margin-left: 70px;
   left: 800px;
   top: -35px;
   font-family: "Roboto Slab";
-
   width: 100px;
 }
 
@@ -227,6 +283,85 @@ margin-left: 70px;
   display: grid;
   place-items: center;
   margin: auto;
+}
+
+
+
+.fotoAdmin {
+  position: relative;
+  left: 20px;
+  margin-top: 20px;
+  width: 90px;
+  height: 50px;
+}
+
+.crearProducto{
+  margin-left: 200px;
+  width: 130px;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 9px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.adminPrecio {
+  margin-left: 330px;
+  width: 130px;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 9px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.fotoAdmin {
+  height: 80px;
+  width: 80px;
+}
+
+
+.englobadorPAdmin {
+  margin-left: 150px;
+  width: 1400px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 5px;
+
+}
+
+.keyAdmin {
+  margin: 1px;
+  margin-left: 50px;
+}
+
+.precioPAdmin {
+  display: inline-block;
+  margin-right: 400px;
+  width: 100px;
+
+}
+
+.modeloPAdmin {
+  display: inline-block;
+  margin-left: 100px;
+  width: 300px;
+  height: 20px;
+}
+
+.verPAdmin {
+  display: inline-block;
+  margin-right: 10px;
+  height: 50px;
+  width: 170px;
+  border: solid 2px black;
+  border-radius: 10px;
 }
 
 /*productos*/
@@ -264,7 +399,12 @@ margin-left: 70px;
 
 .containerDatos {
   margin-left: 53%;
-  margin-top: -470px;
+  margin-top: -560px;
+}
+
+.containerDatosUser{
+  margin-left: 53%;
+  margin-top: -460px;
 }
 
 .nombreProducto {
@@ -276,6 +416,7 @@ margin-left: 70px;
 .linea {
   background-color: black;
   height: 2px;
+  margin: 9px;
   width: 500px;
   opacity: 50%;
 }
@@ -362,15 +503,20 @@ margin-left: 70px;
   color: white;
   height: 50px;
   width: 180px;
-  margin-left: 10px;
   border-radius: 10px;
   font-size: 16px;
 }
 
 /* LISTAPRODUCTOS */
 
-.listaPrecio{
-  margin-left: 1390px;
+.errorL{
+  margin: 200px;
+  margin-left: 300px;
+  text-decoration: underline;
+}
+
+.listaPrecio {
+  margin-left: 1300px;
   margin-bottom: 10px;
   width: 130px;
   padding: 5px;
@@ -385,11 +531,17 @@ margin-left: 70px;
 .containerProductos {
   border: 2px solid #000000;
   border-radius: 15px;
-  width: 300px;
+  height: 100%;
+  width: 330px;
   padding: 12px;
   background-color: #f3f0f0;
   position: relative;
   left: 100px;
+}
+
+.containerLista {
+  display: flex;
+  gap: 190px;
 }
 
 .productosListado {
@@ -413,11 +565,9 @@ margin-left: 70px;
   border: 1px solid;
   border-radius: 7px;
   width: 1000px;
-  bottom: 275px;
   background-color: rgb(241, 241, 241);
   padding: 15px;
   position: relative;
-  left: 550px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -429,7 +579,6 @@ margin-left: 70px;
   height: 270px;
   background-color: rgb(255, 255, 255);
   position: relative;
-  left: 10px;
   top: 5px;
   margin-bottom: 15px;
 }
@@ -488,7 +637,6 @@ margin-left: 70px;
 }
 
 /* CARRITO */
-
 
 .carritoProducto {
   background-color: rgb(197, 197, 197);
@@ -567,7 +715,17 @@ margin-left: 70px;
   display: flex;
   justify-content: center;
   left: 900px;
-  bottom: 230px;
+  bottom:200px;
+}
+
+.borrarEste{
+  color: red;
+  font-size: 15px;
+  border-radius: 10%;
+  margin-left: 815px;
+  position: relative;
+  bottom: 360px;
+  border-width: 0.1px;
 }
 
 .comprarProducto {
@@ -604,6 +762,7 @@ margin-left: 70px;
 
 .borrarCarrito {
   background-color: rgb(255, 47, 47);
+  color: white;
   width: 200px;
   height: 50px;
   border-radius: 10px;
@@ -626,7 +785,7 @@ margin-left: 70px;
 .precioTotal {
   position: absolute;
   top: 520px;
-  left: 60px;
+  left: 30px;
   font-family: 'Roboto Slab';
 }
 
@@ -695,7 +854,7 @@ footer {
   background-color: #fff;
   padding: 20px;
   border: 1px solid #888;
-  width: 300px;
+  width: 350px;
   position: relative;
 }
 
@@ -710,20 +869,6 @@ footer {
 
 /*REGISTRO VENTAS */
 
-.registroV {
-  position: relative;
-  width: 95%;
-  background-color: rgb(231, 231, 231);
-  top: 80px;
-  left: 40px;
-}
-
-table,
-th,
-td {
-  border: 1px solid;
-  text-align: center;
-}
 
 .paginado {
   margin-left: 40px;
@@ -732,10 +877,16 @@ td {
 .precioRegistro {
   margin-left: 1570px;
   position: relative;
-  top: 75px;
+  top: 50px;
 }
 
-.exportar{
+.fechaRegistro{
+  margin-left: 1650px;
+  position: relative;
+  top: 20px;
+}
+
+.exportar {
   margin-left: 40px;
 }
 
@@ -787,32 +938,5 @@ td {
   border-radius: 5px;
   font-family: 'Roboto Slab';
   font-size: 15px;
-  cursor: pointer;
-}
-
-/*verAdmin*/
-
-.buscadorProductosAdmin {
-  margin-left: 450px;
-  margin-top: 10px;
-  border: 1px solid;
-  border-radius: 7px;
-  width: 1000px;
-  background-color: rgb(241, 241, 241);
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-.adminPrecio{
-  margin-left: 1350px;
-  width: 130px;
-  padding: 5px;
-  border: 1px solid #000000;
-  border-radius: 9px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  font-size: 13px;
   cursor: pointer;
 }

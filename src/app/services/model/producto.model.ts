@@ -1,4 +1,5 @@
 interface Producto {
+    tipoDeProductoId?: number;
     productoId?: number;
     tipoDeProducto: string;
     modelo: string;

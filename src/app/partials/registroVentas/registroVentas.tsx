@@ -2,24 +2,12 @@
 import { withRoles } from '@/app/services/HOC/withRoles';
 import Compra from '@/app/services/model/compra.model';
 import { verCompra } from '@/app/services/Registro';
-import { jwtDecode } from 'jwt-decode';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { FaUserGear } from "react-icons/fa6";
-import { Container, Dropdown } from 'rsuite';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import 'rsuite/Dropdown/styles/index.css';
-import { LogOut } from '@/app/services/LogOut';
-import { UsardarkMode } from '@/app/services/DarkMode';
-import { useNombre } from '@/app/services/Nombre';
 
 const RegistroVentas = () => {
-  const { darkMode, activarDarkMode } = UsardarkMode();
-  const router = useRouter();
-  const navegarAMain = () => {
-    router.push("/mainAdmin");
-  }
 
   const [registro, setRegistro] = useState<Compra[]>([]);
   useEffect(() => {
@@ -32,7 +20,6 @@ const RegistroVentas = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = registro.slice(indexOfFirstItem, indexOfLastItem);
@@ -40,6 +27,7 @@ const RegistroVentas = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const [sortOrder, setSortOrder] = useState('asc');
+  const [dateOrder, setDateOrder] = useState('asc');
 
   const sortRegistro = () => {
     const sortedRegistro = [...registro].sort((a, b) => {
@@ -51,6 +39,18 @@ const RegistroVentas = () => {
     });
     setRegistro(sortedRegistro);
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  const sortRegistroPorFecha = () => {
+    const sortedRegistro = [...registro].sort((a, b) => {
+      if (dateOrder === 'asc') {
+        return new Date(a.fecha).getTime() - new Date(b.fecha).getTime();
+      } else {
+        return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
+      }
+    });
+    setRegistro(sortedRegistro);
+    setDateOrder(dateOrder === 'asc' ? 'desc' : 'asc');
   };
 
   const generarPDF = () => {
@@ -73,24 +73,6 @@ const RegistroVentas = () => {
 
   return (
     <>
-      <img onClick={() => navegarAMain()} className="playmain" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
-
-      <Container className='caidaproductos'>
-        <Dropdown title="Redireccionar al registro de ventas" size="lg" >
-        </Dropdown>
-      </Container>
-
-
-      <div className='configUser'>
-        <Dropdown title={<FaUserGear size={42} />}>
-          <Dropdown.Menu title="Admin">
-            <Dropdown.Item >{useNombre()}</Dropdown.Item>
-            <Dropdown.Item onClick={LogOut}>Cerrar sesión</Dropdown.Item>
-          </Dropdown.Menu>
-          <Dropdown.Item onClick={activarDarkMode} className='switch' >Dark mode</Dropdown.Item>
-        </Dropdown>
-      </div>
-
       <div className='paginado'>
         {Array.from({ length: Math.ceil(registro.length / itemsPerPage) }, (_, i) => (
           <button key={i} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? 'active' : ''}>
@@ -106,8 +88,14 @@ const RegistroVentas = () => {
       <button className='precioRegistro' onClick={sortRegistro}>
         Precio {sortOrder === 'asc' ? '↓' : '↑'}
       </button>
-      <table className='registroV'>
-        <thead>
+
+      <button className='fechaRegistro' onClick={sortRegistroPorFecha}>
+        Fecha {dateOrder === 'asc' ? '↓' : '↑'}
+      </button>
+      
+      <br></br><br></br>
+      <table className="table table-bordered border-dark">
+        <thead className="table-dark">
           <tr>
             <th>ID COMPRA</th>
             <th>ID CLIENTE</th>
@@ -126,7 +114,7 @@ const RegistroVentas = () => {
               <td>{compra.usuarioId}</td>
               <td>{compra.nombre}</td>
               <td>{compra.email}</td>
-              <td>{(new Date(compra.fecha)).toLocaleString()}</td> 
+              <td>{(new Date(compra.fecha)).toLocaleString()}</td>
               <td>{compra.productoId}</td>
               <td>{compra.modelo}</td>
               <td>{compra.precio}</td>
@@ -134,7 +122,6 @@ const RegistroVentas = () => {
           ))}
         </tbody>
       </table>
-      
     </>
   );
 }

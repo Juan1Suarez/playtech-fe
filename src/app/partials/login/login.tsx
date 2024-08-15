@@ -31,7 +31,7 @@ export default function Home() {
 
     <>
 
-      <img  onClick={() => navegarAMain()} className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+      <img  onClick={() => navegarAMain()} className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt="Logo"/>
       
       <Formik
         initialValues={{

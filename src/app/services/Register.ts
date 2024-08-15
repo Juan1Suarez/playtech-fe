@@ -1,4 +1,3 @@
-import { jwtDecode } from "jwt-decode";
 import clienteAxios from "./Axios";
 import Usuario from "./model/usuario.model";
 

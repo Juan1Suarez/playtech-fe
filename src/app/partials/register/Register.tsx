@@ -37,7 +37,7 @@ export default function Register() {
     return (
 
         <>
-            <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png'></img>
+            <img className="play" src='./img/imagen_2024-05-22_195807468-removebg-preview.png' alt='Logo'/>
             <Formik
                 initialValues={{
                     nombre: '',
